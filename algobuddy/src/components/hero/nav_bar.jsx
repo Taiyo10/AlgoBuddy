@@ -18,6 +18,21 @@ const searchAlgos = [
     { title: "Binary Search", href:"/binarysearch" },
 ];
 
+const sortingAlgos = [
+    { title: "Merge Sort", href:"/mergesort" },
+    { title: "Quick Sort", href:"/quicksort" },
+    { title: "Bubble Sort", href:"/bubblesort" },
+    { title: "Insertion Sort", href:"/insertionsort" },
+    { title: "Selection Sort", href:"/selectionsort" },
+];
+
+const graphingAlgos = [
+    { title: "Heap Sort", href:"/heapsort" },
+    { title: "Breadth First Search", href:"/bfs" },
+    { title: "Depth First Search", href:"/dfs" },
+];
+
+
 // Reusable list item component
 const ListItem = ({ title, href }) => {
     return (
@@ -48,6 +63,26 @@ const NavBar = () => {
                         <NavigationMenuContent>
                         <ul className="grid w-[300px] gap-2 p-4">
                             {searchAlgos.map((algo) => (
+                                <ListItem key={algo.title} title={algo.title} href={algo.href} />
+                            ))}
+                        </ul>
+                        </NavigationMenuContent>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+                        <NavigationMenuTrigger>Sorting Algorithms</NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                        <ul className="grid w-[300px] gap-2 p-4">
+                            {sortingAlgos.map((algo) => (
+                                <ListItem key={algo.title} title={algo.title} href={algo.href} />
+                            ))}
+                        </ul>
+                        </NavigationMenuContent>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+                        <NavigationMenuTrigger>Graphing Algorithms</NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                        <ul className="grid w-[300px] gap-2 p-4">
+                            {graphingAlgos.map((algo) => (
                                 <ListItem key={algo.title} title={algo.title} href={algo.href} />
                             ))}
                         </ul>
