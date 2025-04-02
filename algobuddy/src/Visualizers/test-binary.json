@@ -1,0 +1,71 @@
+[{
+    "timestamp": "2025-03-26T19:19:16.665Z",
+    "action": "binary_search_start",
+    "array": [
+      1,
+      3,
+      5,
+      7,
+      9,
+      11
+    ],
+    "target": 7,
+    "low": 0,
+    "high": 5
+  },
+  {
+    "timestamp": "2025-03-26T19:19:16.669Z",
+    "action": "check",
+    "low": 0,
+    "high": 5,
+    "mid": 2,
+    "value_at_mid": 5
+  },
+  {
+    "timestamp": "2025-03-26T19:19:16.669Z",
+    "action": "search_right",
+    "mid": 2,
+    "value_at_mid": 5,
+    "target": 7,
+    "new_low": 3,
+    "high": 5
+  },
+  {
+    "timestamp": "2025-03-26T19:19:16.669Z",
+    "action": "check",
+    "low": 3,
+    "high": 5,
+    "mid": 4,
+    "value_at_mid": 9
+  },
+  {
+    "timestamp": "2025-03-26T19:19:16.670Z",
+    "action": "search_left",
+    "mid": 4,
+    "value_at_mid": 9,
+    "target": 7,
+    "low": 3,
+    "new_high": 3
+  },
+  {
+    "timestamp": "2025-03-26T19:19:16.670Z",
+    "action": "check",
+    "low": 3,
+    "high": 3,
+    "mid": 3,
+    "value_at_mid": 7
+  },
+  {
+    "timestamp": "2025-03-26T19:19:16.670Z",
+    "action": "found",
+    "index": 3,
+    "value": 7,
+    "low": 3,
+    "high": 3
+  },
+  {
+    "timestamp": "2025-03-26T19:19:16.670Z",
+    "action": "binary_search_end",
+    "result": 3
+  }
+]

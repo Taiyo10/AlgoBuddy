@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import ArrayVisualizer from "./Visualizers/ArrayViz";
+import BinarySearchViz from "./Visualizers/BinarySearch";
 
 const App = () => {
-  const array = [3, 5, 1, 7, 2, 8, 4];
+  const array = [1, 3, 5, 7, 9, 11];
+  const search = 7
  
   return (
     <div>
-      <ArrayVisualizer data={array} />
+      <BinarySearchViz data={array} target={search}/>
     </div>
   );
 };

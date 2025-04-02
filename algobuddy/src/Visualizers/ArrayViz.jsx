@@ -1,14 +1,36 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useImperativeHandle, forwardRef } from "react";
 import * as d3 from "d3";
-import { drawArrow } from "./components/arrow";
-
-const ArrayVisualizer = ({ data, algo='binarySearch' }) => {
+import jsonData from './test-binary.json'
+const ArrayVisualizer = forwardRef(({ data, speed=1000}, ref) => {
     const svgRef = useRef();
     const groupRef = useRef();
+    const arrowRef = useRef(null);
+
 
     const BOXWIDTH = 70;
     const BOXHEIGHT = 70;
     const MIDDLEOFARRAY = BOXWIDTH * data.length / 2;
+    
+    const base_colour = "#555";
+
+    // Allows use of functions in parent component
+    useImperativeHandle(ref, () => ({
+        setTitle: (text) => {
+            d3.select(svgRef.current)
+              .select(".title")
+              .text(text);
+          },
+        setRectColours: (filterFn, color) => {
+            d3.select(svgRef.current)
+            .selectAll("rect")
+            .filter(filterFn)
+            .attr("fill", color);
+        },
+        sleep: (overideMs) => new Promise((resolve) => setTimeout(resolve, (overideMs ?? speed))),
+        drawArrow: (text, ini_index=0, color = "red", scale = 0.6) => {
+            return arrowRef.current(text, ini_index, color, scale);
+        },
+    }))
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
@@ -38,7 +60,7 @@ const ArrayVisualizer = ({ data, algo='binarySearch' }) => {
         .attr("height", BOXHEIGHT)
         .attr("x", (_, i) => i * BOXWIDTH + svgWidth * 0.5 - MIDDLEOFARRAY)
         .attr("y", svgHeight * 0.5 - BOXHEIGHT/2)
-        .attr("fill", "#555")
+        .attr("fill", base_colour)
         .attr("stroke", "black")
         .attr("stroke-width", 4)
     
@@ -68,28 +90,60 @@ const ArrayVisualizer = ({ data, algo='binarySearch' }) => {
         .attr("alignment-baseline", "middle")
         .attr("fill", "#999")
 
-    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    // Title
+    group.append("text")
+        .attr("class", "title")
+        .text("Title")
+        .attr("x", svgWidth * 0.5)
+        .attr("y", svgHeight * 0.5 - BOXHEIGHT * 1.5)
+        .attr("text-anchor", "middle")
+        .attr("alignment-baseline", "middle")
+        .attr("fill", "white")
+        .attr("font-size", 30);
 
+    arrowRef.current = (text = "", ini_index=0, color = "red", scale = 0.6) => {
+        const group = d3.select(groupRef.current);  
+        
+        const tipx = 10 * scale;
+        const tipy = 60 * scale;
+        const font_size = 20;
+        const x = svgWidth * 0.5 + BOXWIDTH / 2 - MIDDLEOFARRAY
+        const y = svgHeight * 0.5 + BOXHEIGHT / 2
 
-    const visualizeBinarySearch = async () => {
-        const {moveToIndex: lowMove} = drawArrow(
-            group,
-            "low",
-            svgWidth * 0.5 + BOXWIDTH / 2 - MIDDLEOFARRAY,
-            svgHeight * 0.5 + BOXHEIGHT / 2,
-        );
-        for (let i = 0; i < 100; i++) {
-            lowMove(6)
-            await sleep(500);
-            lowMove(0)
-            await sleep(500);
-        }
-      };
-  
-    if (algo === "binarySearch") {
-    visualizeBinarySearch();
-    }
-   })
+        const arrowX = x - tipx
+        const arrowY = y + tipy + 10;
+        const textY = y + tipy + font_size + 10
+    
+        const path = group.append("path")
+            .attr("d", "M0,0 L40,0 L40,-10 L60,10 L40,30 L40,20 L0,20 Z")
+            .attr("fill", color)
+            .attr("transform", `translate(${arrowX+ ini_index * BOXWIDTH}, ${arrowY}) rotate(-90) scale(${scale})`)
+            //.attr("visibility", "hidden")
+        const textElement = group.append("text")
+            .text(text)
+            .attr("y", textY)
+            .attr("fill", color)
+            .attr("font-size", font_size)
+            //.attr("visibility", "hidden")
+    
+        // Adjust x position to move text to the left by half its width
+        const textWidth = textElement.node().getBBox().width;
+        const textX = x - textWidth / 2;
+        textElement.attr("x", textX + ini_index * BOXWIDTH);
+    
+        const moveToIndex = (index, duration = speed/2) => {
+            path.transition()
+                .duration(duration)
+                .attr("transform", `translate(${arrowX + index * BOXWIDTH}, ${arrowY}) rotate(-90) scale(${scale})`);
+        
+                textElement.transition()
+                .duration(duration)
+                .attr("x", textX + index * BOXWIDTH)
+            };
+        
+        return {moveToIndex, path, text:textElement};
+    }}, [data, speed]);
+
 
   return (
     <svg
@@ -102,6 +156,6 @@ const ArrayVisualizer = ({ data, algo='binarySearch' }) => {
       }}
     />
   );
-};
+});
 
 export default ArrayVisualizer;
