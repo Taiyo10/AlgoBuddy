@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useImperativeHandle, forwardRef } from "react";
 import * as d3 from "d3";
 import jsonData from './test-binary.json'
-const ArrayVisualizer = forwardRef(({ data, speed=1000}, ref) => {
+const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
     const svgRef = useRef();
     const groupRef = useRef();
     const arrowRef = useRef(null);
+    const transformRef = useRef(d3.zoomIdentity);
+
 
 
     const BOXWIDTH = 70;
@@ -42,12 +44,13 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000}, ref) => {
     // Add zoom behavior to the whole SVG
     const zoom = d3.zoom().on("zoom", (event) => {
       d3.select(groupRef.current).attr("transform", event.transform);
+      transformRef.current = event.transform;
     });
 
     svg.call(zoom);
 
     // Create a group that can be zoomed/panned
-    const group = svg.append("g").attr("transform", `translate(50vw, 50vh)`);
+    const group = svg.append("g").attr("transform", transformRef.current);
     groupRef.current = group.node();
 
     // Boxes
@@ -93,7 +96,7 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000}, ref) => {
     // Title
     group.append("text")
         .attr("class", "title")
-        .text("Title")
+        .text(title)
         .attr("x", svgWidth * 0.5)
         .attr("y", svgHeight * 0.5 - BOXHEIGHT * 1.5)
         .attr("text-anchor", "middle")

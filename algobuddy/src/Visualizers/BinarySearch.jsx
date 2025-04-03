@@ -3,11 +3,14 @@ import ArrayVisualizer from "./ArrayViz";
 import { applyBinarySearchStep } from "./Algorithms/BinarySearch";
 import jsonData from './test-binary.json'
 import { Slider } from "./components/slider";
-const BinarySearchViz = ({ data, target, algo='binarySearch' }) => {
+const BinarySearchViz = () => {
     const vizRef = useRef();
-    const speedRef = useRef(1000); // default 1000ms delay
+    const speedRef = useRef(1000); 
     const [currentStep, setCurrentStep] = useState(0);
     const [playing, setPlaying] = useState(false);
+    const [data, setData] = useState([1, 3, 5, 7, 9, 11]);
+    const [inputValue, setInputValue] = useState(data.join(","));
+    const [target, setTarget] = useState(7);
 
     useEffect(() => {
         if (!vizRef.current) return;
@@ -17,6 +20,7 @@ const BinarySearchViz = ({ data, target, algo='binarySearch' }) => {
     
     useEffect(() => {
         if (playing) {
+            applyStep(jsonData[currentStep])
             const interval = setInterval(() => {
                 setCurrentStep((prevStep) => {
                     if (prevStep < jsonData.length - 1) {
@@ -30,7 +34,7 @@ const BinarySearchViz = ({ data, target, algo='binarySearch' }) => {
             return () => clearInterval(interval);
         }
     }, [playing, speedRef.current]);
-
+    
     const applyStep = (step) => {
         if (!vizRef.current) return;
         applyBinarySearchStep(vizRef.current,  data, target, step, speedRef)
@@ -53,11 +57,6 @@ const BinarySearchViz = ({ data, target, algo='binarySearch' }) => {
             setCurrentStep(index);
         }
     }
-    // Loads Binary Search Animation/Logic
-    // useEffect(() => {
-    //     const viz = vizRef.current;
-    //     BinarySearchAnim(viz, data, target, jsonData, speedRef);
-    // }, [data, target]);
 
     
     // Changes speed of the animation
@@ -67,7 +66,7 @@ const BinarySearchViz = ({ data, target, algo='binarySearch' }) => {
 
     return (
         <>
-            <ArrayVisualizer ref={vizRef} data={data} speed={speedRef.current} />
+            <ArrayVisualizer ref={vizRef} data={data} speed={speedRef.current} title={"Binary Search"} />
             <Slider speed={speedRef.current} onChange={handleSpeedChange} />
             <div style={{ padding: 10 }}>
                 <button onClick={prev}>Previous</button>
@@ -85,6 +84,28 @@ const BinarySearchViz = ({ data, target, algo='binarySearch' }) => {
                 />
                 <span> Step {currentStep + 1} / {jsonData.length}</span>
                 <button onClick={() => {jump(0); setPlaying(false)}}>Reset</button>
+                <input
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => {
+                        const value = e.target.value;
+                        setInputValue(value);
+
+                        // Parse numbers only from fully typed values
+                        const parsed = value
+                        .split(",")
+                        .map(s => s.trim())
+                        .filter(s => /^\d{1,8}$/.test(s))
+                        .map(Number);
+
+                        setData(parsed);
+                        applyStep(jsonData[0]); 
+                        setPlaying(false);
+                    }}
+                    placeholder="e.g. 1,2,3"
+                    style={{ width: "300px", marginLeft: "10px" }}
+                />
+
             </div>
         </>
     );
