@@ -2,7 +2,7 @@ import { applyBinarySearchStep } from "./BinarySearch";
 
 export const binarySearchConfig = {
     name: "Binary Search",
-    visualizer: "array", // could also be "graph", "matrix", etc.
+    visualizer: "array",
     defaultValues: {
         array: [1, 3, 5, 7, 9, 11],
         target: 7,

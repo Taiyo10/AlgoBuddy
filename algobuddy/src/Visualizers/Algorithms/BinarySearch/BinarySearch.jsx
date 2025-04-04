@@ -1,6 +1,6 @@
 import { colours } from "../../../Theme/Colours";
 export const applyBinarySearchStep = async (viz, step, args) => {
-    const {base, highlight, found, checking} = colours;
+    const {base, highlight, checking, found, notFound} = colours;
     const {data, target} = args;
     
     if (step.action === "binary_search_start") {
@@ -27,6 +27,11 @@ export const applyBinarySearchStep = async (viz, step, args) => {
       viz.setRectColours((_, i) => i === step.index, found);
       viz.setRectColours((_, i) => i !== step.index, base);
       viz.setTitle(`Found ${step.value}!!`);
+
+    } else if (step.action === "not_found") {
+      viz.setRectColours((_, i) => i === i, notFound);
+      viz.setTitle(`${target} not found`);
     }
+
   };
   

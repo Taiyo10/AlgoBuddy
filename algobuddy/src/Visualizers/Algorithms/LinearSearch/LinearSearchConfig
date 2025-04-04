@@ -1,0 +1,15 @@
+import { applyLinearSearchStep } from "./LinearSearch";
+
+export const linearSearchConfig = {
+    name: "Linear Search",
+    visualizer: "array",
+    defaultValues: {
+        array: [3, 17, 21, 42, 56, 74, 89],
+        target: 56,
+    },
+    inputs: {
+        array: true,
+        target: true,
+    },
+    applyStep: applyLinearSearchStep, 
+}
