@@ -1,10 +1,10 @@
-import BinarySearchViz from "./Visualizers/BinarySearch";
-
+import VisualizeAlgorithm from "./Visualizers/VisualizeAlgorithm";
+import { binarySearchConfig } from "./Visualizers/Algorithms/BinarySearch/BinarySearchConfig";
 const App = () => {
- 
+  
   return (
     <div>
-      <BinarySearchViz/>
+      <VisualizeAlgorithm config={binarySearchConfig} />
     </div>
   );
 };

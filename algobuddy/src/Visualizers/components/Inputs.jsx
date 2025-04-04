@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export const Inputs = ({ config = { array: false, target: false, key: false}, values, onChange }) => {
-    const { array, target, key } = config;
-    const [inputArray, setInputArray] = useState(values.array?.join(",") || "");
-    const [inputTarget, setInputTarget] = useState(values.target || "");
-    const [inputKey, setInputKey] = useState(values.key || "");
+export const Inputs = ({ config, mapping }) => {
+    const [inputArray, setInputArray] = useState(mapping.array?.value.join(",") || "");
+    const [inputTarget, setInputTarget] = useState(mapping.target?.value || "");
+    const [inputKey, setInputKey] = useState(mapping.key?.value || "");
 
     const onArrayChange = (e) => {
         const value = e.target.value;
@@ -17,25 +16,25 @@ export const Inputs = ({ config = { array: false, target: false, key: false}, va
         .filter(s => /^\d{1,8}$/.test(s))
         .map(Number);
 
-        onChange.setArray(parsed);
+        mapping.array.setValue(parsed);
     }
     
     const onTargetChange = (e) => {
         const value = e.target.value;
         setInputTarget(value);
-        onChange.setTarget(value);
+        mapping.target.setValue(value);
     }
 
     const onKeyChange = (e) => {
         const value = e.target.value;
         setInputKey(value);
-        onChange.setKey(value);
+        mapping.key.setValue(value);
     }
         
 
     return (
         <>
-            {array && (
+            {config.array && (
               <div>
                 <label style={{ color: "white" }}>Array:</label>
                 <input
@@ -50,14 +49,14 @@ export const Inputs = ({ config = { array: false, target: false, key: false}, va
               </div>
             )}
 
-            {target && (
+            {config.target && (
               <div>
                 <label style={{ color: "white" }}>Target:</label>
                 <input
                     type="number"
                     value={inputTarget}
                     onChange={(e) => {
-                        onTargetChange
+                        onTargetChange(e);
                     }}
                     placeholder="Target"
                     style={{ width: "100px", marginLeft: "10px" }}
@@ -65,7 +64,7 @@ export const Inputs = ({ config = { array: false, target: false, key: false}, va
               </div>
             )}
 
-            {key && (
+            {config.key && (
               <div>
                 <label style={{ color: "white" }}>Key:</label>
                 <input
