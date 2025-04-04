@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import ArrayVisualizer from "./ArrayViz";
+import ArrayVisualizer from "./BaseViz/ArrayViz";
 import { applyBinarySearchStep } from "./Algorithms/BinarySearch";
 import jsonData from './test-binary.json'
 import { Slider } from "./components/slider";
@@ -105,7 +105,18 @@ const BinarySearchViz = () => {
                     placeholder="e.g. 1,2,3"
                     style={{ width: "300px", marginLeft: "10px" }}
                 />
-
+                <input
+                    type="number"
+                    value={target}
+                    onChange={(e) => {
+                        const value = e.target.value;
+                        setTarget(value);
+                        applyStep(jsonData[0]); 
+                        setPlaying(false);
+                    }}
+                    placeholder="Target"
+                    style={{ width: "100px", marginLeft: "10px" }}
+                />
             </div>
         </>
     );

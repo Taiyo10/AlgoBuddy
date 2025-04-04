@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import ArrayVisualizer from "./Visualizers/ArrayViz";
 import BinarySearchViz from "./Visualizers/BinarySearch";
 
 const App = () => {

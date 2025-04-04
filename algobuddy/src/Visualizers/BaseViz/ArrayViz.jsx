@@ -1,19 +1,17 @@
 import React, { useEffect, useRef, useImperativeHandle, forwardRef } from "react";
 import * as d3 from "d3";
-import jsonData from './test-binary.json'
+import { colours } from "../../Theme/Colours";
 const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
     const svgRef = useRef();
     const groupRef = useRef();
     const arrowRef = useRef(null);
     const transformRef = useRef(d3.zoomIdentity);
 
-
-
     const BOXWIDTH = 70;
     const BOXHEIGHT = 70;
     const MIDDLEOFARRAY = BOXWIDTH * data.length / 2;
     
-    const base_colour = "#555";
+    const base = colours.base;
 
     // Allows use of functions in parent component
     useImperativeHandle(ref, () => ({
@@ -63,7 +61,7 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
         .attr("height", BOXHEIGHT)
         .attr("x", (_, i) => i * BOXWIDTH + svgWidth * 0.5 - MIDDLEOFARRAY)
         .attr("y", svgHeight * 0.5 - BOXHEIGHT/2)
-        .attr("fill", base_colour)
+        .attr("fill", base)
         .attr("stroke", "black")
         .attr("stroke-width", 4)
     
