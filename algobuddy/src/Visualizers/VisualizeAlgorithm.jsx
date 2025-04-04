@@ -11,6 +11,7 @@ const visualizers = {
 
 const VisualizeAlgorithm = ({ config }) => {
     const vizRef = useRef();
+    const speedRef = useRef(1000);
 
     const {name, visualizer, applyStep, inputs, defaultValues} = config
 
@@ -40,8 +41,8 @@ const VisualizeAlgorithm = ({ config }) => {
 
     return (
         <>
-            <AlgorithmVisualizer ref={vizRef} data={data} title={name} />
-            <StepController jsonData={jsonData} applyStep={handleApplyStep} reset={reset} />
+            <AlgorithmVisualizer ref={vizRef} data={data} speed={speedRef.current} title={name} />
+            <StepController jsonData={jsonData} speedRef={speedRef} applyStep={handleApplyStep} reset={reset} />
             <Inputs config = {inputs} mapping = {mapping} />
         </>
     );

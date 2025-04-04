@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Slider } from "./Slider";
 
-export const StepController = ({ jsonData, applyStep, reset }) => {
-    const speedRef = useRef(1000); 
+export const StepController = ({ jsonData, speedRef, applyStep, reset }) => {
     const [currentStep, setCurrentStep] = useState(0);
     const [playing, setPlaying] = useState(false);
     

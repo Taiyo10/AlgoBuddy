@@ -4,8 +4,9 @@ import { colours } from "../../Theme/Colours";
 const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
     const svgRef = useRef();
     const groupRef = useRef();
-    const arrowRef = useRef(null);
     const transformRef = useRef(d3.zoomIdentity);
+    const boxesRef = useRef([]);
+    const textRef = useRef([]);
 
     const BOXWIDTH = 70;
     const BOXHEIGHT = 70;
@@ -27,9 +28,41 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
             .attr("fill", color);
         },
         sleep: (overideMs) => new Promise((resolve) => setTimeout(resolve, (overideMs ?? speed))),
-        drawArrow: (text, ini_index=0, color = "red", scale = 0.6) => {
-            return arrowRef.current(text, ini_index, color, scale);
-        },
+        swapBoxes: async (i, j) => {
+            const boxA = d3.select(boxesRef.current[i]);
+            const boxB = d3.select(boxesRef.current[j]);
+            const textA = d3.select(textRef.current[i]);
+            const textB = d3.select(textRef.current[j]);
+
+            const xA = boxA.attr("x");
+            const xB = boxB.attr("x");
+            const xTextA = textA.attr("x");
+            const xTextB = textB.attr("x");
+
+            const transitionPromise = (item, newX) =>
+              new Promise((resolve) =>
+                item
+                  .transition()
+                  .duration(speed/2)
+                  .attr("x", newX)
+                  .on("end", resolve)
+              );
+          
+            await Promise.all([
+              transitionPromise(boxA, xB),
+              transitionPromise(boxB, xA),
+              transitionPromise(textA, xTextB),
+              transitionPromise(textB, xTextA),
+            ]);
+            
+            const temp = boxesRef.current[i];
+            boxesRef.current[i] = boxesRef.current[j];
+            boxesRef.current[j] = temp;
+
+            const tempText = textRef.current[i];
+            textRef.current[i] = textRef.current[j];
+            textRef.current[j] = tempText;
+        }
     }))
 
   useEffect(() => {
@@ -52,7 +85,7 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
     groupRef.current = group.node();
 
     // Boxes
-    group
+    const boxes = group
     .selectAll("rect")
     .data(data)
     .enter()
@@ -64,9 +97,10 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
         .attr("fill", base)
         .attr("stroke", "black")
         .attr("stroke-width", 4)
+    boxesRef.current = boxes.nodes();
     
     // Nums
-    group
+    const texts = group
     .selectAll("text")
     .data(data)
     .enter()
@@ -77,7 +111,8 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
         .attr("text-anchor", "middle")
         .attr("alignment-baseline", "middle")
         .attr("fill", "white");
-    
+    textRef.current = texts.nodes();
+
     // Index 
     group
     .selectAll(null)
@@ -102,48 +137,7 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
         .attr("fill", "white")
         .attr("font-size", 30);
 
-    arrowRef.current = (text = "", ini_index=0, color = "red", scale = 0.6) => {
-        const group = d3.select(groupRef.current);  
-        
-        const tipx = 10 * scale;
-        const tipy = 60 * scale;
-        const font_size = 20;
-        const x = svgWidth * 0.5 + BOXWIDTH / 2 - MIDDLEOFARRAY
-        const y = svgHeight * 0.5 + BOXHEIGHT / 2
-
-        const arrowX = x - tipx
-        const arrowY = y + tipy + 10;
-        const textY = y + tipy + font_size + 10
-    
-        const path = group.append("path")
-            .attr("d", "M0,0 L40,0 L40,-10 L60,10 L40,30 L40,20 L0,20 Z")
-            .attr("fill", color)
-            .attr("transform", `translate(${arrowX+ ini_index * BOXWIDTH}, ${arrowY}) rotate(-90) scale(${scale})`)
-            //.attr("visibility", "hidden")
-        const textElement = group.append("text")
-            .text(text)
-            .attr("y", textY)
-            .attr("fill", color)
-            .attr("font-size", font_size)
-            //.attr("visibility", "hidden")
-    
-        // Adjust x position to move text to the left by half its width
-        const textWidth = textElement.node().getBBox().width;
-        const textX = x - textWidth / 2;
-        textElement.attr("x", textX + ini_index * BOXWIDTH);
-    
-        const moveToIndex = (index, duration = speed/2) => {
-            path.transition()
-                .duration(duration)
-                .attr("transform", `translate(${arrowX + index * BOXWIDTH}, ${arrowY}) rotate(-90) scale(${scale})`);
-        
-                textElement.transition()
-                .duration(duration)
-                .attr("x", textX + index * BOXWIDTH)
-            };
-        
-        return {moveToIndex, path, text:textElement};
-    }}, [data, speed]);
+  }, [data, speed]);
 
 
   return (
