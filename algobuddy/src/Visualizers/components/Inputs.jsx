@@ -5,6 +5,7 @@ export const Inputs = ({ config, mapping }) => {
     const [inputTarget, setInputTarget] = useState(mapping.target?.value || "");
     const [inputKey, setInputKey] = useState(mapping.key?.value || "");
 
+    // Update array input and visual
     const onArrayChange = (e) => {
         const value = e.target.value;
         setInputArray(value);
@@ -19,12 +20,14 @@ export const Inputs = ({ config, mapping }) => {
         mapping.array.setValue(parsed);
     }
     
+    // Update target value
     const onTargetChange = (e) => {
         const value = e.target.value;
         setInputTarget(value);
         mapping.target.setValue(value);
     }
 
+    // Update key value
     const onKeyChange = (e) => {
         const value = e.target.value;
         setInputKey(value);
@@ -34,7 +37,7 @@ export const Inputs = ({ config, mapping }) => {
 
     return (
         <>
-            {config.array && (
+            {config.array && ( // Only allow array input if requested
               <div>
                 <label style={{ color: "white" }}>Array:</label>
                 <input
@@ -49,7 +52,7 @@ export const Inputs = ({ config, mapping }) => {
               </div>
             )}
 
-            {config.target && (
+            {config.target && ( // Only allow target input if requested
               <div>
                 <label style={{ color: "white" }}>Target:</label>
                 <input
@@ -64,7 +67,7 @@ export const Inputs = ({ config, mapping }) => {
               </div>
             )}
 
-            {config.key && (
+            {config.key && ( // Only allow key input if requested
               <div>
                 <label style={{ color: "white" }}>Key:</label>
                 <input
@@ -78,7 +81,6 @@ export const Inputs = ({ config, mapping }) => {
                 />
               </div>
             )}
-
         </>
     )
 }

@@ -15,29 +15,33 @@ const VisualizeAlgorithm = ({ config }) => {
 
     const {name, visualizer, applyStep, inputs, defaultValues} = config
 
+    // Defines potential inputs for the algorithm/visualizer
     const [data, setData] = useState(defaultValues.array || [1, 3, 5, 7, 9, 11]);
     const [target, setTarget] = useState(defaultValues.target || 7);
     const [key, setKey] = useState(defaultValues.key || null);
 
-    const [reset, setReset] = useState(false);
+    const [reset, setReset] = useState(false); // Reset state to reset animation
 
+    // Reset animation when any input changes
     useEffect(() => {
         setReset(!reset);
     }, [data, target, key]);
     
+    // Applies change to visualizer depending on step in algorithm
     const handleApplyStep = (step) => {
         if (!vizRef.current) return;
         const args = {data, target, key};
-        applyStep(vizRef.current, step, args);
+        applyStep(vizRef.current, step, args); // applyStep function from config
     }
 
+    // Maps input values and setters for input component
     const mapping = {
         array: { value: data, setValue: setData },
         target: { value: target, setValue: setTarget },
         key: { value: key, setValue: setKey }
     };
 
-    const AlgorithmVisualizer = visualizers[visualizer];
+    const AlgorithmVisualizer = visualizers[visualizer]; // Selects needed visualizer based on config
 
     return (
         <>

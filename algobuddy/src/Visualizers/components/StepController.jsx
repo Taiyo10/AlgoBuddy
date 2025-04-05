@@ -5,11 +5,13 @@ export const StepController = ({ jsonData, speedRef, applyStep, reset }) => {
     const [currentStep, setCurrentStep] = useState(0);
     const [playing, setPlaying] = useState(false);
     
+    // If the current step changes, apply the step to the visualizer
     useEffect(() => {
         const step = jsonData[currentStep];
         applyStep(step);
     }, [currentStep]);
     
+    // If paused/unpaused or speed is updated, update/create/delete animation interval
     useEffect(() => {
         if (playing) {
             applyStep(jsonData[currentStep])
@@ -27,31 +29,35 @@ export const StepController = ({ jsonData, speedRef, applyStep, reset }) => {
         }
     }, [playing, speedRef.current]);
 
+    // Reset animation on input change
     useEffect(() => {
         setCurrentStep(0);
         applyStep(jsonData[0]);
         setPlaying(false);
     }, [reset]);
 
+    // Go to next step
     const next = () => {
         if (currentStep < jsonData.length - 1) {
             setCurrentStep(currentStep + 1);
         }
     }
 
+    // Go to previous step
     const prev = () => {
         if (currentStep > 0) {
             setCurrentStep(currentStep - 1);
         }
     }
 
+    // Go to specific step
     const jump = (index) => {
         if (index >= 0 && index < jsonData.length) {
             setCurrentStep(index);
         }
     }
 
-    // Changes speed of the animation
+    // Updates speed reference when slider is changed
     const handleSpeedChange = (newSpeed) => {
         speedRef.current = newSpeed;
     };

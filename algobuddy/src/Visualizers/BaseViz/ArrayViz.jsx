@@ -16,22 +16,22 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
 
     // Allows use of functions in parent component
     useImperativeHandle(ref, () => ({
-        setTitle: (text) => {
+        setTitle: (text) => { // Changes title
             d3.select(svgRef.current)
               .select(".title")
               .text(text);
           },
-        setArray: (newData) => {
+        setArray: (newData) => { // Untested -- Changes the data in the array
             data = newData;
         },
-        setRectColours: (filterFn, color) => {
+        setRectColours: (filterFn, color) => { // Changes colour of array boxes depending on filter
             d3.select(svgRef.current)
             .selectAll("rect")
             .filter(filterFn)
             .attr("fill", color);
         },
-        sleep: (overideMs) => new Promise((resolve) => setTimeout(resolve, (overideMs ?? speed))),
-        swapBoxes: async (i, j) => {
+        sleep: (overideMs) => new Promise((resolve) => setTimeout(resolve, (overideMs ?? speed))), // Sleeps code dependong on time
+        swapBoxes: async (i, j) => { // Swaps the boxes in the array (with animation)
             const boxA = d3.select(boxesRef.current[i]);
             const boxB = d3.select(boxesRef.current[j]);
             const textA = d3.select(textRef.current[i]);
@@ -69,7 +69,7 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
     }))
 
   useEffect(() => {
-    const svg = d3.select(svgRef.current);
+    const svg = d3.select(svgRef.current); // Base of visualizer
     svg.selectAll("*").remove();
 
     const svgWidth = svg.node().clientWidth;
@@ -83,7 +83,7 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
 
     svg.call(zoom);
 
-    // Create a group that can be zoomed/panned
+    // Create a group to hold visual elements
     const group = svg.append("g").attr("transform", transformRef.current);
     groupRef.current = group.node();
 
