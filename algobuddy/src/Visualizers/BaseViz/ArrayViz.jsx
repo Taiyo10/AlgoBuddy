@@ -21,6 +21,9 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
               .select(".title")
               .text(text);
           },
+        setArray: (newData) => {
+            data = newData;
+        },
         setRectColours: (filterFn, color) => {
             d3.select(svgRef.current)
             .selectAll("rect")

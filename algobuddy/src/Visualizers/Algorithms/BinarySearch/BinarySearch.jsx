@@ -11,6 +11,7 @@ export const applyBinarySearchStep = async (viz, step, args) => {
       viz.setRectColours((_, i) => i === i, base);
       viz.setRectColours((_, i) => i  >= step.low && i <= step.high, highlight);
       viz.setRectColours((_, i) => i === step.mid, checking);
+      viz.swapBoxes(step.mid, 0);
       viz.setTitle(`${step.value_at_mid} == ${target} ?`);
 
     } else if (step.action === "search_right") {
