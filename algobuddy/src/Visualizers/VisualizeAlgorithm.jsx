@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import ArrayVisualizer from "./BaseViz/ArrayViz";
-import jsonData from "./Algorithms/BinarySearch/test-binary.json";
+import jsonData from "./Algorithms/BubbleSort/test-bubble.json";
 import { Inputs } from "./components/Inputs";
 import { StepController } from "./components/StepController";
 const visualizers = {

@@ -97,17 +97,16 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
 
     // Boxes
     const boxes = group
-    .selectAll("rect")
+    .selectAll("circle")
     .data(data)
     .enter()
-    .append("rect")
-        .attr("width", BOXWIDTH)
-        .attr("height", BOXHEIGHT)
-        .attr("x", (_, i) => i * BOXWIDTH + svgWidth * 0.5 - MIDDLEOFARRAY)
-        .attr("y", svgHeight * 0.5 - BOXHEIGHT/2)
+    .append("circle")
+        .attr("cx", 150)
+        .attr("cy", 75)
+        .attr("r", 40)
         .attr("fill", base)
         .attr("stroke", "black")
-        .attr("stroke-width", 4)
+        .attr("stroke-width", 2)
     boxesRef.current = boxes.nodes();
     
     // Nums

@@ -30,7 +30,15 @@
     "index1": 0,
     "index2": 1,
     "value1": 42,
-    "value2": 17
+    "value2": 17,
+    "array": [
+      42,
+      17,
+      89,
+      3,
+      56,
+      74
+    ]
   },
   {
     "timestamp": "2025-04-04T21:14:54.625Z",
@@ -51,11 +59,13 @@
   },
   {
     "timestamp": "2025-04-04T21:14:54.625Z",
-    "action": "swap_complete",
+    "action": "compare",
     "pass": 0,
-    "index1": 0,
-    "index2": 1,
-    "array_after_swap": [
+    "index1": 1,
+    "index2": 2,
+    "value1": 42,
+    "value2": 89,
+    "array": [
       17,
       42,
       89,
@@ -68,28 +78,18 @@
     "timestamp": "2025-04-04T21:14:54.625Z",
     "action": "compare",
     "pass": 0,
-    "index1": 1,
-    "index2": 2,
-    "value1": 42,
-    "value2": 89
-  },
-  {
-    "timestamp": "2025-04-04T21:14:54.625Z",
-    "action": "no_swap",
-    "pass": 0,
-    "index1": 1,
-    "index2": 2,
-    "value1": 42,
-    "value2": 89
-  },
-  {
-    "timestamp": "2025-04-04T21:14:54.625Z",
-    "action": "compare",
-    "pass": 0,
     "index1": 2,
     "index2": 3,
     "value1": 89,
-    "value2": 3
+    "value2": 3,
+    "array": [
+      17,
+      42,
+      89,
+      3,
+      56,
+      74
+    ]
   },
   {
     "timestamp": "2025-04-04T21:14:54.625Z",
@@ -110,11 +110,13 @@
   },
   {
     "timestamp": "2025-04-04T21:14:54.625Z",
-    "action": "swap_complete",
+    "action": "compare",
     "pass": 0,
-    "index1": 2,
-    "index2": 3,
-    "array_after_swap": [
+    "index1": 3,
+    "index2": 4,
+    "value1": 89,
+    "value2": 56,
+    "array": [
       17,
       42,
       3,
@@ -122,15 +124,6 @@
       56,
       74
     ]
-  },
-  {
-    "timestamp": "2025-04-04T21:14:54.625Z",
-    "action": "compare",
-    "pass": 0,
-    "index1": 3,
-    "index2": 4,
-    "value1": 89,
-    "value2": 56
   },
   {
     "timestamp": "2025-04-04T21:14:54.625Z",
@@ -151,11 +144,13 @@
   },
   {
     "timestamp": "2025-04-04T21:14:54.625Z",
-    "action": "swap_complete",
+    "action": "compare",
     "pass": 0,
-    "index1": 3,
-    "index2": 4,
-    "array_after_swap": [
+    "index1": 4,
+    "index2": 5,
+    "value1": 89,
+    "value2": 74,
+    "array": [
       17,
       42,
       3,
@@ -163,15 +158,6 @@
       89,
       74
     ]
-  },
-  {
-    "timestamp": "2025-04-04T21:14:54.625Z",
-    "action": "compare",
-    "pass": 0,
-    "index1": 4,
-    "index2": 5,
-    "value1": 89,
-    "value2": 74
   },
   {
     "timestamp": "2025-04-04T21:14:54.625Z",
@@ -192,21 +178,6 @@
   },
   {
     "timestamp": "2025-04-04T21:14:54.625Z",
-    "action": "swap_complete",
-    "pass": 0,
-    "index1": 4,
-    "index2": 5,
-    "array_after_swap": [
-      17,
-      42,
-      3,
-      56,
-      74,
-      89
-    ]
-  },
-  {
-    "timestamp": "2025-04-04T21:14:54.625Z",
     "action": "pass_end",
     "pass": 0,
     "array": [
@@ -238,16 +209,15 @@
     "index1": 0,
     "index2": 1,
     "value1": 17,
-    "value2": 42
-  },
-  {
-    "timestamp": "2025-04-04T21:14:54.625Z",
-    "action": "no_swap",
-    "pass": 1,
-    "index1": 0,
-    "index2": 1,
-    "value1": 17,
-    "value2": 42
+    "value2": 42,
+    "array": [
+      17,
+      42,
+      3,
+      56,
+      74,
+      89
+    ]
   },
   {
     "timestamp": "2025-04-04T21:14:54.625Z",
@@ -256,7 +226,15 @@
     "index1": 1,
     "index2": 2,
     "value1": 42,
-    "value2": 3
+    "value2": 3,
+    "array": [
+      17,
+      42,
+      3,
+      56,
+      74,
+      89
+    ]
   },
   {
     "timestamp": "2025-04-04T21:14:54.625Z",
@@ -277,11 +255,13 @@
   },
   {
     "timestamp": "2025-04-04T21:14:54.625Z",
-    "action": "swap_complete",
+    "action": "compare",
     "pass": 1,
-    "index1": 1,
-    "index2": 2,
-    "array_after_swap": [
+    "index1": 2,
+    "index2": 3,
+    "value1": 42,
+    "value2": 56,
+    "array": [
       17,
       3,
       42,
@@ -294,37 +274,18 @@
     "timestamp": "2025-04-04T21:14:54.625Z",
     "action": "compare",
     "pass": 1,
-    "index1": 2,
-    "index2": 3,
-    "value1": 42,
-    "value2": 56
-  },
-  {
-    "timestamp": "2025-04-04T21:14:54.625Z",
-    "action": "no_swap",
-    "pass": 1,
-    "index1": 2,
-    "index2": 3,
-    "value1": 42,
-    "value2": 56
-  },
-  {
-    "timestamp": "2025-04-04T21:14:54.625Z",
-    "action": "compare",
-    "pass": 1,
     "index1": 3,
     "index2": 4,
     "value1": 56,
-    "value2": 74
-  },
-  {
-    "timestamp": "2025-04-04T21:14:54.625Z",
-    "action": "no_swap",
-    "pass": 1,
-    "index1": 3,
-    "index2": 4,
-    "value1": 56,
-    "value2": 74
+    "value2": 74,
+    "array": [
+      17,
+      3,
+      42,
+      56,
+      74,
+      89
+    ]
   },
   {
     "timestamp": "2025-04-04T21:14:54.625Z",
@@ -359,7 +320,15 @@
     "index1": 0,
     "index2": 1,
     "value1": 17,
-    "value2": 3
+    "value2": 3,
+    "array": [
+      17,
+      3,
+      42,
+      56,
+      74,
+      89
+    ]
   },
   {
     "timestamp": "2025-04-04T21:14:54.625Z",
@@ -380,11 +349,13 @@
   },
   {
     "timestamp": "2025-04-04T21:14:54.625Z",
-    "action": "swap_complete",
+    "action": "compare",
     "pass": 2,
-    "index1": 0,
-    "index2": 1,
-    "array_after_swap": [
+    "index1": 1,
+    "index2": 2,
+    "value1": 17,
+    "value2": 42,
+    "array": [
       3,
       17,
       42,
@@ -394,40 +365,21 @@
     ]
   },
   {
-    "timestamp": "2025-04-04T21:14:54.625Z",
-    "action": "compare",
-    "pass": 2,
-    "index1": 1,
-    "index2": 2,
-    "value1": 17,
-    "value2": 42
-  },
-  {
-    "timestamp": "2025-04-04T21:14:54.625Z",
-    "action": "no_swap",
-    "pass": 2,
-    "index1": 1,
-    "index2": 2,
-    "value1": 17,
-    "value2": 42
-  },
-  {
     "timestamp": "2025-04-04T21:14:54.626Z",
     "action": "compare",
     "pass": 2,
     "index1": 2,
     "index2": 3,
     "value1": 42,
-    "value2": 56
-  },
-  {
-    "timestamp": "2025-04-04T21:14:54.626Z",
-    "action": "no_swap",
-    "pass": 2,
-    "index1": 2,
-    "index2": 3,
-    "value1": 42,
-    "value2": 56
+    "value2": 56,
+    "array": [
+      3,
+      17,
+      42,
+      56,
+      74,
+      89
+    ]
   },
   {
     "timestamp": "2025-04-04T21:14:54.626Z",
@@ -462,39 +414,7 @@
     "index1": 0,
     "index2": 1,
     "value1": 3,
-    "value2": 17
-  },
-  {
-    "timestamp": "2025-04-04T21:14:54.626Z",
-    "action": "no_swap",
-    "pass": 3,
-    "index1": 0,
-    "index2": 1,
-    "value1": 3,
-    "value2": 17
-  },
-  {
-    "timestamp": "2025-04-04T21:14:54.626Z",
-    "action": "compare",
-    "pass": 3,
-    "index1": 1,
-    "index2": 2,
-    "value1": 17,
-    "value2": 42
-  },
-  {
-    "timestamp": "2025-04-04T21:14:54.626Z",
-    "action": "no_swap",
-    "pass": 3,
-    "index1": 1,
-    "index2": 2,
-    "value1": 17,
-    "value2": 42
-  },
-  {
-    "timestamp": "2025-04-04T21:14:54.626Z",
-    "action": "pass_end",
-    "pass": 3,
+    "value2": 17,
     "array": [
       3,
       17,
@@ -506,7 +426,24 @@
   },
   {
     "timestamp": "2025-04-04T21:14:54.626Z",
-    "action": "early_termination",
+    "action": "compare",
+    "pass": 3,
+    "index1": 1,
+    "index2": 2,
+    "value1": 17,
+    "value2": 42,
+    "array": [
+      3,
+      17,
+      42,
+      56,
+      74,
+      89
+    ]
+  },
+  {
+    "timestamp": "2025-04-04T21:14:54.626Z",
+    "action": "pass_end",
     "pass": 3,
     "array": [
       3,
