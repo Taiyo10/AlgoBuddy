@@ -1,4 +1,4 @@
-export function binarySearch(arr, target) {
+export async function binarySearch(arr, target) {
   const logs = [];
   let low = 0;
   let high = arr.length - 1;
@@ -36,7 +36,7 @@ export function binarySearch(arr, target) {
         result: mid,
         array: [...arr]
       });
-      return { result: mid, logs };
+      return logs;
     } else if (arr[mid] < target) {
       logs.push({
         action: "search_right",
@@ -75,5 +75,14 @@ export function binarySearch(arr, target) {
     array: [...arr]
   });
 
-  return { result: -1, logs };
+  
+  return logs;
+}
+
+if (typeof window === "undefined") {
+  let arr = [1, 3, 4, 23, 35, 57, 58];
+  let target = 23
+  const logs = binarySearch(arr, target);
+  console.log("Logs:", logs);
+  console.log("Sorted array is:", arr);
 }

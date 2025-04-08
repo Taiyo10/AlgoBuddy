@@ -1,4 +1,4 @@
-export function bfs(graph, start) {
+export function bfSearch(graph, start) {
   const visited = new Set();
   const queue = [];
   const logs = [];
@@ -90,7 +90,7 @@ if (typeof window === "undefined") {
     'F': []
   };
 
-  const { visitOrder, logs } = bfs(graph, 'A');
+  const { visitOrder, logs } = bfSearch(graph, 'A');
   console.log("BFS visit order:", visitOrder);
   console.log("Logs:", logs);
 }

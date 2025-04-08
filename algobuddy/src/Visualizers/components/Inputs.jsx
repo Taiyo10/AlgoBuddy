@@ -23,8 +23,8 @@ export const Inputs = ({ config, mapping }) => {
     // Update target value
     const onTargetChange = (e) => {
         const value = e.target.value;
-        setInputTarget(value);
-        mapping.target.setValue(value);
+        setInputTarget(parseInt(value));
+        mapping.target.setValue(parseInt(value));
     }
 
     // Update key value

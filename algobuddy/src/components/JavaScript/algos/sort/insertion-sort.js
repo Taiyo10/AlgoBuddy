@@ -1,103 +1,70 @@
-export function mergeSort(arr, logs = []) {
-  // Log the current merge sort call with the subarray.
+export function insertionSort(arr) {
+  const logs = [];
+
+  // Log the initial state of the array.
   logs.push({
-    action: "merge_sort_call",
-    subarray: [...arr],
+    action: "start_sort",
     array: [...arr]
   });
 
-  if (arr.length > 1) {
-    const mid = Math.floor(arr.length / 2);
-    const leftHalf = arr.slice(0, mid);
-    const rightHalf = arr.slice(mid);
-
+  // Start from index 1, since the element at index 0 is trivially sorted.
+  for (let i = 1; i < arr.length; i++) {
+    const key = arr[i];
     logs.push({
-      action: "split",
-      left: [...leftHalf],
-      right: [...rightHalf],
+      action: "select_key",
+      index: i,
+      key: key,
       array: [...arr]
     });
 
-    // Recursively sort left and right halves.
-    mergeSort(leftHalf, logs);
-    mergeSort(rightHalf, logs);
+    let j = i - 1;
 
-    let i = 0, j = 0, k = 0;
-
-    while (i < leftHalf.length && j < rightHalf.length) {
+    // Compare key with each element on its left.
+    while (j >= 0 && key < arr[j]) {
       logs.push({
         action: "compare",
-        left_index: i,
-        left_value: leftHalf[i],
-        right_index: j,
-        right_value: rightHalf[j],
-        array: [...arr]
+        key: key,
+        key_index: i,
+        compare_index: j,
+        compare_value: arr[j]
       });
 
-      if (leftHalf[i] < rightHalf[j]) {
-        arr[k] = leftHalf[i];
-        i++;
-      } else {
-        arr[k] = rightHalf[j];
-        j++;
-      }
-      k++;
-
+      // Shift the element one position to the right.
+      arr[j + 1] = arr[j];
       logs.push({
-        action: "merge_step",
-        merged_so_far: arr.slice(0, k),
-        left_remaining: leftHalf.slice(i),
-        right_remaining: rightHalf.slice(j),
-        array: [...arr]
+        action: "shift",
+        from_index: j,
+        to_index: j + 1,
+        shifted_value: arr[j],
+        array_state: [...arr]
       });
+
+      j -= 1;
     }
 
-    while (i < leftHalf.length) {
-      arr[k] = leftHalf[i];
-      i++;
-      k++;
-      logs.push({
-        action: "merge_step",
-        merged_so_far: arr.slice(0, k),
-        left_remaining: leftHalf.slice(i),
-        right_remaining: rightHalf.slice(j),
-        array: [...arr]
-      });
-    }
-
-    while (j < rightHalf.length) {
-      arr[k] = rightHalf[j];
-      j++;
-      k++;
-      logs.push({
-        action: "merge_step",
-        merged_so_far: arr.slice(0, k),
-        left_remaining: leftHalf.slice(i),
-        right_remaining: rightHalf.slice(j),
-        array: [...arr]
-      });
-    }
-
+    // Insert the key at its correct position.
+    arr[j + 1] = key;
     logs.push({
-      action: "merge_complete",
-      merged_result: [...arr],
-      array: [...arr]
-    });
-  } else {
-    logs.push({
-      action: "base_case",
-      subarray: [...arr],
-      array: [...arr]
+      action: "insert",
+      insert_index: j + 1,
+      inserted_key: key,
+      array_state: [...arr]
     });
   }
+
+  // Log the final sorted array.
+  logs.push({
+    action: "sorted",
+    sorted_array: [...arr]
+  });
 
   return logs;
 }
 
-// Example usage:
-if (typeof window === "undefined") {
-  let arr = [64, 34, 25, 12, 22, 11, 90];
-  const logs = mergeSort(arr);
+// Driver Code (for testing purposes)
+if (typeof window === 'undefined') {
+  const arr = [64, 34, 25, 12, 22, 11, 90];
+  const logs = insertionSort(arr);
   console.log("Logs:", logs);
   console.log("Sorted array is:", arr);
 }

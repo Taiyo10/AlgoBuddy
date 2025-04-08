@@ -1,4 +1,4 @@
-function search(arr, N, x) {
+function linearSearch(arr, N, x) {
     const logs = [];
   
     // Log the start of the search process.
@@ -54,7 +54,7 @@ function search(arr, N, x) {
   const N = sortedArray.length;
   
   // Function call
-  const { result, logs } = search(sortedArray, N, x);
+  const { result, logs } = linearSearch(sortedArray, N, x);
   
   console.log("Logs:", logs);
   if (result === -1) {

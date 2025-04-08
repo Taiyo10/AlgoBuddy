@@ -1,4 +1,4 @@
-export function dfs(graph, node, visited = new Set(), logs = []) {
+export function dfSearch(graph, node, visited = new Set(), logs = []) {
   // If starting a new DFS, log the start event.
   if (visited.size === 0) {
     logs.push({
@@ -61,7 +61,7 @@ if (typeof window === "undefined") {
     'F': []
   };
 
-  const { visited, logs } = dfs(graph, 'A');
+  const { visited, logs } = dfSearch(graph, 'A');
   console.log("Visited nodes in DFS order:", Array.from(visited));
   console.log("Logs:", logs);
 }
