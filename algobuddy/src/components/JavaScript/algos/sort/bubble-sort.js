@@ -1,45 +1,47 @@
 // bubbleSort.js
-import { logInfo } from '../logger.js';
 
-export function bubbleSort(arr, logCallback = logInfo) {
+export function bubbleSort(arr) {
   const n = arr.length;
-  logCallback({ action: "bubble_sort_start", array: [...arr] });
-  
+  const logs = [];
+
+  logs.push({ action: "bubble_sort_start", array: [...arr] });
+
   for (let i = 0; i < n; i++) {
-    logCallback({ action: "pass_start", pass: i, array: [...arr] });
+    logs.push({ action: "pass_start", pass: i, array: [...arr] });
     let swapped = false;
-    
+
     for (let j = 0; j < n - i - 1; j++) {
-      logCallback({
+      logs.push({
         action: "compare",
         pass: i,
         index1: j,
         index2: j + 1,
         value1: arr[j],
-        value2: arr[j + 1]
+        value2: arr[j + 1],
+        array: [...arr]
       });
-      
+
       if (arr[j] > arr[j + 1]) {
-        logCallback({
+        logs.push({
           action: "swap",
           pass: i,
           index1: j,
           index2: j + 1,
           value1: arr[j],
           value2: arr[j + 1],
-          array_before_swap: [...arr]
+          array: [...arr]
         });
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
         swapped = true;
-        logCallback({
+        logs.push({
           action: "swap_complete",
           pass: i,
           index1: j,
           index2: j + 1,
-          array_after_swap: [...arr]
+          array: [...arr]
         });
       } else {
-        logCallback({
+        logs.push({
           action: "no_swap",
           pass: i,
           index1: j,
@@ -49,14 +51,23 @@ export function bubbleSort(arr, logCallback = logInfo) {
         });
       }
     }
-    
-    logCallback({ action: "pass_end", pass: i, array: [...arr] });
+
+    logs.push({ action: "pass_end", pass: i, array: [...arr] });
+
     if (!swapped) {
-      logCallback({ action: "early_termination", pass: i, array: [...arr] });
+      logs.push({ action: "early_termination", pass: i, array: [...arr] });
       break;
     }
   }
-  
-  logCallback({ action: "bubble_sort_end", sorted_array: [...arr] });
-  return arr;
+
+  logs.push({ action: "bubble_sort_end", array: [...arr]});
+
+  return logs;
+}
+
+if (typeof window === "undefined") {
+  let arr = [64, 34, 25, 12, 22, 11, 90];
+  const logs = bubbleSort(arr);
+  console.log("Logs:", logs);
+  console.log("Sorted array is:", arr);
 }

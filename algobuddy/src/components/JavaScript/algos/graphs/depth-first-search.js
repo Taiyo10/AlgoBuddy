@@ -1,52 +1,53 @@
-import { logInfo } from '../logger.js';
-
-export function dfs(graph, node, visited = new Set()) {
+export function dfs(graph, node, visited = new Set(), logs = []) {
   // If starting a new DFS, log the start event.
   if (visited.size === 0) {
-    logInfo({
+    logs.push({
       action: "dfs_start",
       start_node: node,
-      visited: Array.from(visited)
+      visited: Array.from(visited),
+      graph: JSON.parse(JSON.stringify(graph)) // deep clone for logging
     });
   }
 
-  // Mark the current node as visited.
   visited.add(node);
-  logInfo({
+  logs.push({
     action: "dfs_visit",
     node: node,
-    visited: Array.from(visited)
+    visited: Array.from(visited),
+    graph: JSON.parse(JSON.stringify(graph))
   });
 
-  // Explore each neighbor of the current node.
   const neighbors = graph[node] || [];
   for (let neighbor of neighbors) {
-    logInfo({
+    logs.push({
       action: "dfs_explore",
       from_node: node,
       to_node: neighbor,
-      visited: Array.from(visited)
+      visited: Array.from(visited),
+      graph: JSON.parse(JSON.stringify(graph))
     });
+
     if (!visited.has(neighbor)) {
-      dfs(graph, neighbor, visited);
+      dfs(graph, neighbor, visited, logs);
     } else {
-      logInfo({
+      logs.push({
         action: "dfs_skip",
         node: neighbor,
         reason: "already visited",
-        visited: Array.from(visited)
+        visited: Array.from(visited),
+        graph: JSON.parse(JSON.stringify(graph))
       });
     }
   }
 
-  // Log completion of the DFS call for this node.
-  logInfo({
+  logs.push({
     action: "dfs_finish",
     node: node,
-    visited: Array.from(visited)
+    visited: Array.from(visited),
+    graph: JSON.parse(JSON.stringify(graph))
   });
 
-  return visited;
+  return { visited, logs };
 }
 
 // Driver Code (for testing in a Node environment)
@@ -60,6 +61,7 @@ if (typeof window === "undefined") {
     'F': []
   };
 
-  const visitedNodes = dfs(graph, 'A');
-  console.log("Visited nodes in DFS order:", Array.from(visitedNodes));
+  const { visited, logs } = dfs(graph, 'A');
+  console.log("Visited nodes in DFS order:", Array.from(visited));
+  console.log("Logs:", logs);
 }

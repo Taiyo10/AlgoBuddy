@@ -1,73 +1,79 @@
-// binarySearch.js
-import { logInfo } from '../logger.js';
-
 export function binarySearch(arr, target) {
+  const logs = [];
   let low = 0;
   let high = arr.length - 1;
 
-  logInfo({
+  logs.push({
     action: "binary_search_start",
-    array: arr,
-    target: target,
+    array: [...arr],
+    target,
     low,
     high
   });
 
   while (low <= high) {
     const mid = Math.floor((low + high) / 2);
-    logInfo({
+    logs.push({
       action: "check",
       low,
       high,
       mid,
-      value_at_mid: arr[mid]
+      value_at_mid: arr[mid],
+      array: [...arr]
     });
-    
+
     if (arr[mid] === target) {
-      logInfo({
+      logs.push({
         action: "found",
         index: mid,
         value: arr[mid],
         low,
-        high
+        high,
+        array: [...arr]
       });
-      logInfo({
+      logs.push({
         action: "binary_search_end",
-        result: mid
+        result: mid,
+        array: [...arr]
       });
-      return mid;
+      return { result: mid, logs };
     } else if (arr[mid] < target) {
-      logInfo({
+      logs.push({
         action: "search_right",
         mid,
         value_at_mid: arr[mid],
         target,
         new_low: mid + 1,
-        high
+        high,
+        array: [...arr]
       });
       low = mid + 1;
     } else {
-      logInfo({
+      logs.push({
         action: "search_left",
         mid,
         value_at_mid: arr[mid],
         target,
         low,
-        new_high: mid - 1
+        new_high: mid - 1,
+        array: [...arr]
       });
       high = mid - 1;
     }
   }
 
-  logInfo({
+  logs.push({
     action: "not_found",
     target,
     final_low: low,
-    final_high: high
+    final_high: high,
+    array: [...arr]
   });
-  logInfo({
+  logs.push({
     action: "binary_search_end",
-    result: -1
+    result: -1,
+    array: [...arr]
   });
-  return -1;
+
+  return { result: -1, logs };
 }

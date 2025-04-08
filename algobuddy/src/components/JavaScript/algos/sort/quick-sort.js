@@ -1,107 +1,100 @@
-import { logInfo } from '../logger.js';
-
-export function quickSort(arr, low, high) {
-  // Log the quick sort call with the current subarray.
-  logInfo({
+export function quickSort(arr, low = 0, high = arr.length - 1, logs = []) {
+  logs.push({
     action: "quick_sort_call",
-    low: low,
-    high: high,
-    subarray: arr.slice(low, high + 1)
+    low,
+    high,
+    subarray: arr.slice(low, high + 1),
+    array: [...arr]
   });
 
   if (low < high) {
-    // Partition the array and get the pivot index.
-    const pi = partition(arr, low, high);
+    const pi = partition(arr, low, high, logs);
 
-    // Log the completion of partitioning.
-    logInfo({
+    logs.push({
       action: "partition_complete",
       pivot_index: pi,
-      subarray_after_partition: arr.slice(low, high + 1)
+      subarray_after_partition: arr.slice(low, high + 1),
+      array: [...arr]
     });
 
-    // Recursively sort the left subarray.
-    quickSort(arr, low, pi - 1);
-    // Recursively sort the right subarray.
-    quickSort(arr, pi + 1, high);
+    quickSort(arr, low, pi - 1, logs);
+    quickSort(arr, pi + 1, high, logs);
   } else {
-    // If the subarray has one or no element, no action is needed.
-    logInfo({
+    logs.push({
       action: "quick_sort_no_action",
-      low: low,
-      high: high,
-      subarray: arr.slice(low, high + 1)
+      low,
+      high,
+      subarray: arr.slice(low, high + 1),
+      array: [...arr]
     });
   }
+
+  return logs;
 }
 
-function partition(arr, low, high) {
+function partition(arr, low, high, logs) {
   const pivot = arr[high];
 
-  // Log the chosen pivot.
-  logInfo({
+  logs.push({
     action: "pivot_chosen",
     pivot_index: high,
     pivot_value: pivot,
-    subarray: arr.slice(low, high + 1)
+    subarray: arr.slice(low, high + 1),
+    array: [...arr]
   });
 
   let i = low - 1;
 
   for (let j = low; j < high; j++) {
-    // Log the comparison event.
-    logInfo({
+    logs.push({
       action: "compare",
       current_index: j,
       current_value: arr[j],
       pivot_index: high,
       pivot_value: pivot,
-      subarray: arr.slice(low, high + 1)
+      subarray: arr.slice(low, high + 1),
+      array: [...arr]
     });
 
     if (arr[j] < pivot) {
-      i += 1;
-      const swap_from = arr[i];
-      const swap_to = arr[j];
-      // Log the swap event.
-      logInfo({
+      i++;
+      logs.push({
         action: "swap",
         indices: [i, j],
-        values: [swap_from, swap_to],
-        subarray_before_swap: arr.slice(low, high + 1)
+        values: [arr[i], arr[j]],
+        subarray_before_swap: arr.slice(low, high + 1),
+        array: [...arr]
       });
-      // Swap elements.
       [arr[i], arr[j]] = [arr[j], arr[i]];
     } else {
-      // Log a no-swap event when no swap is performed.
-      logInfo({
+      logs.push({
         action: "no_swap",
         current_index: j,
         current_value: arr[j],
         pivot_value: pivot,
         reason: "current_value not less than pivot",
-        subarray: arr.slice(low, high + 1)
+        subarray: arr.slice(low, high + 1),
+        array: [...arr]
       });
     }
   }
 
-  // Final swap to place the pivot in its correct position.
-  const swap_from = arr[i + 1];
-  const swap_to = arr[high];
-  logInfo({
+  logs.push({
     action: "swap",
     indices: [i + 1, high],
-    values: [swap_from, swap_to],
-    subarray_before_swap: arr.slice(low, high + 1)
+    values: [arr[i + 1], arr[high]],
+    subarray_before_swap: arr.slice(low, high + 1),
+    array: [...arr]
   });
-  [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
 
+  [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
   return i + 1;
 }
 
-// Driver Code (for testing purposes)
+// Driver Code
 if (typeof window === "undefined") {
   const arr = [64, 34, 25, 12, 22, 11, 90];
-  quickSort(arr, 0, arr.length - 1);
+  const logs = quickSort(arr);
+  console.log("Logs:", logs);
   console.log("Sorted array is:", arr);
 }
