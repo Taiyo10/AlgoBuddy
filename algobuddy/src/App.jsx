@@ -14,10 +14,20 @@ import SelectionSortPage from './pages/sortAlgos/selectionSortPage';
 import NavBar from './components/hero/nav_bar';
 import './styles/global.css';
 import { Button } from "@/components/ui/button"
+import VisualizeAlgorithm from "./Visualizers/VisualizeAlgorithm";
+import { binarySearchConfig } from "./Visualizers/Algorithms/BinarySearch/BinarySearchConfig";
+import { linearSearchConfig } from "./Visualizers/Algorithms/LinearSearch/LinearSearchConfig";
+import { bubbleSortConfig } from "./Visualizers/Algorithms/BubbleSort/BubbleSortConfig";
+import { mergeSortConfig } from "./Visualizers/Algorithms/MergeSort/MergeSortConfig";
+import { selectionSortConfig } from "./Visualizers/Algorithms/SelectionSort/SelectionSortConfig";
+import { quickSortConfig } from "./Visualizers/Algorithms/QuickSort/QuickSortConfig";
+import { insertionSortConfig } from "./Visualizers/Algorithms/InsertionSort/InsertionSortConfig";
 
 
-function App() {
 
+
+const App = () => {
+  
   return (
     <div className='text-fontcolour'>
     <Router>
@@ -36,8 +46,13 @@ function App() {
         <Route path="/selectionsort" element={<SelectionSortPage/>}/>  
       </Routes>
     </Router>
+    <div>
+      <VisualizeAlgorithm config={insertionSortConfig} />
     </div>
+    </div>
+
   );
 }
 
-export default App
+
+export default App;
