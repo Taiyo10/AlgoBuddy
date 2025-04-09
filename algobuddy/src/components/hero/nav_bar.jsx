@@ -78,7 +78,7 @@ const NavBar = () => {
   useNavigationMenuAlign(); // hook in here ✅
 
   return (
-    <div className="flex w-full h-16 items-center px-6 bg-red-500 text-3xl font-bold">
+    <div className="flex w-full h-24 items-center px-6 bg-primary text-3xl font-bold">
       <Link to="/" className="title hover:underline cursor-pointer mr-6">
         AlgoBuddy
       </Link>      
