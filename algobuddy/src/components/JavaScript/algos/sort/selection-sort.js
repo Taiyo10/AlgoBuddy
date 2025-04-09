@@ -1,81 +1,87 @@
-import { logInfo } from '../logger.js';
-
 export function selectionSort(arr) {
-  // Log the start of the sort process.
-  logInfo({
+  const logs = [];
+
+  logs.push({
     action: "start_sort",
     array: [...arr]
   });
+
   const n = arr.length;
 
   for (let i = 0; i < n; i++) {
-    // Log the start of the current iteration with the subarray starting from index i.
-    logInfo({
+    logs.push({
       action: "iteration_start",
       iteration: i,
-      subarray: arr.slice(i)
+      subarray: arr.slice(i),
+      array: [...arr]
     });
+
     let minIndex = i;
-    // Log the initial assumption for the minimum value.
-    logInfo({
+
+    logs.push({
       action: "select_initial_min",
       index: i,
-      value: arr[i]
+      value: arr[i],
+      array: [...arr]
     });
 
     for (let j = i + 1; j < n; j++) {
-      // Log each comparison between the current minimum and the candidate element.
-      logInfo({
+      logs.push({
         action: "compare",
         index1: minIndex,
         value1: arr[minIndex],
         index2: j,
-        value2: arr[j]
+        value2: arr[j],
+        array: [...arr]
       });
+
       if (arr[j] < arr[minIndex]) {
         minIndex = j;
-        // Log when a new minimum is found.
-        logInfo({
+        logs.push({
           action: "new_min_found",
           min_index: minIndex,
-          min_value: arr[minIndex]
+          min_value: arr[minIndex],
+          array: [...arr]
         });
       }
     }
 
-    // Log the swap event before performing it.
-    logInfo({
+    logs.push({
       action: "swap",
       index1: i,
       value1: arr[i],
       index2: minIndex,
       value2: arr[minIndex],
-      array_before_swap: [...arr]
+      array_before_swap: [...arr],
+      array: [...arr]
     });
-    // Perform the swap.
+
     [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
-    // Log the array state after the swap is complete.
-    logInfo({
+
+    logs.push({
       action: "swap_complete",
       index1: i,
       value1: arr[i],
       index2: minIndex,
       value2: arr[minIndex],
-      array_after_swap: [...arr]
+      array_after_swap: [...arr],
+      array: [...arr]
     });
   }
 
-  // Log the final sorted array.
-  logInfo({
+  logs.push({
     action: "sorted",
-    sorted_array: [...arr]
+    sorted_array: [...arr],
+    array: [...arr]
   });
-  return arr;
+
+  return logs;
 }
 
 // Driver Code (for testing purposes)
 if (typeof window === "undefined") {
   let arr = [64, 34, 25, 12, 22, 11, 90];
-  selectionSort(arr);
+  const logs = selectionSort(arr);
+  console.log("Logs:", logs);
   console.log("Sorted array is:", arr);
 }

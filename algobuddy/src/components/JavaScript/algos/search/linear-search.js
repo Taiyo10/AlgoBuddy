@@ -1,59 +1,48 @@
-import { logInfo } from '../logger.js'; 
+export async function linearSearch(arr, target) {
+  const logs = [];
 
-function search(arr, N, x) {
-// Log the start of the search process.
-logInfo({
+  logs.push({
     action: "start_search",
-    target: x,
+    target,
     array: [...arr],
-    length: N
-});
+    length: arr.length
+  });
 
-for (let i = 0; i < N; i++) {
-    // Log the check at the current index.
-    logInfo({
-    action: "check",
-    index: i,
-    value: arr[i]
+  for (let i = 0; i < arr.length; i++) {
+    logs.push({
+      action: "check",
+      index: i,
+      value: arr[i],
+      array: [...arr]
     });
-    if (arr[i] === x) {
-    // Log when the target is found.
-    logInfo({
+
+    if (arr[i] === target) {
+      logs.push({
         action: "found",
         index: i,
-        value: arr[i]
-    });
-    logInfo({
+        value: arr[i],
+        array: [...arr]
+      });
+      logs.push({
         action: "end_search",
-        result: i
-    });
-    return i;
+        result: i,
+        array: [...arr]
+      });
+      return logs;
     }
-}
+  }
 
-// Log if the target was not found.
-logInfo({
+  logs.push({
     action: "not_found",
-    target: x
-});
-logInfo({
+    target,
+    array: [...arr]
+  });
+
+  logs.push({
     action: "end_search",
-    result: -1
-});
-return -1;
-}
+    result: -1,
+    array: [...arr]
+  });
 
-// Driver Code
-const arr = [1, 3, 5, 7, 9, 11, 13, 0, 2, 4, 6, 8, 10, 12, 14];
-// Sort the array before performing the search.
-const sortedArray = arr.slice().sort((a, b) => a - b);
-const x = 10;
-const N = sortedArray.length;
-
-// Function call
-const result = search(sortedArray, N, x);
-if (result === -1) {
-console.log("Element is not present in array");
-} else {
-console.log("Element is present at index", result);
+  return logs;
 }

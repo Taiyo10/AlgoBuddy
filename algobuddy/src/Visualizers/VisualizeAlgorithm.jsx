@@ -1,33 +1,38 @@
 import React, { useEffect, useRef, useState } from "react";
 import ArrayVisualizer from "./BaseViz/ArrayViz";
 import GraphVisualizer from "./BaseViz/GraphViz";
-import jsonData from "./Algorithms/BubbleSort/test-bubble.json";
-// import mergeSort from "./../../src/components/JavaScript/algos/graphs/mergesort.js";
 import { Inputs } from "./components/Inputs";
 import { StepController } from "./components/StepController";
+
 const visualizers = {
     array: ArrayVisualizer,
     // chart: ChartVisualizer,
-     graph: GraphVisualizer,
+    graph: GraphVisualizer,
 }
 
-const VisualizeAlgorithm = ({ config }) => {
+
+
+const VisualizeAlgorithm =({ config }) => {
     const vizRef = useRef();
     const speedRef = useRef(1000);
 
-    const {name, visualizer, applyStep, inputs, defaultValues} = config
+    const {name, visualizer, applyStep, applyAlgorithm, inputs, defaultValues} = config
 
     // Defines potential inputs for the algorithm/visualizer
-    const [data, setData] = useState(defaultValues.array || [1, 3, 5, 7, 9, 11]);
-    const [target, setTarget] = useState(defaultValues.target || 7);
-    const [key, setKey] = useState(defaultValues.key || null);
+    const [data, setData] = useState(defaultValues.array);
+    const [target, setTarget] = useState(defaultValues.target);
+    const [key, setKey] = useState(defaultValues.key);
 
     const [reset, setReset] = useState(false); // Reset state to reset animation
-    //const [jsonData, setJsonData] = useState(mergeSort(data)); // JSON data for the algorithm
+
+    const [jsonData, setJsonData] = useState(applyAlgorithm([...data],target,key))
 
     // Reset animation when any input changes
     useEffect(() => {
-        //setJsonData(mergeSort(data))
+        async function getJson(data,target, key) {
+            setJsonData(await applyAlgorithm([...data],target,key))
+        }
+        getJson(data, target, key);
         setReset(!reset);
     }, [data, target, key]);
     

@@ -1,83 +1,82 @@
-import { logInfo } from '../logger.js';
-
-export function bfs(graph, start) {
+export function bfSearch(graph, start) {
   const visited = new Set();
   const queue = [];
+  const logs = [];
 
-  // Log the start of BFS.
-  logInfo({
+  logs.push({
     action: "bfs_start",
     start_node: start,
     queue: [start],
-    visited: Array.from(visited)
+    visited: Array.from(visited),
+    graph: JSON.parse(JSON.stringify(graph))
   });
 
-  // Enqueue the start node and mark it as visited.
   queue.push(start);
   visited.add(start);
 
-  // Log the enqueue event for the starting node.
-  logInfo({
+  logs.push({
     action: "enqueue",
     node: start,
     queue: [...queue],
-    visited: Array.from(visited)
+    visited: Array.from(visited),
+    graph: JSON.parse(JSON.stringify(graph))
   });
 
   const visitOrder = [];
 
   while (queue.length > 0) {
-    // Dequeue the next node.
     const current = queue.shift();
     visitOrder.push(current);
-    logInfo({
+    logs.push({
       action: "dequeue",
       node: current,
       queue: [...queue],
-      visited: Array.from(visited)
+      visited: Array.from(visited),
+      graph: JSON.parse(JSON.stringify(graph))
     });
 
-    // Explore each neighbor of the current node.
     const neighbors = graph[current] || [];
     neighbors.forEach(neighbor => {
-      logInfo({
+      logs.push({
         action: "explore",
         from_node: current,
         to_node: neighbor,
         queue: [...queue],
-        visited: Array.from(visited)
+        visited: Array.from(visited),
+        graph: JSON.parse(JSON.stringify(graph))
       });
+
       if (!visited.has(neighbor)) {
         visited.add(neighbor);
         queue.push(neighbor);
-        // Log when a neighbor is enqueued.
-        logInfo({
+        logs.push({
           action: "enqueue",
           node: neighbor,
           queue: [...queue],
-          visited: Array.from(visited)
+          visited: Array.from(visited),
+          graph: JSON.parse(JSON.stringify(graph))
         });
       } else {
-        // Log when a neighbor is skipped because it's already visited.
-        logInfo({
+        logs.push({
           action: "skip",
           node: neighbor,
           reason: "already visited",
           queue: [...queue],
-          visited: Array.from(visited)
+          visited: Array.from(visited),
+          graph: JSON.parse(JSON.stringify(graph))
         });
       }
     });
   }
 
-  // Log the final visit order.
-  logInfo({
+  logs.push({
     action: "bfs_complete",
-    visit_order: visitOrder,
-    visited: Array.from(visited)
+    visit_order: [...visitOrder],
+    visited: Array.from(visited),
+    graph: JSON.parse(JSON.stringify(graph))
   });
 
-  return visitOrder;
+  return { visitOrder, logs };
 }
 
 // Driver Code (for testing purposes)
@@ -91,6 +90,7 @@ if (typeof window === "undefined") {
     'F': []
   };
 
-  const visitOrder = bfs(graph, 'A');
+  const { visitOrder, logs } = bfSearch(graph, 'A');
   console.log("BFS visit order:", visitOrder);
+  console.log("Logs:", logs);
 }

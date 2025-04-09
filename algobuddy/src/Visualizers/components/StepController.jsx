@@ -7,6 +7,7 @@ export const StepController = ({ jsonData, speedRef, applyStep, reset }) => {
     
     // If the current step changes, apply the step to the visualizer
     useEffect(() => {
+        console.log(jsonData)
         const step = jsonData[currentStep];
         applyStep(step);
     }, [currentStep]);

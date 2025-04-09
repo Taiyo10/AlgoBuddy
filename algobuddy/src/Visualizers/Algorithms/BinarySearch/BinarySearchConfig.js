@@ -1,4 +1,5 @@
 import { applyBinarySearchStep } from "./BinarySearch";
+import { binarySearch } from "../../../components/JavaScript/algos/search/binary-search";
 
 export const binarySearchConfig = {
     name: "Binary Search",
@@ -11,5 +12,6 @@ export const binarySearchConfig = {
         array: true,
         target: true,
     },
-    applyStep: applyBinarySearchStep, 
+    applyStep: applyBinarySearchStep,
+    applyAlgorithm: binarySearch,
 }
