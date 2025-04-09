@@ -13,8 +13,6 @@ import QuickSortPage from './pages/sortAlgos/quickSortPage';
 import SelectionSortPage from './pages/sortAlgos/selectionSortPage';
 import NavBar from './components/hero/nav_bar';
 import './styles/global.css';
-import { Button } from "@/components/ui/button"
-import VisualizeAlgorithm from "./Visualizers/VisualizeAlgorithm";
 import { binarySearchConfig } from "./Visualizers/Algorithms/BinarySearch/BinarySearchConfig";
 import { linearSearchConfig } from "./Visualizers/Algorithms/LinearSearch/LinearSearchConfig";
 import { bubbleSortConfig } from "./Visualizers/Algorithms/BubbleSort/BubbleSortConfig";
@@ -46,9 +44,6 @@ const App = () => {
         <Route path="/selectionsort" element={<SelectionSortPage/>}/>  
       </Routes>
     </Router>
-    <div>
-      <VisualizeAlgorithm config={insertionSortConfig} />
-    </div>
     </div>
 
   );

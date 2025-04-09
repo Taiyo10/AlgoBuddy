@@ -1,5 +1,8 @@
 import React from "react";
 import SampleCode from "@/components/sampleCode/sampleCode";
+import { linearSearchConfig } from "@/Visualizers/Algorithms/LinearSearch/LinearSearchConfig";
+import VisualizeAlgorithm from "@/Visualizers/VisualizeAlgorithm";
+
 
 
 // Code snippets (organized)
@@ -33,6 +36,7 @@ while (!queue.empty()) {
 
 const LinearSearchPage = () => {
     return <div className="flex h-auto justify-items-center justify-center">
+      <VisualizeAlgorithm config={linearSearchConfig} />
       LinearSearchPage
       <SampleCode
       Java={javaCode}

@@ -79,7 +79,9 @@ const NavBar = () => {
 
   return (
     <div className="flex w-full h-16 items-center px-6 bg-red-500 text-3xl font-bold">
-      <div className="title">AlgoBuddy</div>
+      <Link to="/" className="title hover:underline cursor-pointer mr-6">
+        AlgoBuddy
+      </Link>      
       <NavigationMenu>
         <NavigationMenuList className="flex space-x-4">
           {/* Search */}
