@@ -1,0 +1,14 @@
+import { applyQuickSortStep } from "./QuickSort";
+import { quickSort } from "../../../components/JavaScript/algos/sort/quick-sort";
+export const quickSortConfig = {
+    name: "Quick Sort",
+    visualizer: "array",
+    defaultValues: {
+        array: [42, 17, 89, 3, 56, 74],
+    },
+    inputs: {
+        array: true,
+    },
+    applyStep: applyQuickSortStep,
+    applyAlgorithm: quickSort,
+};
