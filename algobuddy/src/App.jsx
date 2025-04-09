@@ -19,7 +19,7 @@ import { Button } from "@/components/ui/button"
 function App() {
 
   return (
-    <div>
+    <div className='text-fontcolour'>
     <Router>
     <NavBar></NavBar>
       <Routes>

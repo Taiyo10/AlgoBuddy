@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect } from "react";
-
 import { Link } from "react-router-dom";
 import {
   NavigationMenu,
@@ -11,6 +10,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import DarkModeToggle from "./darkModeToggle";
 
 // Dummy data
 const searchAlgos = [
@@ -39,10 +39,10 @@ const ListItem = ({ title, href }) => {
           to={href}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors",
-            "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+            "hover:bg-red-300 hover:text-accent-foreground hover:shadow-md focus:bg-accent focus:text-accent-foreground"
           )}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
+          <div className="text-md font-medium leading-none">{title}</div>
         </Link>
       </NavigationMenuLink>
     </li>
@@ -78,16 +78,16 @@ const NavBar = () => {
   useNavigationMenuAlign(); // hook in here ✅
 
   return (
-    <div className="flex w-full h-16 items-center px-6 bg-red-500 text-3xl font-bold text-blue-500">
+    <div className="flex w-full h-16 items-center px-6 bg-red-500 text-3xl font-bold">
       <div className="title">AlgoBuddy</div>
       <NavigationMenu>
         <NavigationMenuList className="flex space-x-4">
           {/* Search */}
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="submenu-trigger">
+            <NavigationMenuTrigger className="submenu-trigger h-12">
               Search Algorithms
             </NavigationMenuTrigger>
-            <NavigationMenuContent className="bg-red-100">
+            <NavigationMenuContent className="bg-red-200 rounded-b-md rounded-r-md">
               <ul className="grid w-[300px] gap-2 p-4">
                 {searchAlgos.map((algo) => (
                   <ListItem key={algo.title} title={algo.title} href={algo.href} />
@@ -98,10 +98,10 @@ const NavBar = () => {
 
           {/* Sorting */}
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="submenu-trigger">
+            <NavigationMenuTrigger className="submenu-trigger h-12">
               Sorting Algorithms
             </NavigationMenuTrigger>
-            <NavigationMenuContent>
+            <NavigationMenuContent className="bg-red-200 rounded-b-md rounded-r-md">
               <ul className="grid w-[300px] gap-2 p-4">
                 {sortingAlgos.map((algo) => (
                   <ListItem key={algo.title} title={algo.title} href={algo.href} />
@@ -112,10 +112,10 @@ const NavBar = () => {
 
           {/* Graphing */}
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="submenu-trigger">
+            <NavigationMenuTrigger className="submenu-trigger h-12">
               Graphing Algorithms
             </NavigationMenuTrigger>
-            <NavigationMenuContent>
+            <NavigationMenuContent className="bg-red-200 rounded-b-md rounded-r-md">
               <ul className="grid w-[300px] gap-2 p-4">
                 {graphingAlgos.map((algo) => (
                   <ListItem key={algo.title} title={algo.title} href={algo.href} />
@@ -125,6 +125,7 @@ const NavBar = () => {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
+      <DarkModeToggle/>
     </div>
   );
 };

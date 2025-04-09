@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --background: 0 0% 100%; /* white */
+    --foreground: 222.2 84% 4.9%; /* dark blue/black text */
+    --primary: 220 98% 61%; /* blue */
+    --secondary: 210 40% 96%; /* light gray */
+    --muted: 210 40% 80%; /* muted gray */
+    --accent: 340 82% 52%; /* pink accent */
+    --fontcolour: 0 0% 0%;
+  }
+  
+  .dark {
+    --background: 222.2 84% 4.9%; /* dark navy */
+    --foreground: 210 40% 98%; /* near white text */
+    --primary: 210 100% 66%; /* lighter blue */
+    --secondary: 222 47% 11%; /* dark gray */
+    --muted: 215 28% 17%; /* very dark muted */
+    --accent: 291 84% 54%; /* purple accent */
+    --fontcolour: 0 0% 100%;
+
+  }
