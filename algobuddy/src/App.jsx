@@ -7,7 +7,7 @@ const App = () => {
   
   return (
     <div>
-      <VisualizeAlgorithm config={heapSortConfig} />
+      <VisualizeAlgorithm config={bubbleSortConfig} />
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import ArrayVisualizer from "./BaseViz/ArrayViz";
 import GraphVisualizer from "./BaseViz/GraphViz";
-import jsonData from "./Algorithms/HeapSort/test-heap.json";
+import jsonData from "./Algorithms/BubbleSort/test-bubble.json";
+// import mergeSort from "./../../src/components/JavaScript/algos/graphs/mergesort.js";
 import { Inputs } from "./components/Inputs";
 import { StepController } from "./components/StepController";
 const visualizers = {
@@ -22,9 +23,11 @@ const VisualizeAlgorithm = ({ config }) => {
     const [key, setKey] = useState(defaultValues.key || null);
 
     const [reset, setReset] = useState(false); // Reset state to reset animation
+    //const [jsonData, setJsonData] = useState(mergeSort(data)); // JSON data for the algorithm
 
     // Reset animation when any input changes
     useEffect(() => {
+        //setJsonData(mergeSort(data))
         setReset(!reset);
     }, [data, target, key]);
     

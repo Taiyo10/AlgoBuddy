@@ -9,12 +9,38 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
     const boxesRef = useRef([]);
     const textRef = useRef([]);
     const queueRef = useRef(new TransitionQueue(speed));
+    const subarraysRef = useRef(new Map()); 
+
 
     const BOXWIDTH = 70;
     const BOXHEIGHT = 70;
     const MIDDLEOFARRAY = BOXWIDTH * data.length / 2;
     
     const base = colours.base;
+
+    //SubArrays
+    const getPosition = (id, level) => {
+      const half = 2**level/2;
+      const placement = parseInt(id.slice(1), 2) + 1;
+      const maxLevel = Math.ceil(Math.log2(boxesRef.current.length));
+      const distancePer = (maxLevel * (maxLevel * 0.05)) / (2**level);
+      
+      const left = id[id.length - 1] == "0"
+      const y = svgHeight * 0.5 - BOXHEIGHT/2 + level * (2 * BOXHEIGHT);
+      let x = 0;
+      if (id[0] == "0") {// Right most object on the left
+        let adjustment = 0;
+        if (placement == half) {adjustment = (0.5 - ((half - placement + 1) * distancePer)/2)}
+        else {adjustment = (0.5 - ((half - placement + 1) * distancePer - distancePer/2))}
+        x = (svgWidth * (0.1 + 0.8 * adjustment))
+      } else {
+        let adjustment = 0;
+        if (placement == half + 1) {adjustment = (0.5 + ((placement - half) * distancePer)/2)}
+        else {adjustment = (0.5 + ((placement - half - 1) * distancePer + (distancePer/2)))}
+        x = (svgWidth * (0.1 + 0.8 * adjustment));
+      }
+      return (x, y);
+    }
 
     // Allows use of functions in parent component
     useImperativeHandle(ref, () => ({
@@ -73,6 +99,43 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
             const tempText = textRef.current[i];
             textRef.current[i] = textRef.current[j];
             textRef.current[j] = tempText;
+        },
+        moveBox: async (id, x, y) => {
+            const queuedSpeed = queueRef.current.getLength() == 0 ? speed / 3 : 10
+            const subarray = subarraysRef.current.get(id);
+            const box = d3.select(subarray.boxes[0]);
+            const text = d3.select(subarray.text[0]);
+
+            box.transition().duration(queuedSpeed).attr("x", x).attr("y", y);
+            text.transition().duration(queuedSpeed).attr("x", x + BOXWIDTH/2).attr("y", y + BOXHEIGHT / 2); // MIGHT BE WRONG
+
+            subarray.position = { x: x, y: y}
+        },
+        subArray(parentId, id, range, level) {
+          //Create subarray overlapping it on parent
+          //Depending on id, determine left or right
+          //Adjust x according to left or right and y according to depth
+          const svg = d3.select(svgRef.current);
+          const parentArray = subarraysRef.current.get(parentId);
+          const {parentX, parentY} = parentArray.position;
+          const {x, y} = getPosition(id, level);
+          
+          const boxes = group
+          .selectAll("rect")
+          .data(data)
+          .enter()
+          .append("rect")
+            .attr("width", BOXWIDTH)
+            .attr("height", BOXHEIGHT)
+            .attr("x", (_, i) => i * BOXWIDTH + svgWidth * 0.5 - MIDDLEOFARRAY)
+            .attr("y", svgHeight * 0.5 - BOXHEIGHT/2)
+            .attr("fill", base)
+            .attr("stroke", "black")
+            .attr("stroke-width", 4)
+
+
+          
+
         }
     }))
 
