@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ArrayVisualizer from "./BaseViz/ArrayViz";
+import GraphVisualizer from "./BaseViz/GraphViz";
+import jsonData from "./Algorithms/HeapSort/test-heap.json";
 import { Inputs } from "./components/Inputs";
 import { StepController } from "./components/StepController";
 
@@ -8,7 +10,7 @@ import { bubbleSort } from "../components/JavaScript/algos/sort/bubble-sort";
 const visualizers = {
     array: ArrayVisualizer,
     // chart: ChartVisualizer,
-    // graph: GraphVisualizer,
+     graph: GraphVisualizer,
 }
 
 
