@@ -1,4 +1,5 @@
 import { applyLinearSearchStep } from "./LinearSearch";
+import { linearSearch } from "../../../components/JavaScript/algos/search/linear-search";
 
 export const linearSearchConfig = {
     name: "Linear Search",
@@ -12,4 +13,5 @@ export const linearSearchConfig = {
         target: true,
     },
     applyStep: applyLinearSearchStep, 
+    applyAlgorithm: linearSearch,
 }

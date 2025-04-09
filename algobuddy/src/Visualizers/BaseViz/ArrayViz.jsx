@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useImperativeHandle, forwardRef } from "react";
 import * as d3 from "d3";
 import { colours } from "../../Theme/Colours";
+import { TransitionQueue } from "../components/TransitionQueue";
 const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
     const svgRef = useRef();
     const groupRef = useRef();
     const transformRef = useRef(d3.zoomIdentity);
     const boxesRef = useRef([]);
     const textRef = useRef([]);
+    const queueRef = useRef(new TransitionQueue(speed));
 
     const BOXWIDTH = 70;
     const BOXHEIGHT = 70;
@@ -21,17 +23,34 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
               .select(".title")
               .text(text);
           },
-        setArray: (newData) => { // Untested -- Changes the data in the array
-            data = newData;
-        },
+          setArray: (newData) => {
+            const svg = d3.select(svgRef.current);
+            const svgWidth = svg.node().clientWidth;
+            const MIDDLE = BOXWIDTH * newData.length / 2;
+          
+            boxesRef.current.forEach((box, i) => {
+              d3.select(box)
+                .attr("x", i * BOXWIDTH + svgWidth * 0.5 - MIDDLE)
+            });
+          
+            textRef.current.forEach((text, i) => {
+              d3.select(text)
+                .text(newData[i])
+                .attr("x", i * BOXWIDTH + svgWidth * 0.5 - MIDDLE + BOXWIDTH / 2);
+            });
+          },          
         setRectColours: (filterFn, color) => { // Changes colour of array boxes depending on filter
-            d3.select(svgRef.current)
-            .selectAll("rect")
-            .filter(filterFn)
-            .attr("fill", color);
+          boxesRef.current.forEach((box, i) => {
+            if (filterFn(null, i)) {
+              d3.select(box).attr("fill", color);
+            }
+          });
         },
         sleep: (overideMs) => new Promise((resolve) => setTimeout(resolve, (overideMs ?? speed))), // Sleeps code dependong on time
+        enqueue: (callback) => {queueRef.current.enqueue(callback)}, // Adds a function to the queue
+        clearQueue: () => {queueRef.current.clearQueue()}, // Clears the queue
         swapBoxes: async (i, j) => { // Swaps the boxes in the array (with animation)
+            const queuedSpeed = queueRef.current.getLength() == 0 ? speed / 3 : 10
             const boxA = d3.select(boxesRef.current[i]);
             const boxB = d3.select(boxesRef.current[j]);
             const textA = d3.select(textRef.current[i]);
@@ -42,21 +61,10 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
             const xTextA = textA.attr("x");
             const xTextB = textB.attr("x");
 
-            const transitionPromise = (item, newX) =>
-              new Promise((resolve) =>
-                item
-                  .transition()
-                  .duration(speed/2)
-                  .attr("x", newX)
-                  .on("end", resolve)
-              );
-          
-            await Promise.all([
-              transitionPromise(boxA, xB),
-              transitionPromise(boxB, xA),
-              transitionPromise(textA, xTextB),
-              transitionPromise(textB, xTextA),
-            ]);
+            boxA.transition().duration(queuedSpeed).attr("x", xB);
+            boxB.transition().duration(queuedSpeed).attr("x", xA);
+            textA.transition().duration(queuedSpeed).attr("x", xTextB);
+            textB.transition().duration(queuedSpeed).attr("x", xTextA);
             
             const temp = boxesRef.current[i];
             boxesRef.current[i] = boxesRef.current[j];

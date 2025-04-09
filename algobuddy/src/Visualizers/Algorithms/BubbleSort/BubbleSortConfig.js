@@ -1,3 +1,4 @@
+import { bubbleSort } from "../../../components/JavaScript/algos/sort/bubble-sort";
 import { applyBubbleSortStep } from "./BubbleSort";
 
 export const bubbleSortConfig = {
@@ -10,4 +11,5 @@ export const bubbleSortConfig = {
         array: true,
     },
     applyStep: applyBubbleSortStep, 
+    applyAlgorithm: bubbleSort,
 }

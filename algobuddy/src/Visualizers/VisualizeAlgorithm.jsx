@@ -4,6 +4,7 @@ import { Inputs } from "./components/Inputs";
 import { StepController } from "./components/StepController";
 
 import { binarySearch } from "../components/JavaScript/algos/search/binary-search";
+import { bubbleSort } from "../components/JavaScript/algos/sort/bubble-sort";
 const visualizers = {
     array: ArrayVisualizer,
     // chart: ChartVisualizer,

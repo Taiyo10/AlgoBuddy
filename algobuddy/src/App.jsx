@@ -1,11 +1,12 @@
 import VisualizeAlgorithm from "./Visualizers/VisualizeAlgorithm";
 import { binarySearchConfig } from "./Visualizers/Algorithms/BinarySearch/BinarySearchConfig";
 import { linearSearchConfig } from "./Visualizers/Algorithms/LinearSearch/LinearSearchConfig";
+import { bubbleSortConfig } from "./Visualizers/Algorithms/BubbleSort/BubbleSortConfig";
 const App = () => {
   
   return (
     <div>
-      <VisualizeAlgorithm config={binarySearchConfig} />
+      <VisualizeAlgorithm config={bubbleSortConfig} />
     </div>
   );
 };

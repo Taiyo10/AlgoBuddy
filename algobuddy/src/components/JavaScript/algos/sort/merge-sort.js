@@ -1,5 +1,6 @@
-export function mergeSort(arr, logs = []) {
+export async function mergeSort(arr) {
   // Log the current merge sort call with the subarray.
+  const logs = [];
   logs.push({
     action: "merge_sort_call",
     subarray: [...arr],

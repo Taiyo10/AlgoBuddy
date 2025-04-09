@@ -1,58 +1,48 @@
 import { colours } from "../../../Theme/Colours";
 
-export const applySelectionSortStep = async (viz, step, args) => {
+export const applyMergeSortStep = async (viz, step, args) => {
   const { base, highlight, found, checking } = colours;
-  const { data } = args;
 
-  if (step.action === "start_sort") {
-    viz.setTitle("Selection Sort");
+  if (step.action === "merge_sort_call") {
+    viz.setTitle(`Merge Sort Call: [${step.subarray.join(", ")}]`);
     viz.setArray(step.array);
     viz.setRectColours(() => base);
   }
 
-  else if (step.action === "iteration_start") {
-    viz.setTitle(`Iteration ${step.iteration}`);
+  else if (step.action === "split") {
+    viz.setTitle(`Splitting into [${step.left.join(", ")}] and [${step.right.join(", ")}]`);
     viz.setArray(step.array);
-    viz.setRectColours((_, i) => i < step.iteration ? found : base);
-  }
-
-  else if (step.action === "select_initial_min") {
-    viz.setTitle(`Initial min: index ${step.index} (${step.value})`);
-    viz.setRectColours((_, i) => i === step.index ? highlight : base);
+    const mid = step.left.length;
+    viz.setRectColours((_, i) => (i < mid ? highlight : checking));
   }
 
   else if (step.action === "compare") {
-    viz.setTitle(`Comparing ${step.value1} (index ${step.index1}) with ${step.value2} (index ${step.index2})`);
+    viz.setTitle(`Comparing ${step.left_value} and ${step.right_value}`);
+    viz.setArray(step.array);
+    viz.setRectColours((val, i) => {
+      if (val === step.left_value) return highlight;
+      if (val === step.right_value) return checking;
+      return base;
+    });
+  }
+
+  else if (step.action === "merge_step") {
+    viz.setTitle(`Merging: [${step.merged_so_far.join(", ")}]`);
+    viz.setArray(step.array);
     viz.setRectColours((_, i) =>
-      i === step.index1 ? highlight :
-      i === step.index2 ? checking :
-      base
+      i < step.merged_so_far.length ? found : base
     );
   }
 
-  else if (step.action === "new_min_found") {
-    viz.setTitle(`New min found at index ${step.min_index} (${step.min_value})`);
-    viz.setRectColours((_, i) => i === step.min_index ? highlight : base);
+  else if (step.action === "merge_complete") {
+    viz.setTitle("Merge Complete");
+    viz.setArray(step.merged_result);
+    viz.setRectColours(() => found);
   }
 
-  else if (step.action === "swap") {
-    viz.setTitle(`Swapping ${step.value1} and ${step.value2}`);
-    viz.setArray(step.array_before_swap);
-    viz.setRectColours((_, i) =>
-      i === step.index1 || i === step.index2 ? checking : base
-    );
-    await viz.swapBoxes(step.index1, step.index2);
-  }
-
-  else if (step.action === "swap_complete") {
-    viz.setTitle(`Swap complete`);
-    viz.setArray(step.array_after_swap);
-    viz.setRectColours((_, i) => i === step.index1 || i === step.index2 ? found : base);
-  }
-
-  else if (step.action === "sorted") {
-    viz.setTitle("Sorting Complete");
-    viz.setArray(step.sorted_array);
+  else if (step.action === "base_case") {
+    viz.setTitle(`Base Case: [${step.subarray.join(", ")}]`);
+    viz.setArray(step.array);
     viz.setRectColours(() => found);
   }
 };
