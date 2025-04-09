@@ -23,9 +23,9 @@ const sortingAlgos = [
   { title: "Bubble Sort", href: "/bubblesort" },
   { title: "Insertion Sort", href: "/insertionsort" },
   { title: "Selection Sort", href: "/selectionsort" },
+  { title: "Heap Sort", href: "/heapsort" },
 ];
 const graphingAlgos = [
-  { title: "Heap Sort", href: "/heapsort" },
   { title: "Breadth First Search", href: "/bfs" },
   { title: "Depth First Search", href: "/dfs" },
 ];
