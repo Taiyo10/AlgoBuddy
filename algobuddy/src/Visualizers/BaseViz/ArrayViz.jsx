@@ -154,9 +154,10 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
   return (
     <svg
       ref={svgRef}
-      width="100vw"
-      height="70vh"
+      width="65vw"
+      height="60vh"
       style={{
+        borderRadius: 10,
         backgroundColor: "#333",
         cursor: "grab",
       }}
