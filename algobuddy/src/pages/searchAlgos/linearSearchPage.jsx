@@ -5,7 +5,7 @@ import VisualizeAlgorithm from "@/Visualizers/VisualizeAlgorithm";
 
 
 
-// Code snippets (organized)
+// Code snippets
 const javaCode = `// Linear Search in Java
 
 class LinearSearch {
@@ -19,6 +19,7 @@ class LinearSearch {
   }
   return -1;
   }`;
+
 const pythonCode = `# Linear Search in Python
 
 def linearSearch(array, n, x):
@@ -29,6 +30,7 @@ def linearSearch(array, n, x):
             return i
     return -1
 `;
+
 const jsCode = `// Linear Search in JavaScript
 
 function linearSearch(array, x) {
@@ -42,6 +44,7 @@ function linearSearch(array, x) {
   }
   return -1;
 }`;
+
 const cppCode = `// Linear Search in C++
 
 #include <iostream>
