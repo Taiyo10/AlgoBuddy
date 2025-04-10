@@ -6,36 +6,58 @@ import VisualizeAlgorithm from "@/Visualizers/VisualizeAlgorithm";
 
 
 // Code snippets (organized)
-const javaCode = `// Java BFS example
-Queue<TreeNode> queue = new LinkedList<>();
-queue.add(root);
-while (!queue.isEmpty()) {
-  TreeNode node = queue.poll();
-  // process node
+const javaCode = `// Linear Search in Java
+
+class LinearSearch {
+  public static int linearSearch(int array[], int x) {
+  int n = array.length;
+
+  // Going through array sequencially
+  for (int i = 0; i < n; i++) {
+    if (array[i] == x)
+    return i;
+  }
+  return -1;
+  }`;
+const pythonCode = `# Linear Search in Python
+
+def linearSearch(array, n, x):
+
+    # Going through array sequencially
+    for i in range(0, n):
+        if (array[i] == x):
+            return i
+    return -1
+`;
+const jsCode = `// Linear Search in JavaScript
+
+function linearSearch(array, x) {
+  const n = array.length;
+
+  // Going through array sequentially
+  for (let i = 0; i < n; i++) {
+    if (array[i] === x) {
+      return i;
+    }
+  }
+  return -1;
 }`;
-const pythonCode = `# Python BFS example
-from collections import deque
-queue = deque([root])
-while queue:
-  node = queue.popleft()
-  # process node`;
-const jsCode = `// JavaScript BFS example
-let queue = [root];
-while (queue.length > 0) {
-  let node = queue.shift();
-  // process node
-}`;
-const cppCode = `// C++ BFS example
-queue<TreeNode*> queue;
-queue.push(root);
-while (!queue.empty()) {
-  TreeNode* node = queue.front();
-  queue.pop();
-  // process node
+const cppCode = `// Linear Search in C++
+
+#include <iostream>
+using namespace std;
+
+int search(int array[], int n, int x) {
+
+  // Going through array sequencially
+  for (int i = 0; i < n; i++)
+    if (array[i] == x)
+      return i;
+  return -1;
 }`;
 
 const LinearSearchPage = () => {
-    return <div className="flex h-auto justify-items-center justify-center">
+    return <div className="flex-wrap h-auto justify-items-center justify-center overflow-y-auto">
       <VisualizeAlgorithm config={linearSearchConfig} />
       LinearSearchPage
       <SampleCode
