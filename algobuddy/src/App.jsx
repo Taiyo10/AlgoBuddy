@@ -11,7 +11,7 @@ const App = () => {
   
   return (
     <div>
-      <VisualizeAlgorithm config={mergeSortConfig} />
+      <VisualizeAlgorithm config={quickSortConfig} />
     </div>
   );
 };

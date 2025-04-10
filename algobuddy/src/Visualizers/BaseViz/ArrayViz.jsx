@@ -9,7 +9,7 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
     const boxesRef = useRef([]);
     const textRef = useRef([]);
     const queueRef = useRef(new TransitionQueue(speed));
-    const subarraysRef = useRef(new Map()); 
+    //const subarraysRef = useRef(new Map()); 
     const svgWidthRef = useRef(0);
     const svgHeightRef = useRef(0);
 
@@ -21,27 +21,27 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
     const base = colours.base;
 
     //SubArrays
-    const getPosition = (id, level) => {
-      const half = 2**level/2;
-      const placement = parseInt(id.slice(1), 2) + 1;
-      const maxLevel = Math.ceil(Math.log2(boxesRef.current.length));
-      const distancePer = (maxLevel * (maxLevel * 0.05)) / (2**level);
+    // const getPosition = (id, level) => {
+    //   const half = 2**level/2;
+    //   const placement = parseInt(id.slice(1), 2) + 1;
+    //   const maxLevel = Math.ceil(Math.log2(boxesRef.current.length));
+    //   const distancePer = (maxLevel * (maxLevel * 0.05)) / (2**level);
       
-      const y = svgHeightRef.current * 0.5 - BOXHEIGHT/2 + level * (2 * BOXHEIGHT);
-      let x = 0;
-      if (id[0] == "0") {// Right most object on the left
-        let adjustment = 0;
-        if (placement == half) {adjustment = (0.5 - ((half - placement + 1) * distancePer)/2)}
-        else {adjustment = (0.5 - ((half - placement + 1) * distancePer - distancePer/2))}
-        x = (svgWidthRef.current * (0.1 + 0.8 * adjustment))
-      } else {
-        let adjustment = 0;
-        if (placement == half + 1) {adjustment = (0.5 + ((placement - half) * distancePer)/2)}
-        else {adjustment = (0.5 + ((placement - half - 1) * distancePer + (distancePer/2)))}
-        x = (svgWidthRef.current * (0.1 + 0.8 * adjustment));
-      }
-      return { x, y };
-    }
+    //   const y = svgHeightRef.current * 0.5 - BOXHEIGHT/2 + level * (2 * BOXHEIGHT);
+    //   let x = 0;
+    //   if (id[0] == "0") {// Right most object on the left
+    //     let adjustment = 0;
+    //     if (placement == half) {adjustment = (0.5 - ((half - placement + 1) * distancePer)/2)}
+    //     else {adjustment = (0.5 - ((half - placement + 1) * distancePer - distancePer/2))}
+    //     x = (svgWidthRef.current * (0.1 + 0.8 * adjustment))
+    //   } else {
+    //     let adjustment = 0;
+    //     if (placement == half + 1) {adjustment = (0.5 + ((placement - half) * distancePer)/2)}
+    //     else {adjustment = (0.5 + ((placement - half - 1) * distancePer + (distancePer/2)))}
+    //     x = (svgWidthRef.current * (0.1 + 0.8 * adjustment));
+    //   }
+    //   return { x, y };
+    // }
 
     // Allows use of functions in parent component
     useImperativeHandle(ref, () => ({
@@ -100,66 +100,66 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
             textRef.current[i] = textRef.current[j];
             textRef.current[j] = tempText;
         },
-        moveBox: async (id, x, y) => {
-            const queuedSpeed = queueRef.current.getLength() == 0 ? speed / 3 : 10
-            const subarray = subarraysRef.current.get(id);
-            const box = d3.select(subarray.boxes[0]);
-            const text = d3.select(subarray.text[0]);
+        // moveBox: async (id, x, y) => {
+        //     const queuedSpeed = queueRef.current.getLength() == 0 ? speed / 3 : 10
+        //     const subarray = subarraysRef.current.get(id);
+        //     const box = d3.select(subarray.boxes[0]);
+        //     const text = d3.select(subarray.text[0]);
 
-            box.transition().duration(queuedSpeed).attr("x", x).attr("y", y);
-            text.transition().duration(queuedSpeed).attr("x", x + BOXWIDTH/2).attr("y", y + BOXHEIGHT / 2); // MIGHT BE WRONG
+        //     box.transition().duration(queuedSpeed).attr("x", x).attr("y", y);
+        //     text.transition().duration(queuedSpeed).attr("x", x + BOXWIDTH/2).attr("y", y + BOXHEIGHT / 2); // MIGHT BE WRONG
 
-            subarray.position = { x: x, y: y}
-        },
-        subArray(parentId, id, range, level, array) { 
-          const subGroup = groupRef.current.append("g").attr("class", `subarray-${id}`);
-          const parentArray = subarraysRef.current.get(parentId);
-          const { x: parentX, y: parentY } = parentArray.position;
-          const {x, y} = getPosition(id, level);
+        //     subarray.position = { x: x, y: y}
+        // },
+        // subArray(parentId, id, range, level, array) { 
+        //   const subGroup = groupRef.current.append("g").attr("class", `subarray-${id}`);
+        //   const parentArray = subarraysRef.current.get(parentId);
+        //   const { x: parentX, y: parentY } = parentArray.position;
+        //   const {x, y} = getPosition(id, level);
           
-          const boxes = subGroup
-          .selectAll("rect")
-          .data(array)
-          .enter()
-          .append("rect")
-            .attr("width", BOXWIDTH)
-            .attr("height", BOXHEIGHT)
-            .attr("x", (_, i) => parentX + (i + range[0]) * BOXWIDTH)
-            .attr("y", parentY)
-            .attr("fill", base)
-            .attr("stroke", "black")
-            .attr("stroke-width", 4)
+        //   const boxes = subGroup
+        //   .selectAll("rect")
+        //   .data(array)
+        //   .enter()
+        //   .append("rect")
+        //     .attr("width", BOXWIDTH)
+        //     .attr("height", BOXHEIGHT)
+        //     .attr("x", (_, i) => parentX + (i + range[0]) * BOXWIDTH)
+        //     .attr("y", parentY)
+        //     .attr("fill", base)
+        //     .attr("stroke", "black")
+        //     .attr("stroke-width", 4)
 
-          const texts = subGroup
-          .selectAll("text")
-          .data(array)
-          .enter()
-          .append("text")
-              .text((d) => d)
-              .attr("x", (_, i) => parentX + range[0] * BOXWIDTH - MIDDLEOFARRAY + BOXWIDTH/2)
-              .attr("y", parentY + BOXHEIGHT / 2)
-              .attr("text-anchor", "middle")
-              .attr("alignment-baseline", "middle")
-              .attr("fill", "white");
+        //   const texts = subGroup
+        //   .selectAll("text")
+        //   .data(array)
+        //   .enter()
+        //   .append("text")
+        //       .text((d) => d)
+        //       .attr("x", (_, i) => parentX + range[0] * BOXWIDTH - MIDDLEOFARRAY + BOXWIDTH/2)
+        //       .attr("y", parentY + BOXHEIGHT / 2)
+        //       .attr("text-anchor", "middle")
+        //       .attr("alignment-baseline", "middle")
+        //       .attr("fill", "white");
           
           
-          subarraysRef.current.set(
-            id,
-            { 
-              id,
-              boxes: boxes.nodes(),
-              text: texts.nodes(),
-              position: { x: x, y: y },
-              positionText: { x: x + BOXWIDTH/2, y: y + BOXHEIGHT / 2},
-              array,
-              group: subGroup
-            }
-          );
+        //   subarraysRef.current.set(
+        //     id,
+        //     { 
+        //       id,
+        //       boxes: boxes.nodes(),
+        //       text: texts.nodes(),
+        //       position: { x: x, y: y },
+        //       positionText: { x: x + BOXWIDTH/2, y: y + BOXHEIGHT / 2},
+        //       array,
+        //       group: subGroup
+        //     }
+        //   );
           
-          // Transition
-          const queuedSpeed = queueRef.current.getLength() == 0 ? speed / 3 : 10
-          subGroup.transition().duration(queuedSpeed).attr("transform", `translate(${x}, ${y})`);
-        }
+        //   // Transition
+        //   const queuedSpeed = queueRef.current.getLength() == 0 ? speed / 3 : 10
+        //   subGroup.transition().duration(queuedSpeed).attr("transform", `translate(${x}, ${y})`);
+        // }
     }))
 
   useEffect(() => {
@@ -211,17 +211,18 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
         .attr("fill", "white");
     textRef.current = texts.nodes();
 
-    subarraysRef.current.set(
-      "0",
-      {
-        boxes: boxes.nodes(),
-        text: texts.nodes(),
-        position: { x: svgWidthRef.current * 0.5 - MIDDLEOFARRAY, y: svgHeightRef.current * 0.5 - BOXHEIGHT/2 },
-        positionText: { x: svgWidthRef.current * 0.5 - MIDDLEOFARRAY + BOXWIDTH/2, y: svgHeightRef.current * 0.5},
-        array: data,
-        group: mainSubGroup
-      }
-    );
+    // subarraysRef.current.set(
+    //   "0",
+    //   {
+    //     boxes: boxes.nodes(),
+    //     text: texts.nodes(),
+    //     position: { x: svgWidthRef.current * 0.5 - MIDDLEOFARRAY, y: svgHeightRef.current * 0.5 - BOXHEIGHT/2 },
+    //     positionText: { x: svgWidthRef.current * 0.5 - MIDDLEOFARRAY + BOXWIDTH/2, y: svgHeightRef.current * 0.5},
+    //     array: data,
+    //     group: mainSubGroup
+    //   }
+    // );
+    
     // Index 
     group
     .selectAll(null)
