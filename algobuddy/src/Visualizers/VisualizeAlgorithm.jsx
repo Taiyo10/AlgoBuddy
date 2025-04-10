@@ -10,8 +10,6 @@ const visualizers = {
     graph: GraphVisualizer,
 }
 
-
-
 const VisualizeAlgorithm =({ config }) => {
     const vizRef = useRef();
     const speedRef = useRef(1000);

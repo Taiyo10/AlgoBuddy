@@ -13,7 +13,7 @@ export function mergeSort(arr, logs = [], startIndex = 0, depth = 0, id = "0") {
       const mid = Math.floor(arr.length / 2);
       const leftHalf = arr.slice(0, mid);
       const rightHalf = arr.slice(mid);
-  
+
       // Log a "split" step. Notice we assign new IDs for the left and right halves.
       logs.push({
         action: "split",
@@ -121,11 +121,7 @@ export function mergeSort(arr, logs = [], startIndex = 0, depth = 0, id = "0") {
     return logs;
   }
     
-  // Example usage:
-  if (typeof window === "undefined") {
-    let arr = [64, 34, 25, 12, 22, 11, 90];
-    const logs = mergeSort(arr);
-    console.log("Logs:", logs);
-    console.log("Sorted array is:", arr);
-  }
+  const arr = [42, 17, 89, 3, 56, 74];
+  const logs = mergeSort([...arr]); // Make sure you run the latest mergeSort
+  console.log(JSON.stringify(logs, null, 2));
   

@@ -10,8 +10,9 @@ export const applyMergeSortStep = async (viz, step, args) => {
         viz.clearQueue();
     }
     else if (step.action == "split") {
-        viz.subArray(step.parentId, step.leftId, step.leftRange, step.depth);
-        viz.subArray(step.parentId, step.rightId, step.rightRange, step.depth);
+        viz.enqueue(() => viz.subArray("0", "01", step.rightRange, 1, step.right));
+        console.log(step);
+        //viz.enqueue(() => viz.subArray("0", "01", step.rightRange, 1, step.array));
 
         // viz.setRectColours((_, i) => i === i, highlight);
         // viz.setRectColours((_, i) => i > (step.array.length-1) - step.pass, found);

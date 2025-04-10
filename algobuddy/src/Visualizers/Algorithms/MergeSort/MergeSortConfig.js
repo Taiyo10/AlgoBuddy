@@ -1,5 +1,5 @@
 import { applyMergeSortStep } from "./MergeSort"; // assuming you saved it as MergeSort.js
-import { mergeSort } from "../../../components/JavaScript/algos/sort/merge-sort"
+import { mergeSort } from "../../../components/JavaScript/algos/sort/mergesort"
 export const mergeSortConfig = {
     name: "Merge Sort",
     visualizer: "array",
