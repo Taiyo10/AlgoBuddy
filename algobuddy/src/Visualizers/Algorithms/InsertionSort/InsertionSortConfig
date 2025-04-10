@@ -1,0 +1,15 @@
+import { applyInsertionSortStep } from "./InsertionSort";
+import { insertionSort } from "../../../components/JavaScript/algos/sort/insertion-sort";
+
+export const insertionSortConfig = {
+    name: "Insertion Sort",
+    visualizer: "array",
+    defaultValues: {
+        array: [42, 17,89,3,56,74],
+    },
+    inputs: {
+        array: true,
+    },
+    applyStep: applyInsertionSortStep, 
+    applyAlgorithm: insertionSort,
+}

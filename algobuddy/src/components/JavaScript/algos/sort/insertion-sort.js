@@ -26,7 +26,8 @@ export function insertionSort(arr) {
         key: key,
         key_index: i,
         compare_index: j,
-        compare_value: arr[j]
+        compare_value: arr[j],
+        array: [...arr]
       });
 
       // Shift the element one position to the right.
@@ -36,7 +37,7 @@ export function insertionSort(arr) {
         from_index: j,
         to_index: j + 1,
         shifted_value: arr[j],
-        array_state: [...arr]
+        array: [...arr]
       });
 
       j -= 1;
@@ -48,14 +49,14 @@ export function insertionSort(arr) {
       action: "insert",
       insert_index: j + 1,
       inserted_key: key,
-      array_state: [...arr]
+      array: [...arr]
     });
   }
 
   // Log the final sorted array.
   logs.push({
     action: "sorted",
-    sorted_array: [...arr]
+    array: [...arr]
   });
 
   return logs;

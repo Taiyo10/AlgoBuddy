@@ -1,4 +1,5 @@
 export function quickSort(arr, low = 0, high = arr.length - 1, logs = []) {
+  // Log the current quick sort call on the subarray.
   logs.push({
     action: "quick_sort_call",
     low,
@@ -17,6 +18,14 @@ export function quickSort(arr, low = 0, high = arr.length - 1, logs = []) {
       array: [...arr]
     });
 
+    // Log the pivot that has finished sorting.
+    logs.push({
+      action: "number_sorted",
+      index: pi,
+      value: arr[pi],
+      array: [...arr]
+    });
+
     quickSort(arr, low, pi - 1, logs);
     quickSort(arr, pi + 1, high, logs);
   } else {
@@ -25,6 +34,15 @@ export function quickSort(arr, low = 0, high = arr.length - 1, logs = []) {
       low,
       high,
       subarray: arr.slice(low, high + 1),
+      array: [...arr]
+    });
+  }
+
+  // When the outermost call finishes, log the completed sort.
+  if (low === 0 && high === arr.length - 1) {
+    logs.push({
+      action: "quick_sort_end",
+      result: "sorted",
       array: [...arr]
     });
   }
@@ -91,7 +109,7 @@ function partition(arr, low, high, logs) {
   return i + 1;
 }
 
-// Driver Code
+// Driver Code (for testing purposes)
 if (typeof window === "undefined") {
   const arr = [64, 34, 25, 12, 22, 11, 90];
   const logs = quickSort(arr);
