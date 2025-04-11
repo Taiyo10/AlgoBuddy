@@ -56,7 +56,7 @@ const InsertionSortPage = () => {
         </div>
         <div
           id="top-shape"
-          className="w-[40vw] border-l-[10vw] border-l-transparent border-b-[22.1vh] border-b-[#2A5829]"
+          className="w-[40vw] border-l-[10vw] border-l-transparent border-b-[22.2vh] border-b-[#2A5829]"
         >
           <div
             id="icon-container"
@@ -69,10 +69,10 @@ const InsertionSortPage = () => {
       <VisualizeAlgorithm config={insertionSortConfig} />
       <div className="flex justify-center my-4">
         <SampleCode
-        Java={javaCode}
-        Python={pythonCode}
-        JS={jsCode}
-        CPlusPlus={cppCode}
+          Java={javaCode}
+          Python={pythonCode}
+          JS={jsCode}
+          CPlusPlus={cppCode}
         />
       </div>
       <Footer></Footer>
