@@ -218,7 +218,6 @@ const BarChartVisualizer = forwardRef(({ data, speed = 1000, title }, ref) => {
       style={{
         cursor: "grab"
       }}
-      className="bg-[#f9f9f9] dark:bg-[#1e1e1e] rounded-t-xl"
     />
   );
 });
