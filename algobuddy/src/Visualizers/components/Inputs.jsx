@@ -36,7 +36,7 @@ export const Inputs = ({ config, mapping }) => {
         
 
     return (
-        <>
+        <div>
             {config.array && ( // Only allow array input if requested
               <div>
                 <label style={{ color: "white" }}>Array:</label>
@@ -81,6 +81,6 @@ export const Inputs = ({ config, mapping }) => {
                 />
               </div>
             )}
-        </>
+        </div>
     )
 }

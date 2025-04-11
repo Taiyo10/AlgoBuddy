@@ -53,11 +53,11 @@ const VisualizeAlgorithm =({ config }) => {
     const AlgorithmVisualizer = visualizers[visualizer]; // Selects needed visualizer based on config
 
     return (
-        <>
+        <div>
             <AlgorithmVisualizer ref={vizRef} data={data} speed={speedRef.current} title={name} />
             <StepController jsonData={jsonData} speedRef={speedRef} applyStep={handleApplyStep} reset={reset} />
             <Inputs config = {inputs} mapping = {mapping} />
-        </>
+        </div>
     );
 };
 
