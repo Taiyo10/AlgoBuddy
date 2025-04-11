@@ -1,0 +1,66 @@
+[
+  {
+    "action": "start_sort",
+    "array": [
+      64,
+      34,
+      25,
+      12,
+      22,
+      11,
+      90
+    ]
+  },
+  {
+    "action": "iteration_start",
+    "iteration": 0,
+    "subarray": [
+      64,
+      34,
+      25,
+      12,
+      22,
+      11,
+      90
+    ],
+    "array": [
+      64,
+      34,
+      25,
+      12,
+      22,
+      11,
+      90
+    ]
+  },
+  {
+    "action": "select_initial_min",
+    "index": 0,
+    "value": 64,
+    "array": [
+      64,
+      34,
+      25,
+      12,
+      22,
+      11,
+      90
+    ]
+  },
+  {
+    "action": "compare",
+    "index1": 0,
+    "value1": 64,
+    "index2": 1,
+    "value2": 34,
+    "array": [
+      64,
+      34,
+      25,
+      12,
+      22,
+      11,
+      90
+    ]
+  }
+]

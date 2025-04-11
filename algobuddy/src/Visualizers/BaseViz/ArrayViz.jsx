@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useImperativeHandle, forwardRef } from "react
 import * as d3 from "d3";
 import { colours } from "../../Theme/Colours";
 import { TransitionQueue } from "../components/TransitionQueue";
+
+
+
 const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
     const svgRef = useRef();
     const groupRef = useRef();
@@ -170,10 +173,26 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
     svgHeightRef.current = svg.node().clientHeight;
 
     // Add zoom behavior to the whole SVG
-    const zoom = d3.zoom().on("zoom", (event) => {
-      groupRef.current.attr("transform", event.transform);
-      transformRef.current = event.transform;
-    });
+    const zoom = d3.zoom()
+      .scaleExtent([0.5, 5]) // optional, limit zoom in/out
+      .on("zoom", (event) => {
+        const svg = d3.select(svgRef.current);
+        const svgWidth = svg.node().clientWidth;
+        const svgHeight = svg.node().clientHeight;
+
+        // Always center the zoom on the SVG center
+        const centerX = svgWidth / 2;
+        const centerY = svgHeight / 2;
+
+        const currentScale = event.transform.k;
+
+        const transform = d3.zoomIdentity
+          .translate(centerX * (1 - currentScale), centerY * (1 - currentScale))
+          .scale(currentScale);
+
+        d3.select(groupRef.current).attr("transform", transform);
+        transformRef.current = transform;
+      });
 
     svg.call(zoom);
 
@@ -244,7 +263,7 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
         .attr("y", svgHeightRef.current * 0.5 - BOXHEIGHT * 1.5)
         .attr("text-anchor", "middle")
         .attr("alignment-baseline", "middle")
-        .attr("fill", "white")
+        .attr("fill", "gray")
         .attr("font-size", 30);
 
   }, [data, speed]);
@@ -253,10 +272,10 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
   return (
     <svg
       ref={svgRef}
-      width="100vw"
-      height="70vh"
+      width="55vw"
+      height="50vh"
+      className="bg-[#f9f9f9] dark:bg-[#1e1e1e] rounded-t-xl"
       style={{
-        backgroundColor: "#333",
         cursor: "grab",
       }}
     />
