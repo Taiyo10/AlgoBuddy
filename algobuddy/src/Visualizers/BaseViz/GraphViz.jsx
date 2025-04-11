@@ -218,7 +218,7 @@ const GraphVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
         .attr("y", 60)
         .attr("text-anchor", "middle")
         .attr("alignment-baseline", "middle")
-        .attr("fill", "white")
+        .attr("fill", "gray")
         .attr("font-size", 30);
 
   }, [data, speed]);
@@ -233,6 +233,7 @@ const GraphVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
       style={{
         cursor: "grab",
       }}
+      className="bg-[#f9f9f9] dark:bg-[#1e1e1e] rounded-t-xl"
     />
   );
 });

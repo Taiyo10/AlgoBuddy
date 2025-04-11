@@ -29,6 +29,7 @@ const LogViewer = ({ logs }) => {
         flexDirection: "column",
         justifyContent: "flex-start",
       }}
+      className="rounded-b-xl bg-[#1e1e1e]"
     >
       {logs.map((log, index) => (
         <div key={index}>{log}</div>
