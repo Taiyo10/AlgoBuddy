@@ -36,10 +36,10 @@ export const Inputs = ({ config, mapping }) => {
         
 
     return (
-        <div>
+        <div className="flex">
             {config.array && ( // Only allow array input if requested
               <div className="p-1">
-                <span className="p-1 pr-2 h-30 bg-gray-400">Array</span>
+                <span className="p-1 pr-2 bg-gray-400 rounded-l">Array:</span>
                 <input
                     type="text"
                     value={inputArray}
@@ -47,15 +47,15 @@ export const Inputs = ({ config, mapping }) => {
                         onArrayChange(e);
                     }}
                     placeholder="e.g. 1,2,3"
-                    className="my-1 p-0.5"
+                    className="my-1 p-0.5 rounded-r"
                     
                 />
               </div>
             )}
 
             {config.target && ( // Only allow target input if requested
-              <div>
-                <label className="p-1">Target</label>
+              <div className="p-1">
+                <label className="p-1 bg-gray-400 rounded-l">Target:</label>
                 <input
                     type="number"
                     value={inputTarget}
@@ -63,7 +63,7 @@ export const Inputs = ({ config, mapping }) => {
                         onTargetChange(e);
                     }}
                     placeholder="Target"
-                    className="mb-1 p-0.5"
+                    className="my-1 p-0.5 rounded-r"
                 />
               </div>
             )}

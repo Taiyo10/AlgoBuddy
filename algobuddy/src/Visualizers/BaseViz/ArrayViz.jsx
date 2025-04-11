@@ -176,7 +176,7 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
       width="55vw"
       height="50vh"
       style={{
-        borderRadius: 10,
+        borderRadius: 0,
         backgroundColor: "#333",
         cursor: "grab",
       }}
