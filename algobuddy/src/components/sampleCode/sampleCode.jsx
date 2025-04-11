@@ -53,9 +53,9 @@ const SampleCode = ({ Java, Python, JS, CPlusPlus }) => {
   };
 
   return (
-      <div className="w-1/2 rounded-xl overflow-hidden shadow-lg bg-[#1e1e1e] border border-neutral-700">
+      <div className="w-1/2 rounded-xl overflow-hidden shadow-lg bg-[#1e1e1e] ">
         {/* Top bar */}
-            <div className="flex items-center justify-between p-2 bg-[#2d2d2d] text-gray-400 border-b border-neutral-700">
+            <div className="flex items-center justify-between p-2 bg-[#2d2d2d] text-gray-400">
             {/* Left controls */}
             <div className="flex items-center gap-2">
                 <span className="h-3 w-3 rounded-full bg-red-500" />

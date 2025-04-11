@@ -203,19 +203,19 @@ const BarChartVisualizer = forwardRef(({ data, speed = 1000, title }, ref) => {
       .attr("x", svgWidth / 2)
       .attr("y", topMargin / 2) // Positioned in the upper half of the top margin
       .attr("text-anchor", "middle")
-      .attr("fill", "white")
+      .attr("fill", "dark")
       .attr("font-size", 30);
   }, [data, speed]);
 
   return (
     <svg
       ref={svgRef}
-      width="100vw"
-      height="70vh"
+      width="55vw"
+      height="50vh"
       style={{
-        backgroundColor: "#333",
         cursor: "grab"
       }}
+      className="bg-[#f9f9f9] dark:bg-[#1e1e1e] rounded-t-xl"
     />
   );
 });
