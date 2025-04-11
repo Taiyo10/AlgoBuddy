@@ -1,6 +1,7 @@
-export function quickSort(arr, low = 0, high = arr.length - 1) {
+export function quickSort(arr, low = 0, high = arr.length - 1, logs) {
+  if (!Array.isArray(logs)) logs = [];
+
   // Log the current quick sort call on the subarray.
-  const logs = [];
   logs.push({
     action: "quick_sort_call",
     low,
@@ -19,25 +20,9 @@ export function quickSort(arr, low = 0, high = arr.length - 1) {
       array: [...arr]
     });
 
-    // Log the pivot that has finished sorting.
-    logs.push({
-      action: "number_sorted",
-      index: pi,
-      value: arr[pi],
-      array: [...arr]
-    });
-
     quickSort(arr, low, pi - 1, logs);
     quickSort(arr, pi + 1, high, logs);
-  } else {
-    logs.push({
-      action: "quick_sort_no_action",
-      low,
-      high,
-      subarray: arr.slice(low, high + 1),
-      array: [...arr]
-    });
-  }
+  } 
 
   // When the outermost call finishes, log the completed sort.
   if (low === 0 && high === arr.length - 1) {
@@ -81,6 +66,7 @@ function partition(arr, low, high, logs) {
         action: "swap",
         indices: [i, j],
         values: [arr[i], arr[j]],
+        pivot_index: high,
         subarray_before_swap: arr.slice(low, high + 1),
         array: [...arr]
       });
@@ -91,6 +77,7 @@ function partition(arr, low, high, logs) {
         current_index: j,
         current_value: arr[j],
         pivot_value: pivot,
+        pivot_index: high,
         reason: "current_value not less than pivot",
         subarray: arr.slice(low, high + 1),
         array: [...arr]
@@ -102,6 +89,7 @@ function partition(arr, low, high, logs) {
     action: "swap",
     indices: [i + 1, high],
     values: [arr[i + 1], arr[high]],
+    pivot_index: high,
     subarray_before_swap: arr.slice(low, high + 1),
     array: [...arr]
   });

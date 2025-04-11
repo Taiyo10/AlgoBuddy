@@ -33,23 +33,7 @@ export function bubbleSort(arr) {
         });
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
         swapped = true;
-        logs.push({
-          action: "swap_complete",
-          pass: i,
-          index1: j,
-          index2: j + 1,
-          array: [...arr]
-        });
-      } else {
-        logs.push({
-          action: "no_swap",
-          pass: i,
-          index1: j,
-          index2: j + 1,
-          value1: arr[j],
-          value2: arr[j + 1]
-        });
-      }
+      } 
     }
 
     logs.push({ action: "pass_end", pass: i, array: [...arr] });
