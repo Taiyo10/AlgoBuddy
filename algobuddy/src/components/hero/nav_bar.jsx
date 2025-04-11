@@ -27,8 +27,6 @@ const sortingAlgos = [
 ];
 
 const graphingAlgos = [
-  // { title: "Breadth First Search", href: "/bfs" },
-  // { title: "Depth First Search", href: "/dfs" },
   { title: "Heap Sort", href: "/heapsort" },
 ];
 
@@ -40,7 +38,7 @@ const ListItem = ({ title, href }) => (
         to={href}
         className={cn(
           "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors",
-          "hover:bg-red-300 hover:text-accent-foreground hover:shadow-md focus:bg-accent focus:text-accent-foreground"
+          "hover:bg-white hover:text-[#29573d] focus:bg-white focus:text-[#29573d]"
         )}
       >
         <div className="text-md font-medium leading-none">{title}</div>
@@ -77,7 +75,7 @@ const NavBar = () => {
   useNavigationMenuAlign();
 
   return (
-    <div className="w-full h-24 px-6 bg-[#123B29] text-white flex items-center justify-between relative z-50">
+    <div id="navbar" className="w-full h-24 px-6 bg-[#123B29] text-white flex items-center justify-between relative z-50">
       {/* Left section: Logo + Navigation */}
       <div className="flex items-center space-x-8">
         <Link to="/">
@@ -86,12 +84,20 @@ const NavBar = () => {
 
         <NavigationMenu>
           <NavigationMenuList className="flex space-x-6">
+            {/* SEARCHING */}
             <NavigationMenuItem>
               <NavigationMenuTrigger className="submenu-trigger h-auto bg-transparent flex flex-col items-center text-white">
                 <Search className="w-6 h-6 mb-1" />
                 <span className="text-sm font-medium">Searching</span>
               </NavigationMenuTrigger>
-              <NavigationMenuContent className="absolute z-50 bg-white text-black rounded-b-md rounded-r-md">
+              <NavigationMenuContent
+                className="absolute z-50 rounded-lg"
+                style={{
+                  backgroundColor: "#29573d",
+                  color: "white",
+                  marginTop: "0px"
+                }}
+              >
                 <ul className="grid w-[300px] gap-2 p-4">
                   {searchAlgos.map((algo) => (
                     <ListItem key={algo.title} title={algo.title} href={algo.href} />
@@ -100,13 +106,20 @@ const NavBar = () => {
               </NavigationMenuContent>
             </NavigationMenuItem>
 
-            {/* Repeat this z-50 change for other dropdowns too */}
+            {/* SORTING */}
             <NavigationMenuItem>
               <NavigationMenuTrigger className="submenu-trigger h-auto bg-transparent flex flex-col items-center text-white">
                 <BarChart4 className="w-6 h-6 mb-1" />
                 <span className="text-sm font-medium">Sorting</span>
               </NavigationMenuTrigger>
-              <NavigationMenuContent className="absolute z-50 bg-white text-black rounded-b-md rounded-r-md">
+              <NavigationMenuContent
+                className="absolute z-50 rounded-lg"
+                style={{
+                  backgroundColor: "#29573d",
+                  color: "white",
+                  marginTop: "0px"
+                }}
+              >
                 <ul className="grid w-[300px] gap-2 p-4">
                   {sortingAlgos.map((algo) => (
                     <ListItem key={algo.title} title={algo.title} href={algo.href} />
@@ -115,12 +128,20 @@ const NavBar = () => {
               </NavigationMenuContent>
             </NavigationMenuItem>
 
+            {/* GRAPHING */}
             <NavigationMenuItem>
               <NavigationMenuTrigger className="submenu-trigger h-auto bg-transparent flex flex-col items-center text-white">
                 <LineChart className="w-6 h-6 mb-1" />
                 <span className="text-sm font-medium">Graphing</span>
               </NavigationMenuTrigger>
-              <NavigationMenuContent className="absolute z-50 bg-white text-black rounded-b-md rounded-r-md">
+              <NavigationMenuContent
+                className="absolute z-50 rounded-lg"
+                style={{
+                  backgroundColor: "#29573d",
+                  color: "white",
+                  marginTop: "0px"
+                }}
+              >
                 <ul className="grid w-[300px] gap-2 p-4">
                   {graphingAlgos.map((algo) => (
                     <ListItem key={algo.title} title={algo.title} href={algo.href} />
@@ -140,6 +161,5 @@ const NavBar = () => {
     </div>
   );
 };
-
 
 export default NavBar;
