@@ -1,7 +1,9 @@
-/** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: "class", // ✅ dark mode based on class
-  content: ["./index.html", "./src/**/*.{js,jsx}"],
+  darkMode: 'class',
+  content: [
+    "./index.html",
+    "./src/**/*.{js,jsx}",
+  ],
   theme: {
     extend: {
       colors: {
@@ -14,7 +16,7 @@ export default {
         fontcolour: { DEFAULT: "hsl(var(--fontcolour))" },
       },
       fontFamily: {
-        dmsans: ['"DM Sans"', "sans-serif"],
+        rubikmono: ['"Rubik Mono One"', 'sans-serif'], // ✅ add this line
       },
     },
   },
