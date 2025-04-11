@@ -48,20 +48,18 @@ const HeapSortPage = () => {
                 it at the end of the array. Although somewhat slower in practice
                 on most machines than a well-implemented quicksort, it has the
                 advantages of very simple implementation and a more favorable
-                worst-case O(n log n) runtime. Most real-world quicksort
-                variants include an implementation of heapsort as a fallback
-                should they detect that quicksort is becoming degenerate.
+                worst-case O(n log n) runtime.
               </h1>
             </div>
           </div>
         </div>
         <div
           id="top-shape"
-          className="w-[40vw] border-l-[15vw] border-l-transparent border-b-[22.2vh] border-b-[#2A5829]"
+          className="w-[40vw] border-l-[10vw] border-l-transparent border-b-[22.2vh] border-b-[#2A5829]"
         >
           <div
             id="icon-container"
-            className="w-[25vw] h-[20.5vh] bg-none flex justify-center items-center"
+            className="w-[25vw] h-[22.5vh] bg-none flex justify-center items-center"
           >
             <img src="./heap-sort-icon.png" alt="" className="w-[10vw]" />
           </div>
@@ -70,10 +68,10 @@ const HeapSortPage = () => {
       <VisualizeAlgorithm config={heapSortConfig} />
       <div className="flex justify-center my-4">
         <SampleCode
-        Java={javaCode}
-        Python={pythonCode}
-        JS={jsCode}
-        CPlusPlus={cppCode}
+          Java={javaCode}
+          Python={pythonCode}
+          JS={jsCode}
+          CPlusPlus={cppCode}
         />
       </div>
       <Footer></Footer>

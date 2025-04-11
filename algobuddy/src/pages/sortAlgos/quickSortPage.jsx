@@ -13,7 +13,7 @@ const QuickSortPage = () => {
             id="title-container-inner"
             className="h-[20.6vh] w-[57vw] ml-auto flex flex-col"
           >
-            <div id="title" className="h-[12vh] ">
+            <div id="title" className="h-[12vh] py-4">
               <img
                 id="title-1"
                 src="./quick-title.png"
@@ -49,9 +49,7 @@ const QuickSortPage = () => {
                 distributions. Quicksort is a divide-and-conquer algorithm. It
                 works by selecting a 'pivot' element from the array and
                 partitioning the other elements into two sub-arrays, according
-                to whether they are less than or greater than the pivot. For
-                this reason, it is sometimes called partition-exchange sort. The
-                sub-arrays are then sorted recursively.
+                to whether they are less than or greater than the pivot.
               </h1>
             </div>
           </div>
@@ -71,10 +69,10 @@ const QuickSortPage = () => {
       <VisualizeAlgorithm config={quickSortConfig} />
       <div className="flex justify-center my-4">
         <SampleCode
-        Java={javaCode}
-        Python={pythonCode}
-        JS={jsCode}
-        CPlusPlus={cppCode}
+          Java={javaCode}
+          Python={pythonCode}
+          JS={jsCode}
+          CPlusPlus={cppCode}
         />
       </div>
       <Footer></Footer>
