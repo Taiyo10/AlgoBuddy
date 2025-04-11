@@ -1,6 +1,6 @@
 AlgoBuddy
 
-Created By: Teo Cristante (), Ninh Dang (), Allen Reinoso (), Ethan Samson (), Joshua Herrera (501223774)
+Created By: Teo Cristante (), Ninh Dang (), Allen Reinoso (), Ethan Samson (501254499), Joshua Herrera (501223774)
 
 AlgoBuddy is an online algorithm visualizer that shows a variety of searching and sorting algorithms for computer science. On the homepage, you are greeted with a welcome message and can
 navigate around the website using the nav bar located at the top of each page. Hovering over the icons on the nav bar and selecting an algorithm will take you to the algorithm's respective page. Within the
