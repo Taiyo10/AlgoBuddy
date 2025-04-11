@@ -130,7 +130,9 @@ const BarChartVisualizer = forwardRef(({ data, speed = 1000, title }, ref) => {
     const svgHeight = svg.node().clientHeight;
 
     // Set up zoom behavior.
-    const zoom = d3.zoom().on("zoom", (event) => {
+    const zoom = d3.zoom()
+    .scaleExtent([0.5, 5])
+    .on("zoom", (event) => {
       d3.select(groupRef.current).attr("transform", event.transform);
       transformRef.current = event.transform;
     });
@@ -212,6 +214,7 @@ const BarChartVisualizer = forwardRef(({ data, speed = 1000, title }, ref) => {
       ref={svgRef}
       width="55vw"
       height="50vh"
+      className="bg-[#f9f9f9] dark:bg-[#1e1e1e] rounded-t-xl"
       style={{
         cursor: "grab"
       }}

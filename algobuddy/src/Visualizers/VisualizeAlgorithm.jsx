@@ -4,7 +4,7 @@ import BarChartVisualizer from "./BaseViz/BarViz";
 import GraphVisualizer from "./BaseViz/GraphViz";
 import { Inputs } from "./components/Inputs";
 import { StepController } from "./components/StepController";
-import LogViewer from "./components/LogViewer";
+import LogViewer from "./components/LogViewer"; // ⬅️ New import
 import { useLogger } from "./hooks/useLogger";
 
 
@@ -15,34 +15,37 @@ const visualizers = {
     
 }
 
-
-
 const VisualizeAlgorithm = ({ config }) => {
   const vizRef = useRef();
   const speedRef = useRef(1000);
 
-  const { logs, printLog } = useLogger();
+  const { logs, setLogs, printLog } = useLogger(); // ⬅️ log state + print function
 
-    const {name, visualizer, applyStep, applyAlgorithm, inputs, defaultValues} = config
+  const { name, visualizer, applyStep, applyAlgorithm, inputs, defaultValues } = config;
 
-  const [data, setData] = useState(defaultValues.array || []);
-  const [target, setTarget] = useState(defaultValues.target || null);
-  const [key, setKey] = useState(defaultValues.key || null);
+  const [data, setData] = useState(defaultValues.array);
+  const [target, setTarget] = useState(defaultValues.target);
+  const [key, setKey] = useState(defaultValues.key);
   const [reset, setReset] = useState(false);
-  const [jsonData, setJsonData] = useState([]);
+  
+
+  const [jsonData, setJsonData] = useState(
+    applyAlgorithm([...data], target, key, { log: printLog })
+  );
 
   useEffect(() => {
-    const runAlgorithm = async () => {
-      const logs = await applyAlgorithm(data, target, key);
-      setJsonData(logs);
-    };
-    runAlgorithm();
-    setReset(!reset);
+    async function getJson(data, target, key) {
+      setJsonData(await applyAlgorithm([...data], target, key, { log: printLog }));
+    }
+    getJson(data, target, key);
+    setReset((prev) => !prev);
+    setLogs([]);
   }, [data, target, key]);
 
   const handleApplyStep = (step) => {
-    if (!vizRef.current) return;
-    applyStep(vizRef.current, step, { data, target, key, log: printLog }); // ⬅️ pass logger
+    if (!step || !vizRef.current) return;
+    const args = { data, target, key, log: printLog };
+    applyStep(vizRef.current, step, args);
   };
 
   const mapping = {

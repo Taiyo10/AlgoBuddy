@@ -1,5 +1,6 @@
-export function quickSort(arr, low = 0, high = arr.length - 1, logs = []) {
+export function quickSort(arr, low = 0, high = arr.length - 1) {
   // Log the current quick sort call on the subarray.
+  const logs = [];
   logs.push({
     action: "quick_sort_call",
     low,
