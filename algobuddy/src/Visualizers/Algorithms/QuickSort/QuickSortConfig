@@ -2,7 +2,7 @@ import { applyQuickSortStep } from "./QuickSort";
 import { quickSort } from "../../../components/JavaScript/algos/sort/quick-sort";
 export const quickSortConfig = {
     name: "Quick Sort",
-    visualizer: "array",
+    visualizer: "chart",
     defaultValues: {
         array: [42, 17, 89, 3, 56, 74],
     },

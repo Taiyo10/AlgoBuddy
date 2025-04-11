@@ -70,7 +70,9 @@ const VisualizeAlgorithm = ({ config }) => {
                     <StepController jsonData={jsonData} speedRef={speedRef} applyStep={handleApplyStep} reset={reset} />
                     <Inputs config = {inputs} mapping = {mapping} />
                 </div>
-                {/* <LogViewer logs={logs} /> ⬅️ add this here */}
+                <div >
+                  <LogViewer logs={logs} />
+                </div>
             </div>
         </div>
     );
