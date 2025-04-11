@@ -17,7 +17,6 @@ const Homepage = () => {
 
       {/* White Visualizer Section */}
       <div className="bg-background dark:bg-[#121212] w-full min-h-[calc(100vh-200px)] px-6 py-14 -mt-8 flex flex-col md:flex-row items-center justify-center gap-12">
-        
         {/* Left Text Block */}
         <div className="max-w-xl text-left ml-[-40px]">
           <h2 className="text-3xl font-rubikmono text-[#204D2A] dark:text-white mb-4">
@@ -44,7 +43,9 @@ const Homepage = () => {
       {/* Footer */}
       <footer className="bg-gray-300 dark:bg-[#1e1e1e] text-center py-6 text-sm text-gray-700 dark:text-gray-300">
         <div className="mb-2">
-          <a href="#top" className="hover:underline cursor-pointer">Back to top</a>
+          <a href="#top" className="hover:underline cursor-pointer">
+            Back to top
+          </a>
         </div>
         <div>
           Created By: Teo Cristante, Ninh Dang, Allen Reinoso, Ethan Samson,
