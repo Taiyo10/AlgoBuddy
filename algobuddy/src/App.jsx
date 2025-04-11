@@ -13,7 +13,7 @@ import { useLogger } from "./Visualizers/hooks/useLogger";
 const App = () => {
   return (
     <div>
-      <VisualizeAlgorithm config={selectionSortConfig} />
+      <VisualizeAlgorithm config={quickSortConfig} />
     </div>
   );
 };
