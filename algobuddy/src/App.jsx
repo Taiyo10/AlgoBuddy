@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Homepage from './pages/homepage';
+import BFSPage from './pages/graphAlgos/breadthFirstSearchPage'; 
+import DFSPage from './pages/graphAlgos/depthFirstSearchPage';
+import HeapSortPage from './pages/sortAlgos/heapSortPage';
+import BinarySearchPage from './pages/searchAlgos/binarySearchPage';
+import LinearSearchPage from './pages/searchAlgos/linearSearchPage';
+import BubbleSortPage from './pages/sortAlgos/bubbleSortPage';
+import InsertionSortPage from './pages/sortAlgos/insertionSortPage';
+import MergeSortPage from './pages/sortAlgos/mergeSortPage';
+import QuickSortPage from './pages/sortAlgos/quickSortPage';
+import SelectionSortPage from './pages/sortAlgos/selectionSortPage';
+import NavBar from './components/hero/nav_bar';
+import './styles/global.css';
 
-function App() {
-  const [count, setCount] = useState(0)
 
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className='text-fontcolour'>
+    <Router>
+    <NavBar></NavBar>
+      <Routes>
+        <Route path="/" element={<Homepage/>}/>
+        <Route path="/bfs" element={<BFSPage/>}/>
+        <Route path="/dfs" element={<DFSPage/>}/>
+        <Route path="/heapsort" element={<HeapSortPage/>}/>
+        <Route path="/binarysearch" element={<BinarySearchPage/>}/>
+        <Route path="/linearsearch" element={<LinearSearchPage/>}/> 
+        <Route path="/bubblesort" element={<BubbleSortPage/>}/>  
+        <Route path="/insertionsort" element={<InsertionSortPage/>}/>
+        <Route path="/mergesort" element={<MergeSortPage/>}/>   
+        <Route path="/quicksort" element={<QuickSortPage/>}/>
+        <Route path="/selectionsort" element={<SelectionSortPage/>}/>  
+      </Routes>
+    </Router>
+    </div>
+
+  );
 }
 
-export default App
+
+export default App;
