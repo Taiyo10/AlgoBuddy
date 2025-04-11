@@ -62,7 +62,7 @@ const VisualizeAlgorithm = ({ config }) => {
                 <div className="mr-4">
                     <AlgorithmVisualizer ref={vizRef} data={data} speed={speedRef.current} title={name} />
                     <div className="bg-[#eaeaea] dark:bg-[#2d2d2d] w-[55vw] rounded-b-xl p-2 ">
-                        <StepController jsonData={jsonData} speedRef={speedRef} applyStep={handleApplyStep} reset={reset} />
+                        <StepController jsonData={jsonData} speedRef={speedRef} applyStep={handleApplyStep} reset={reset} setLogs={setLogs} />
                         <Inputs config = {inputs} mapping = {mapping} />
                     </div>
                 </div>
