@@ -56,11 +56,11 @@ const InsertionSortPage = () => {
         </div>
         <div
           id="top-shape"
-          className="w-[40vw] border-l-[10vw] border-l-transparent border-b-[22vh] border-b-[#2A5829]"
+          className="w-[40vw] border-l-[10vw] border-l-transparent border-b-[22.1vh] border-b-[#2A5829]"
         >
           <div
             id="icon-container"
-            className="w-[25vw] h-[20.5vh] bg-none flex justify-center items-center"
+            className="w-[25vw] h-[22.5vh] bg-none flex justify-center items-center"
           >
             <img src="./insertion-sort-icon.png" alt="" className="w-[10vw]" />
           </div>

@@ -53,16 +53,18 @@ const VisualizeAlgorithm =({ config }) => {
     const AlgorithmVisualizer = visualizers[visualizer]; // Selects needed visualizer based on config
 
     return (
-        <div className="visualier bg-accent p-6">
-            <div className="flex items-center rounded-t w-[55vw] gap-2 p-2 bg-[#2d2d2d] text-gray-400 border-b border-neutral-700">
-                <span className="h-3 w-3 rounded-full bg-red-500" />
-                <span className="h-3 w-3 rounded-full bg-yellow-500" />
-                <span className="h-3 w-3 rounded-full bg-green-500" />
-            </div>
-            <AlgorithmVisualizer ref={vizRef} data={data} speed={speedRef.current} title={name} />
-            <div className="bg-[#2d2d2d] w-[55vw] p-2">
-                <StepController jsonData={jsonData} speedRef={speedRef} applyStep={handleApplyStep} reset={reset} />
-                <Inputs config = {inputs} mapping = {mapping} />
+        <div className="flex justify-center visualier bg-accent dark:bg-[#00320A] p-4">
+            <div>
+                {/* <div className="flex items-center w-[55vw] rounded-t-xl gap-2 p-2 bg-[#eaeaea] dark:bg-[#2d2d2d] text-gray-400">
+                    <span className="h-3 w-3 rounded-full bg-red-500" />
+                    <span className="h-3 w-3 rounded-full bg-yellow-500" />
+                    <span className="h-3 w-3 rounded-full bg-green-500" />
+                </div> */}
+                <AlgorithmVisualizer ref={vizRef} data={data} speed={speedRef.current} title={name} />
+                <div className="bg-[#eaeaea] dark:bg-[#2d2d2d] w-[55vw] rounded-b-xl p-2 ">
+                    <StepController jsonData={jsonData} speedRef={speedRef} applyStep={handleApplyStep} reset={reset} />
+                    <Inputs config = {inputs} mapping = {mapping} />
+                </div>
             </div>
         </div>
     );

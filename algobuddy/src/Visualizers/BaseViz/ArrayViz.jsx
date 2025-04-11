@@ -164,7 +164,7 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
         .attr("y", svgHeight * 0.5 - BOXHEIGHT * 1.5)
         .attr("text-anchor", "middle")
         .attr("alignment-baseline", "middle")
-        .attr("fill", "white")
+        .attr("fill", "gray")
         .attr("font-size", 30);
 
   }, [data, speed]);
@@ -175,9 +175,8 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
       ref={svgRef}
       width="55vw"
       height="50vh"
+      className="bg-[#f9f9f9] dark:bg-[#1e1e1e] rounded-t-xl"
       style={{
-        borderRadius: 0,
-        backgroundColor: "#333",
         cursor: "grab",
       }}
     />

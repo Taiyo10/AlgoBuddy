@@ -19,11 +19,11 @@ const searchAlgos = [
 ];
 
 const sortingAlgos = [
+  { title: "Selection Sort", href: "/selectionsort" },
+  { title: "Insertion Sort", href: "/insertionsort" },
   { title: "Merge Sort", href: "/mergesort" },
   { title: "Quick Sort", href: "/quicksort" },
   { title: "Bubble Sort", href: "/bubblesort" },
-  { title: "Insertion Sort", href: "/insertionsort" },
-  { title: "Selection Sort", href: "/selectionsort" },
 ];
 
 const graphingAlgos = [

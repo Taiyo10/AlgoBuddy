@@ -16,7 +16,7 @@ export const Slider = ({ speed, onChange }) => {
     };
 
     return (
-        <div className="speed-slider p-2">
+        <div className="speed-slider dark:text-[#BCBCBC] p-2">
             <label>Speed: {value} ms</label>
             <input
                 type="range"

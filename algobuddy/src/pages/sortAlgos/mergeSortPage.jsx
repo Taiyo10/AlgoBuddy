@@ -56,7 +56,7 @@ const MergeSortPage = () => {
         </div>
         <div
           id="top-shape"
-          className="w-[40vw] border-l-[10vw] border-l-transparent border-b-[22vh] border-b-[#2A5829]"
+          className="w-[40vw] border-l-[10vw] border-l-transparent border-b-[22.1vh] border-b-[#2A5829]"
         >
           <div
             id="icon-container"

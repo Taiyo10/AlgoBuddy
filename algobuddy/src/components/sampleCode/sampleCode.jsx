@@ -78,7 +78,7 @@ const SampleCode = ({ Java, Python, JS, CPlusPlus }) => {
             </Select>
             </div>
         {/* Code area */}
-        <pre className="flex p-4 pl-10 overflow-x-auto text-md text-white leading-relaxed">
+        <pre className="flex p-4 pl-10 text-md text-white leading-relaxed">
           <code
             className={`${getLanguageClass()} font-mono`}
             dangerouslySetInnerHTML={{
