@@ -51,8 +51,8 @@ export function heapSort(arr) {
 
   // Extract elements from heap one by one
   for (let i = n - 1; i > 0; i--) {
-    swap(arr, 0, i);
     logSwap(0, i, arr, "extract_and_swap", i);
+    swap(arr, 0, i);
     logs.push({
       action: "extract_max",
       index: i,

@@ -1,5 +1,5 @@
 import { colours } from "../../../Theme/Colours";
-export const applyMergeSortStep = async (viz, step, args) => {
+export const applyMergeSortSpecialStep = async (viz, step, args) => {
     const {base, highlight, found, checking} = colours;
     const {data} = args;
 

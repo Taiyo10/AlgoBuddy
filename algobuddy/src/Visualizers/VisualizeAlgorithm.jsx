@@ -15,13 +15,11 @@ const visualizers = {
     
 }
 
-
-
 const VisualizeAlgorithm = ({ config }) => {
   const vizRef = useRef();
   const speedRef = useRef(1000);
 
-  const { logs, printLog } = useLogger(); // ⬅️ log state + print function
+  const { logs, setLogs, printLog } = useLogger(); // ⬅️ log state + print function
 
   const { name, visualizer, applyStep, applyAlgorithm, inputs, defaultValues } = config;
 
@@ -41,6 +39,7 @@ const VisualizeAlgorithm = ({ config }) => {
     }
     getJson(data, target, key);
     setReset((prev) => !prev);
+    setLogs([]);
   }, [data, target, key]);
 
   const handleApplyStep = (step) => {
@@ -67,7 +66,7 @@ const VisualizeAlgorithm = ({ config }) => {
                 </div> */}
                 <AlgorithmVisualizer ref={vizRef} data={data} speed={speedRef.current} title={name} />
                 <div className="bg-[#eaeaea] dark:bg-[#2d2d2d] w-[55vw] rounded-b-xl p-2 ">
-                    <StepController jsonData={jsonData} speedRef={speedRef} applyStep={handleApplyStep} reset={reset} />
+                    <StepController jsonData={jsonData} speedRef={speedRef} applyStep={handleApplyStep} reset={reset} setLogs={setLogs} />
                     <Inputs config = {inputs} mapping = {mapping} />
                 </div>
                 <div >

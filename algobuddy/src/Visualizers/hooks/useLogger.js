@@ -5,9 +5,9 @@ export const useLogger = () => {
 
   // Appends a plain string log (with optional timestamp)
   const printLog = (message) => {
-    const timestamp = new Date().toLocaleTimeString();
-    setLogs((prevLogs) => [...prevLogs, `[${timestamp}] ${message}`]);
+    // const timestamp = new Date().toLocaleTimeString();
+    setLogs((prevLogs) => [...prevLogs, `${message}`]);
   };
 
-  return { logs, printLog };
+  return { logs, setLogs, printLog };
 };
