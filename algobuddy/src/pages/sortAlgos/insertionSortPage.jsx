@@ -6,41 +6,41 @@ import Footer from "@/components/hero/footer";
 
 const InsertionSortPage = () => {
   return (
-    <div>
-      <div id="top-container" className="h-[40.5vh] flex justify-between">
+    <div className="overflow-y-scroll h-[90vh]">
+      <div id="top-container" className="h-[22vh] flex justify-between">
         <div id="title-container-outer" className="w-[60vw] flex items-center">
           <div
             id="title-container-inner"
-            className="h-[30.6vh] w-[57vw] ml-auto flex flex-col"
+            className="h-[20.6vh] w-[57vw] ml-auto flex flex-col"
           >
-            <div id="title" className="h-[16vh] ">
+            <div id="title" className="h-[12vh] py-4">
               <img
                 id="title-1"
                 src="./insertion-title.png"
                 alt=""
-                className="h-[6.5vh] dark:hidden"
+                className="h-[4.5vh] dark:hidden"
               />
               <img
                 id="title-1"
                 src="./insertion-title-dark-mode.png"
                 alt=""
-                className="h-[6.5vh] hidden dark:block"
+                className="h-[4.5vh] hidden dark:block"
               />
               <img
                 id="title-2"
                 src="./sort-title.png"
                 alt=""
-                className="h-[6.5vh] dark:hidden"
+                className="h-[4.5vh] dark:hidden"
               />
               <img
                 id="title-1"
                 src="./sort-title-dark-mode.png"
                 alt=""
-                className="h-[6.5vh] hidden dark:block"
+                className="h-[4.5vh] hidden dark:block"
               />
             </div>
             <div id="preamble">
-              <h1 id="preamble-text" className="text-[1vw] font-dmsans">
+              <h1 id="preamble-text" className="text-[0.8vw] font-dmsans">
                 Insertion sort is a simple sorting algorithm that builds the
                 final sorted array (or list) one item at a time by comparisons.
                 It is much less efficient on large lists than more advanced
@@ -56,26 +56,22 @@ const InsertionSortPage = () => {
         </div>
         <div
           id="top-shape"
-          className="w-[40vw] border-l-[15vw] border-l-transparent border-b-[40.6vh] border-b-[#2A5829]"
+          className="w-[40vw] border-l-[10vw] border-l-transparent border-b-[22vh] border-b-[#2A5829]"
         >
           <div
             id="icon-container"
-            className="w-[25vw] h-[40.5vh] bg-none flex justify-center items-center"
+            className="w-[25vw] h-[20.5vh] bg-none flex justify-center items-center"
           >
-            <img
-              src="./insertion-sort-icon.png"
-              alt=""
-              className="w-[18vw]"
-            />
+            <img src="./insertion-sort-icon.png" alt="" className="w-[10vw]" />
           </div>
         </div>
       </div>
-      <VisualizeAlgorithm config={insertionSortConfig}/>
+      <VisualizeAlgorithm config={insertionSortConfig} />
       <SampleCode
-      Java={javaCode}
-      Python={pythonCode}
-      JS={jsCode}
-      CPlusPlus={cppCode}
+        Java={javaCode}
+        Python={pythonCode}
+        JS={jsCode}
+        CPlusPlus={cppCode}
       />
       <Footer></Footer>
     </div>
@@ -84,9 +80,8 @@ const InsertionSortPage = () => {
 
 export default InsertionSortPage;
 
-
-  // Code snippets
-  const javaCode = `// Insertion Sort in Java
+// Code snippets
+const javaCode = `// Insertion Sort in Java
 
   class InsertionSort {
     public static void insertionSort(int array[]) {
@@ -107,8 +102,8 @@ export default InsertionSortPage;
     }
   }
   `;
-  
-  const pythonCode = `# Insertion Sort in Python
+
+const pythonCode = `# Insertion Sort in Python
   
   def insertionSort(array):
       n = len(array)
@@ -123,8 +118,8 @@ export default InsertionSortPage;
               j -= 1
           array[j + 1] = key
   `;
-  
-  const jsCode = `// Insertion Sort in JavaScript
+
+const jsCode = `// Insertion Sort in JavaScript
   
   function insertionSort(array) {
     const n = array.length;
@@ -142,8 +137,8 @@ export default InsertionSortPage;
     }
   }
   `;
-  
-  const cppCode = `// Insertion Sort in C++
+
+const cppCode = `// Insertion Sort in C++
   
   #include <iostream>
   using namespace std;
