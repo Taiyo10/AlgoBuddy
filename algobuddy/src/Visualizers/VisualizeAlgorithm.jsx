@@ -15,20 +15,21 @@ const visualizers = {
     
 }
 
+
+
 const VisualizeAlgorithm = ({ config }) => {
   const vizRef = useRef();
   const speedRef = useRef(1000);
 
-  const { logs, printLog } = useLogger();
+  const { logs, printLog } = useLogger(); // ⬅️ log state + print function
 
-    const {name, visualizer, applyStep, applyAlgorithm, inputs, defaultValues} = config
-
-  const { logs, printLog } = useLogger();
+  const { name, visualizer, applyStep, applyAlgorithm, inputs, defaultValues } = config;
 
   const [data, setData] = useState(defaultValues.array);
   const [target, setTarget] = useState(defaultValues.target);
   const [key, setKey] = useState(defaultValues.key);
   const [reset, setReset] = useState(false);
+  
 
   const [jsonData, setJsonData] = useState(
     applyAlgorithm([...data], target, key, { log: printLog })
@@ -69,7 +70,9 @@ const VisualizeAlgorithm = ({ config }) => {
                     <StepController jsonData={jsonData} speedRef={speedRef} applyStep={handleApplyStep} reset={reset} />
                     <Inputs config = {inputs} mapping = {mapping} />
                 </div>
-                <LogViewer logs={logs} />
+                <div >
+                  <LogViewer logs={logs} />
+                </div>
             </div>
         </div>
     );
