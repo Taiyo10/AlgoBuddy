@@ -10,14 +10,15 @@ const LogViewer = ({ logs }) => {
   return (
     <div
       style={{
-        height: "300px",
+        height: "50vw",
+        width: "35vw",
         overflowY: "auto",
         backgroundColor: "#111",
         color: "#0f0",
         fontFamily: "monospace",
         padding: "1rem",
-        borderRadius: "8px",
       }}
+      className="rounded-b-xl"
     >
       {logs.map((log, index) => (
         <div key={index}>{log}</div>
