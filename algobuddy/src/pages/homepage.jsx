@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { TypeAnimation } from "react-type-animation";
 
 const Homepage = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 1.5;
+    }
+  }, []);
+
   return (
     <>
       {/* Hero Section */}
@@ -31,8 +39,9 @@ const Homepage = () => {
         {/* Right Visual with Video */}
         <div className="w-full md:w-[400px] h-[250px] border-8 border-[#204D2A] rounded-xl overflow-hidden flex items-center justify-center bg-black">
           <video
+            ref={videoRef}
             className="w-full h-full object-cover rounded-none"
-            src="/placeholder.mp4"
+            src="sorting.mp4"
             autoPlay
             loop
             muted
