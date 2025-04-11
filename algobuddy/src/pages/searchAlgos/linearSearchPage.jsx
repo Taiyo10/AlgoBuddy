@@ -18,25 +18,25 @@ const LinearSearchPage = () => {
             <div id="title" className="h-[16vh] ">
               <img
                 id="title-1"
-                src="./public/linear-title.png"
+                src="./linear-title.png"
                 alt=""
                 className="h-[6.5vh] dark:hidden"
               />
               <img
                 id="title-1"
-                src="./public/linear-title-dark-mode.png"
+                src="./linear-title-dark-mode.png"
                 alt=""
                 className="h-[6.5vh] hidden dark:block"
               />
               <img
                 id="title-2"
-                src="./public/search-title.png"
+                src="./search-title.png"
                 alt=""
                 className="h-[6.5vh] dark:hidden"
               />
               <img
                 id="title-1"
-                src="./public/search-title-dark-mode.png"
+                src="./search-title-dark-mode.png"
                 alt=""
                 className="h-[6.5vh] hidden dark:block"
               />
@@ -68,7 +68,7 @@ const LinearSearchPage = () => {
             className="w-[25vw] h-[40.5vh] bg-none flex justify-center items-center"
           >
             <img
-              src="./public/linear-search-icon.png"
+              src="./linear-search-icon.png"
               alt=""
               className="w-[18vw]"
             />

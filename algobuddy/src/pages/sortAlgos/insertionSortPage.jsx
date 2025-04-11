@@ -16,25 +16,25 @@ const InsertionSortPage = () => {
             <div id="title" className="h-[16vh] ">
               <img
                 id="title-1"
-                src="./public/insertion-title.png"
+                src="./insertion-title.png"
                 alt=""
                 className="h-[6.5vh] dark:hidden"
               />
               <img
                 id="title-1"
-                src="./public/insertion-title-dark-mode.png"
+                src="./insertion-title-dark-mode.png"
                 alt=""
                 className="h-[6.5vh] hidden dark:block"
               />
               <img
                 id="title-2"
-                src="./public/sort-title.png"
+                src="./sort-title.png"
                 alt=""
                 className="h-[6.5vh] dark:hidden"
               />
               <img
                 id="title-1"
-                src="./public/sort-title-dark-mode.png"
+                src="./sort-title-dark-mode.png"
                 alt=""
                 className="h-[6.5vh] hidden dark:block"
               />
@@ -63,7 +63,7 @@ const InsertionSortPage = () => {
             className="w-[25vw] h-[40.5vh] bg-none flex justify-center items-center"
           >
             <img
-              src="./public/insertion-sort-icon.png"
+              src="./insertion-sort-icon.png"
               alt=""
               className="w-[18vw]"
             />

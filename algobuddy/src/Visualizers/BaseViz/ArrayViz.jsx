@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useImperativeHandle, forwardRef } from "react
 import * as d3 from "d3";
 import { colours } from "../../Theme/Colours";
 import { TransitionQueue } from "../components/TransitionQueue";
+
+
+
 const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
     const svgRef = useRef();
     const groupRef = useRef();
@@ -170,8 +173,8 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
   return (
     <svg
       ref={svgRef}
-      width="65vw"
-      height="60vh"
+      width="55vw"
+      height="50vh"
       style={{
         borderRadius: 10,
         backgroundColor: "#333",

@@ -38,8 +38,8 @@ export const Inputs = ({ config, mapping }) => {
     return (
         <div>
             {config.array && ( // Only allow array input if requested
-              <div>
-                <label style={{ color: "white" }}>Array:</label>
+              <div className="p-1">
+                <span className="p-1 pr-2 h-30 bg-gray-400">Array</span>
                 <input
                     type="text"
                     value={inputArray}
@@ -47,14 +47,15 @@ export const Inputs = ({ config, mapping }) => {
                         onArrayChange(e);
                     }}
                     placeholder="e.g. 1,2,3"
-                    style={{ width: "300px", marginLeft: "10px" }}
+                    className="my-1 p-0.5"
+                    
                 />
               </div>
             )}
 
             {config.target && ( // Only allow target input if requested
               <div>
-                <label style={{ color: "white" }}>Target:</label>
+                <label className="p-1">Target</label>
                 <input
                     type="number"
                     value={inputTarget}
@@ -62,7 +63,7 @@ export const Inputs = ({ config, mapping }) => {
                         onTargetChange(e);
                     }}
                     placeholder="Target"
-                    style={{ width: "100px", marginLeft: "10px" }}
+                    className="mb-1 p-0.5"
                 />
               </div>
             )}

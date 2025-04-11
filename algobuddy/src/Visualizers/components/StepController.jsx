@@ -66,9 +66,9 @@ export const StepController = ({ jsonData, speedRef, applyStep, reset }) => {
     return (
         <>
             <Slider speed={speedRef.current} onChange={handleSpeedChange} />
-            <button onClick={prev}>Previous</button>
-            <button onClick={next}>Next</button>
-            <button onClick={() => setPlaying(!playing)}>
+            <button className="p-1 bg-gray-400 rounded ml-1 mr-2" onClick={prev}>Previous</button>
+            <button className="p-1 px-2 bg-gray-400 rounded mr-2" onClick={next}>Next</button>
+            <button className="p-1 w-16 bg-gray-400 rounded mr-3" onClick={() => setPlaying(!playing)}>
                 {playing ? "Pause" : "Play"}
             </button>
             <input
@@ -77,10 +77,11 @@ export const StepController = ({ jsonData, speedRef, applyStep, reset }) => {
             max={jsonData.length - 1}
             value={currentStep}
             onChange={(e) => jump(Number(e.target.value))}
-            style={{ width: "300px", marginLeft: "10px" }}
+            className="w-80"
+            // style={{ width: "250px", marginLeft: "10px" }}
             />
-            <span> Step {currentStep + 1} / {jsonData.length}</span>
-            <button onClick={() => {jump(0); setPlaying(false)}}>Reset</button>
+            <span className="p-1 mx-2"> Step {currentStep + 1} / {jsonData.length} </span>
+            <button className="p-1 px-2 bg-gray-400 rounded" onClick={() => {jump(0); setPlaying(false)}}>Reset</button>
         </>
     ) 
     

@@ -16,25 +16,25 @@ const MergeSortPage = () => {
             <div id="title" className="h-[16vh] ">
               <img
                 id="title-1"
-                src="./public/merge-title.png"
+                src="./merge-title.png"
                 alt=""
                 className="h-[6.5vh] dark:hidden"
               />
               <img
                 id="title-1"
-                src="./public/merge-title-dark-mode.png"
+                src="./merge-title-dark-mode.png"
                 alt=""
                 className="h-[6.5vh] hidden dark:block"
               />
               <img
                 id="title-2"
-                src="./public/sort-title.png"
+                src="./sort-title.png"
                 alt=""
                 className="h-[6.5vh] dark:hidden"
               />
               <img
                 id="title-1"
-                src="./public/sort-title-dark-mode.png"
+                src="./sort-title-dark-mode.png"
                 alt=""
                 className="h-[6.5vh] hidden dark:block"
               />
@@ -63,7 +63,7 @@ const MergeSortPage = () => {
             className="w-[25vw] h-[40.5vh] bg-none flex justify-center items-center"
           >
             <img
-              src="./public/merge-sort-icon.png"
+              src="./merge-sort-icon.png"
               alt=""
               className="w-[18vw]"
             />

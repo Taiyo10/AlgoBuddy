@@ -23,11 +23,11 @@ const sortingAlgos = [
   { title: "Bubble Sort", href: "/bubblesort" },
   { title: "Insertion Sort", href: "/insertionsort" },
   { title: "Selection Sort", href: "/selectionsort" },
-  { title: "Heap Sort", href: "/heapsort" },
 ];
 const graphingAlgos = [
-  { title: "Breadth First Search", href: "/bfs" },
-  { title: "Depth First Search", href: "/dfs" },
+  // { title: "Breadth First Search", href: "/bfs" },
+  // { title: "Depth First Search", href: "/dfs" },
+  { title: "Heap Sort", href: "/heapsort" },
 ];
 
 // Reusable list item
@@ -81,7 +81,10 @@ const NavBar = () => {
     <div className="flex w-full h-24 items-center px-6 bg-primary text-3xl font-bold">
       <Link to="/" className="title hover:underline cursor-pointer mr-6">
         AlgoBuddy
-      </Link>      
+      </Link>     
+      <Link to="/heapsort" className="title hover:underline cursor-pointer mr-6">
+        heap
+      </Link>    
       <NavigationMenu>
         <NavigationMenuList className="flex space-x-4">
           {/* Search */}

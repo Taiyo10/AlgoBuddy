@@ -7,41 +7,41 @@ import Footer from "@/components/hero/footer";
 
 const BinarySearchPage = () => {
   return (
-    <div>
-      <div id="top-container" className="h-[40.5vh] flex justify-between">
+    <div className="overflow-y-scroll h-[90vh]">
+      <div id="top-container" className="h-[22vh] flex justify-between">
         <div id="title-container-outer" className="w-[60vw] flex items-center">
           <div
             id="title-container-inner"
-            className="h-[30.6vh] w-[57vw] ml-auto flex flex-col"
+            className="h-[20.6vh] w-[57vw] ml-auto flex flex-col"
           >
-            <div id="title" className="h-[16vh] ">
+            <div id="title" className="h-[12vh] py-4 ">
               <img
                 id="title-1"
-                src="./public/binary-title.png"
+                src="./binary-title.png"
                 alt=""
-                className="h-[6.5vh] dark:hidden"
+                className="h-[4.5vh] dark:hidden"
               />
               <img
                 id="title-1"
-                src="./public/binary-title-dark-mode.png"
+                src="./binary-title-dark-mode.png"
                 alt=""
-                className="h-[6.5vh] hidden dark:block"
+                className="h-[4.5vh] hidden dark:block"
               />
               <img
                 id="title-2"
-                src="./public/search-title.png"
+                src="./search-title.png"
                 alt=""
-                className="h-[6.5vh] dark:hidden"
+                className="h-[4.5vh] dark:hidden"
               />
               <img
                 id="title-1"
-                src="./public/search-title-dark-mode.png"
+                src="./search-title-dark-mode.png"
                 alt=""
-                className="h-[6.5vh] hidden dark:block"
+                className="h-[4.5vh] hidden dark:block"
               />
             </div>
             <div id="preamble">
-              <h1 id="preamble-text" className="text-[1vw] font-dmsans">
+              <h2 id="preamble-text" className="text-[0.8vw] font-dmsans">
                 In computer science, binary search, also known as half-interval
                 search, logarithmic search, or binary chop, is a search
                 algorithm that finds the position of a target value within a
@@ -52,22 +52,22 @@ const BinarySearchPage = () => {
                 to compare to the target value, and repeating this until the
                 target value is found. If the search ends with the remaining
                 half being empty, the target is not in the array.
-              </h1>
+              </h2>
             </div>
           </div>
         </div>
         <div
           id="top-shape"
-          className="w-[40vw] border-l-[15vw] border-l-transparent border-b-[40.6vh] border-b-[#2A5829]"
+          className="w-[40vw] border-l-[10vw] border-l-transparent border-b-[22.2vh] border-b-[#2A5829]"
         >
           <div
             id="icon-container"
-            className="w-[25vw] h-[40.5vh] bg-none flex justify-center items-center"
+            className="w-[25vw] h-[20.5vh] bg-none flex justify-center items-center"
           >
             <img
-              src="./public/binary-search-icon.png"
+              src="./binary-search-icon.png"
               alt=""
-              className="w-[18vw]"
+              className="w-[10vw]"
             />
           </div>
         </div>
