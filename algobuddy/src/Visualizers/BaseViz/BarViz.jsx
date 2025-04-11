@@ -205,7 +205,7 @@ const BarChartVisualizer = forwardRef(({ data, speed = 1000, title }, ref) => {
       .attr("x", svgWidth / 2)
       .attr("y", topMargin / 2) // Positioned in the upper half of the top margin
       .attr("text-anchor", "middle")
-      .attr("fill", "dark")
+      .attr("fill", "gray")
       .attr("font-size", 30);
   }, [data, speed]);
 
