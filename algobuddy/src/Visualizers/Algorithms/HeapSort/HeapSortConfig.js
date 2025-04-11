@@ -1,5 +1,5 @@
 import { applyHeapSortStep } from "./HeapSort";
-// import { heapsortWithLogging } from "../../../components/JavaScript/algos/graphs/heapsort";
+import { heapSort } from "../../../components/JavaScript/algos/graphs/heapsort";
 
 export const heapSortConfig = {
     name: "Heap Sort",
@@ -11,5 +11,5 @@ export const heapSortConfig = {
         array: true,
     },
     applyStep: applyHeapSortStep, 
-    // applyAlgorithm: heapsortWithLogging
+    applyAlgorithm: heapSort,
 }

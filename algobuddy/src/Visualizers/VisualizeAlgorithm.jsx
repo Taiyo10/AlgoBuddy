@@ -1,13 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import ArrayVisualizer from "./BaseViz/ArrayViz";
 import GraphVisualizer from "./BaseViz/GraphViz";
+import BarChartVisualizer from "./BaseViz/BarViz";
 import { Inputs } from "./components/Inputs";
 import { StepController } from "./components/StepController";
+import { Outputs } from "./components/Outputs";
+import { useLogger } from "./hooks/useLogger";
 
 const visualizers = {
     array: ArrayVisualizer,
-    // chart: ChartVisualizer,
+    chart: BarChartVisualizer,
     graph: GraphVisualizer,
+    
 }
 
 
@@ -26,6 +30,9 @@ const VisualizeAlgorithm =({ config }) => {
     const [reset, setReset] = useState(false); // Reset state to reset animation
 
     const [jsonData, setJsonData] = useState(applyAlgorithm([...data],target,key))
+
+    // Use the custom logger hook.
+    const { logs, printLog } = useLogger();
 
     // Reset animation when any input changes
     useEffect(() => {
@@ -65,10 +72,10 @@ const VisualizeAlgorithm =({ config }) => {
                     <StepController jsonData={jsonData} speedRef={speedRef} applyStep={handleApplyStep} reset={reset} />
                     <Inputs config = {inputs} mapping = {mapping} />
                 </div>
+                <Outputs logs={logs} />
             </div>
         </div>
     );
 };
-
 
 export default VisualizeAlgorithm;

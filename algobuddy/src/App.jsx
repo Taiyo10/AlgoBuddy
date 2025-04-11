@@ -15,12 +15,7 @@ import NavBar from './components/hero/nav_bar';
 import './styles/global.css';
 
 
-
-
-
-
 const App = () => {
-  
   return (
     <div className='text-fontcolour'>
     <Router>
