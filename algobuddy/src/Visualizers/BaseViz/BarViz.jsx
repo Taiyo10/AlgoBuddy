@@ -194,7 +194,7 @@ const BarChartVisualizer = forwardRef(({ data, speed = 1000, title }, ref) => {
         return svgHeight - bottomMargin - barHeight - 5;
       })
       .attr("text-anchor", "middle")
-      .attr("fill", "white");
+      .attr("fill", "gray");
     textRef.current = texts.nodes();
 
     // Draw title text.
