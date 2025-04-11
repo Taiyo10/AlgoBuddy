@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import ArrayVisualizer from "./BaseViz/ArrayViz";
-import BarVisualizer from "./BaseViz/BarViz"
+import BarChartVisualizer from "./BaseViz/BarViz";
+import GraphVisualizer from "./BaseViz/GraphViz";
 import { Inputs } from "./components/Inputs";
 import { StepController } from "./components/StepController";
 import LogViewer from "./components/LogViewer";
 import { useLogger } from "./hooks/useLogger";
+
 
 const visualizers = {
     array: ArrayVisualizer,
@@ -64,7 +66,7 @@ const VisualizeAlgorithm = ({ config }) => {
                     <StepController jsonData={jsonData} speedRef={speedRef} applyStep={handleApplyStep} reset={reset} />
                     <Inputs config = {inputs} mapping = {mapping} />
                 </div>
-                <LogViewer logs={logs} /> {/* ⬅️ add this here */}
+                {/* <LogViewer logs={logs} /> ⬅️ add this here */}
             </div>
         </div>
     );
