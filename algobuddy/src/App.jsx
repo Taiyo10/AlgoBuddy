@@ -7,12 +7,16 @@ import { selectionSortConfig } from "./Visualizers/Algorithms/SelectionSort/Sele
 import { quickSortConfig } from "./Visualizers/Algorithms/QuickSort/QuickSortConfig";
 import { insertionSortConfig } from "./Visualizers/Algorithms/InsertionSort/InsertionSortConfig";
 import { heapSortConfig } from "./Visualizers/Algorithms/HeapSort/HeapSortConfig";
-
+import { useRef } from "react";
+import { Outputs } from "./Visualizers/components/Outputs";
+import { useLogger } from "./Visualizers/hooks/useLogger";
 const App = () => {
-  
+  const { logs, printLog } = useLogger();
+  const config = { ...selectionSortConfig, log: printLog };
   return (
     <div>
-      <VisualizeAlgorithm config={heapSortConfig} />
+      <VisualizeAlgorithm config={config} />
+      <Outputs logs={logs} />
     </div>
   );
 };

@@ -2,64 +2,120 @@ import { colours } from "../../../Theme/Colours";
 
 export const applySelectionSortStep = async (viz, step, args) => {
   const { base, highlight, found, checking } = colours;
-  const { data } = args;
+  const { data, log } = args; // log is the external logging function
+
+  // Helper: applies step-specific colors and then re-applies the "found" (sorted) color for indices < step.iteration.
+  const applyColorsWithFoundLast = (callback) => {
+    viz.setRectColours((_, i) => true, base);
+    callback();
+    if (typeof step.iteration === "number") {
+      viz.setRectColours((_, i) => i < step.iteration, found);
+    }
+  };
 
   if (step.action === "start_sort") {
-    viz.setTitle("Selection Sort");
-    viz.setRectColours((_, i) => i === i, base);
+    log({ action: "start_sort", message: "Selection Sort started", array: step.array });
+    viz.setRectColours((_, i) => true, base);
     viz.setArray(step.array);
     viz.clearQueue();
+    if (typeof step.iteration === "number") {
+      viz.setRectColours((_, i) => i < step.iteration, found);
+    }
   }
   else if (step.action === "iteration_start") {
-    viz.setTitle(`Iteration ${step.iteration}`);
-    // Set all boxes to base first...
-    viz.setRectColours((_, i) => i === i, base);
-    // ...then mark indices before current iteration as 'found'
-    viz.setRectColours((_, i) => i < step.iteration, found);
+    log({ action: "iteration_start", message: `Iteration ${step.iteration}`, iteration: step.iteration, array: step.array });
+    viz.setRectColours((_, i) => true, base);
+    if (typeof step.iteration === "number") {
+      viz.setRectColours((_, i) => i < step.iteration, found);
+    }
     viz.setArray(step.array);
   }
   else if (step.action === "select_initial_min") {
-    viz.setTitle(`Initial min: index ${step.index} (${step.value})`);
-    viz.setRectColours((_, i) => i === step.index, checking);
+    log({
+      action: "select_initial_min",
+      message: `Initial min: index ${step.index} (${step.value})`,
+      index: step.index,
+      value: step.value,
+      iteration: step.iteration,
+      array: step.array
+    });
+    applyColorsWithFoundLast(() => {
+      viz.setRectColours((_, i) => i === step.index, checking);
+    });
+    viz.setRectColours((_, i) => i < step.iteration, found);
   }
   else if (step.action === "compare") {
-    viz.setTitle(`Comparing ${step.value1} (index ${step.index1}) with ${step.value2} (index ${step.index2})`);
-    // First, all elements get the base color
-    viz.setRectColours((_, i) => i === i, base);
-    // Then, set elements before the current min index to base
-    viz.setRectColours((_, i) => i < step.index1, base);
-    // Mark the two elements being compared as 'checking'
-    viz.setRectColours((_, i) => i === step.index1 || i === step.index2, checking);
-    // Optionally, mark elements after index2 as highlight (you can adjust as needed)
-    viz.setRectColours((_, i) => i > step.index2, highlight);
+    log({
+      action: "compare",
+      message: `Comparing ${step.value1} (index ${step.index1}) with ${step.value2} (index ${step.index2})`,
+      index1: step.index1,
+      value1: step.value1,
+      index2: step.index2,
+      value2: step.value2,
+      iteration: step.iteration,
+      array: step.array
+    });
+    applyColorsWithFoundLast(() => {
+      viz.setRectColours((_, i) => i === step.index1 || i === step.index2, checking);
+      viz.setRectColours((_, i) => i > step.index2, highlight);
+    });
     viz.setArray(step.array);
+    viz.setRectColours((_, i) => i < step.iteration, found);
   }
   else if (step.action === "new_min_found") {
-    viz.setTitle(`New min found at index ${step.min_index} (${step.min_value})`);
-    viz.setRectColours((_, i) => i === step.min_index, checking);
+    log({
+      action: "new_min_found",
+      message: `New min found at index ${step.min_index} (${step.min_value})`,
+      min_index: step.min_index,
+      min_value: step.min_value,
+      iteration: step.iteration,
+      array: step.array
+    });
+    applyColorsWithFoundLast(() => {
+      viz.setRectColours((_, i) => i === step.min_index, checking);
+    });
+    viz.setRectColours((_, i) => i < step.iteration, found);
   }
   else if (step.action === "swap") {
-    viz.setTitle(`Swapping ${step.value1} and ${step.value2}`);
-    // Before the swap, color all elements base...
-    viz.setRectColours((_, i) => i === i, base);
-    // ...mark the swap candidates (index1 and index2) with 'checking'
-    viz.setRectColours((_, i) => i === step.index1 || i === step.index2, checking);
-    // Optionally, mark elements after index2 as highlight
-    viz.setRectColours((_, i) => i > step.index2, highlight);
-    // Also, mark the already-sorted portion using 'found'
-    viz.setRectColours((_, i) => i > (step.array_before_swap.length - 1) - step.iteration, found);
+    log({
+      action: "swap",
+      message: `Swapping ${step.value1} and ${step.value2}`,
+      index1: step.index1,
+      value1: step.value1,
+      index2: step.index2,
+      value2: step.value2,
+      iteration: step.iteration,
+      array_before_swap: step.array_before_swap
+    });
     viz.setArray(step.array_before_swap);
+    applyColorsWithFoundLast(() => {
+      viz.setRectColours((_, i) => i === step.index1 || i === step.index2, checking);
+      viz.setRectColours((_, i) => i > step.index2, highlight);
+    });
+    viz.setRectColours((_, i) => i < step.iteration, found);
     await viz.swapBoxes(step.index1, step.index2);
   }
   else if (step.action === "swap_complete") {
-    viz.setTitle("Swap complete");
-    viz.setRectColours((_, i) => i === i, base);
+    log({
+      action: "swap_complete",
+      message: "Swap complete",
+      iteration: step.iteration,
+      array_after_swap: step.array_after_swap
+    });
     viz.setArray(step.array_after_swap);
+    viz.setRectColours((_, i) => i < step.iteration, found);
+    applyColorsWithFoundLast(() => {
+      // No extra override beyond already sorted.
+    });
   }
   else if (step.action === "sorted") {
-    viz.setTitle("Sorting Complete");
+    log({
+      action: "sorted",
+      message: "Sorting Complete",
+      sorted_array: step.sorted_array
+    });
     viz.setArray(step.sorted_array);
-    viz.setRectColours((_, i) => i === i, found);
+    viz.setRectColours((_, i) => true, found);
     viz.clearQueue();
   }
 };

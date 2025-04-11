@@ -14,7 +14,7 @@ export const Inputs = ({ config, mapping }) => {
         const parsed = value
         .split(",")
         .map(s => s.trim())
-        .filter(s => /^\d{1,8}$/.test(s))
+        .filter(s => /^-?\d{1,8}$/.test(s))
         .map(Number);
 
         mapping.array.setValue(parsed);
