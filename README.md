@@ -8,7 +8,7 @@ website, you have the ability to switch between dark and light mode, which will 
 
 Within each algorithm page, a preamble of the algorithm is listed at the top. Scrolling down, you will have access to a visualizer of the respective algorithm. Using the control bar
 beneath the visualizer, you can adjust the speed of the visuals. You can also view specific steps by either using the "Previous", "Next", and "Play" buttons, or by scrolling through the
-visual progress bar. Using the textboxes, you can edit the values of the array and, depending on the algorithm, change the target value. If you want to revert your changes back to default,
-use the "Reset" button to remove any changes you made.
+visual progress bar. Using the textboxes, you can edit the values of the array and, depending on the algorithm, change the target value. The "Reset" button can be used to reset the
+animation.
 
 Below the visualizer is the sample code of the algorithm. Using the drop-down menu on the top right, you can also change the language of the shown code to either Python, Java, C, or C++.
