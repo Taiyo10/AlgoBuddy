@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from './pages/homepage';
 import BFSPage from './pages/graphAlgos/breadthFirstSearchPage'; 
 import DFSPage from './pages/graphAlgos/depthFirstSearchPage';
-import HeapSortPage from './pages/graphAlgos/heapSortPage';
+import HeapSortPage from './pages/sortAlgos/heapSortPage';
 import BinarySearchPage from './pages/searchAlgos/binarySearchPage';
 import LinearSearchPage from './pages/searchAlgos/linearSearchPage';
 import BubbleSortPage from './pages/sortAlgos/bubbleSortPage';

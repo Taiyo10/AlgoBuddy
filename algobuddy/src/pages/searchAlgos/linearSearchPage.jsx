@@ -3,9 +3,23 @@ import SampleCode from "@/components/sampleCode/sampleCode";
 import { linearSearchConfig } from "@/Visualizers/Algorithms/LinearSearch/LinearSearchConfig";
 import VisualizeAlgorithm from "@/Visualizers/VisualizeAlgorithm";
 
+const LinearSearchPage = () => {
+    return <div className="flex-wrap h-auto justify-items-center justify-center overflow-y-auto">
+      <VisualizeAlgorithm config={linearSearchConfig} />
+      LinearSearchPage
+      <SampleCode
+      Java={javaCode}
+      Python={pythonCode}
+      JS={jsCode}
+      CPlusPlus={cppCode}
+      />
+      </div>;
+  };
+  
+  export default LinearSearchPage;
 
 
-// Code snippets
+  // Code snippets
 const javaCode = `// Linear Search in Java
 
 class LinearSearch {
@@ -58,18 +72,3 @@ int search(int array[], int n, int x) {
       return i;
   return -1;
 }`;
-
-const LinearSearchPage = () => {
-    return <div className="flex-wrap h-auto justify-items-center justify-center overflow-y-auto">
-      <VisualizeAlgorithm config={linearSearchConfig} />
-      LinearSearchPage
-      <SampleCode
-      Java={javaCode}
-      Python={pythonCode}
-      JS={jsCode}
-      CPlusPlus={cppCode}
-      />
-      </div>;
-  };
-  
-  export default LinearSearchPage;

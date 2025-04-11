@@ -1,6 +1,22 @@
 import React from "react";
+import SampleCode from "@/components/sampleCode/sampleCode";
 
-// Code snippets
+const BinarySearchPage = () => {
+    return <div>
+    BinarySearchPage
+    <SampleCode
+      Java={javaCode}
+      Python={pythonCode}
+      JS={jsCode}
+      CPlusPlus={cppCode}
+      />
+    </div>;
+  };
+  
+  export default BinarySearchPage;
+
+
+  // Code snippets
 const javaCode = `// Binary Search in Java
 
 // Note: Array must be sorted for binary search to work
@@ -33,7 +49,7 @@ class BinarySearch {
 
 const pythonCode = `# Binary Search in Python
 
-// Note: Array must be sorted for binary search to work
+# Note: Array must be sorted for binary search to work
 
 def binarySearch(array, x):
     left = 0
@@ -119,9 +135,3 @@ int binarySearch(int array[], int x, int size) {
   return -1;
 }
 `;
-
-const BinarySearchPage = () => {
-    return <div>BinarySearchPage</div>;
-  };
-  
-  export default BinarySearchPage;
