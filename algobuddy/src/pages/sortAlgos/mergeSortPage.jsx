@@ -67,12 +67,14 @@ const MergeSortPage = () => {
         </div>
       </div>
       <VisualizeAlgorithm config={mergeSortConfig} />
-      <SampleCode
+      <div className="flex justify-center my-4">
+        <SampleCode
         Java={javaCode}
         Python={pythonCode}
         JS={jsCode}
         CPlusPlus={cppCode}
-      />
+        />
+      </div>
       <Footer></Footer>
     </div>
   );

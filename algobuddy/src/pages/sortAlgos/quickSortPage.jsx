@@ -69,12 +69,14 @@ const QuickSortPage = () => {
         </div>
       </div>
       <VisualizeAlgorithm config={quickSortConfig} />
-      <SampleCode
+      <div className="flex justify-center my-4">
+        <SampleCode
         Java={javaCode}
         Python={pythonCode}
         JS={jsCode}
         CPlusPlus={cppCode}
-      />
+        />
+      </div>
       <Footer></Footer>
     </div>
   );
