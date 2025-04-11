@@ -77,7 +77,7 @@ const NavBar = () => {
   useNavigationMenuAlign();
 
   return (
-    <div className="w-full h-24 px-6 bg-[#123B29] text-white flex items-center justify-between">
+    <div className="w-full h-24 px-6 bg-[#123B29] text-white flex items-center justify-between relative z-50">
       {/* Left section: Logo + Navigation */}
       <div className="flex items-center space-x-8">
         <Link to="/">
@@ -89,9 +89,9 @@ const NavBar = () => {
             <NavigationMenuItem>
               <NavigationMenuTrigger className="submenu-trigger h-auto bg-transparent flex flex-col items-center text-white">
                 <Search className="w-6 h-6 mb-1" />
-                <span className="text-sm font-medium">Search</span>
+                <span className="text-sm font-medium">Searching</span>
               </NavigationMenuTrigger>
-              <NavigationMenuContent className="bg-white text-black rounded-b-md rounded-r-md">
+              <NavigationMenuContent className="absolute z-50 bg-white text-black rounded-b-md rounded-r-md">
                 <ul className="grid w-[300px] gap-2 p-4">
                   {searchAlgos.map((algo) => (
                     <ListItem key={algo.title} title={algo.title} href={algo.href} />
@@ -100,12 +100,13 @@ const NavBar = () => {
               </NavigationMenuContent>
             </NavigationMenuItem>
 
+            {/* Repeat this z-50 change for other dropdowns too */}
             <NavigationMenuItem>
               <NavigationMenuTrigger className="submenu-trigger h-auto bg-transparent flex flex-col items-center text-white">
                 <BarChart4 className="w-6 h-6 mb-1" />
                 <span className="text-sm font-medium">Sorting</span>
               </NavigationMenuTrigger>
-              <NavigationMenuContent className="bg-white text-black rounded-b-md rounded-r-md">
+              <NavigationMenuContent className="absolute z-50 bg-white text-black rounded-b-md rounded-r-md">
                 <ul className="grid w-[300px] gap-2 p-4">
                   {sortingAlgos.map((algo) => (
                     <ListItem key={algo.title} title={algo.title} href={algo.href} />
@@ -119,7 +120,7 @@ const NavBar = () => {
                 <LineChart className="w-6 h-6 mb-1" />
                 <span className="text-sm font-medium">Graphing</span>
               </NavigationMenuTrigger>
-              <NavigationMenuContent className="bg-white text-black rounded-b-md rounded-r-md">
+              <NavigationMenuContent className="absolute z-50 bg-white text-black rounded-b-md rounded-r-md">
                 <ul className="grid w-[300px] gap-2 p-4">
                   {graphingAlgos.map((algo) => (
                     <ListItem key={algo.title} title={algo.title} href={algo.href} />
@@ -139,5 +140,6 @@ const NavBar = () => {
     </div>
   );
 };
+
 
 export default NavBar;

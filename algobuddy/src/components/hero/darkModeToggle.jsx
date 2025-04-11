@@ -1,38 +1,31 @@
 import { useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
 
-export default function DarkModeToggle() {
-  const [isDark, setIsDark] = useState(false);
+const DarkModeToggle = () => {
+  const [isDark, setIsDark] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
 
   useEffect(() => {
-    // On first load, check if the user already has a preference
-    if (localStorage.getItem('theme') === 'dark' ||
-      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-      setIsDark(true);
+    const root = window.document.documentElement;
+    if (isDark) {
+      root.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     } else {
-      document.documentElement.classList.remove('dark');
-      setIsDark(false);
+      root.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
-  }, []);
-
-  const toggleDarkMode = () => {
-    if (document.documentElement.classList.contains('dark')) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-      setIsDark(false);
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-      setIsDark(true);
-    }
-  };
+  }, [isDark]);
 
   return (
     <button
-      onClick={toggleDarkMode}
-      className="items-center px-4 py-2 rounded-md bg-background text-black text-sm dark:text-white"
+      onClick={() => setIsDark(!isDark)}
+      className="flex flex-col items-center text-white dark:text-white transition duration-300"
     >
-      {isDark ? "Light Mode ☀️" : "Dark Mode 🌙"}
+      {isDark ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
+      <span className="text-xs mt-1">{isDark ? "Light Mode" : "Night Mode"}</span>
     </button>
   );
-}
+};
+
+export default DarkModeToggle;
