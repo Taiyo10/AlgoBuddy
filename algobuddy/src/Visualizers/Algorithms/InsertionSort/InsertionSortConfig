@@ -3,7 +3,7 @@ import { insertionSort } from "../../../components/JavaScript/algos/sort/inserti
 
 export const insertionSortConfig = {
     name: "Insertion Sort",
-    visualizer: "array",
+    visualizer: "chart",
     defaultValues: {
         array: [42, 17,89,3,56,74],
     },

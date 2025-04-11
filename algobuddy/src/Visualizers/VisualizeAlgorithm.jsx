@@ -15,8 +15,6 @@ const visualizers = {
     
 }
 
-
-
 const VisualizeAlgorithm = ({ config }) => {
   const vizRef = useRef();
   const speedRef = useRef(1000);

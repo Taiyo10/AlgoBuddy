@@ -176,22 +176,8 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
     const zoom = d3.zoom()
       .scaleExtent([0.5, 5]) // optional, limit zoom in/out
       .on("zoom", (event) => {
-        const svg = d3.select(svgRef.current);
-        const svgWidth = svg.node().clientWidth;
-        const svgHeight = svg.node().clientHeight;
-
-        // Always center the zoom on the SVG center
-        const centerX = svgWidth / 2;
-        const centerY = svgHeight / 2;
-
-        const currentScale = event.transform.k;
-
-        const transform = d3.zoomIdentity
-          .translate(centerX * (1 - currentScale), centerY * (1 - currentScale))
-          .scale(currentScale);
-
-        d3.select(groupRef.current).attr("transform", transform);
-        transformRef.current = transform;
+        groupRef.current.attr("transform", event.transform);
+        transformRef.current = event.transform;
       });
 
     svg.call(zoom);

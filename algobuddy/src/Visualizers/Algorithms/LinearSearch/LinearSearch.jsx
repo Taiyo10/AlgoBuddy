@@ -4,7 +4,7 @@ export const applyLinearSearchStep = async (viz, step, args) => {
     const {data, target} = args;
     
     if (step.action == "start_search") {
-        viz.setRectColours((_, i) => i === i, highlight);
+        viz.setRectColours((_, i) => i === i, base);
         viz.setTitle("Linear Search");
     }
     else if (step.action == "check") {

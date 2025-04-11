@@ -4,7 +4,7 @@ export const applyBinarySearchStep = async (viz, step, args) => {
     const {data, target} = args;
     
     if (step.action === "binary_search_start") {
-      viz.setRectColours((_, i) => i === i, highlight);
+      viz.setRectColours((_, i) => i === i, base);
       viz.setTitle("Binary Search");
 
     } else if (step.action === "check") {
