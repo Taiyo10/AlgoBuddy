@@ -11,12 +11,9 @@ import { useRef } from "react";
 import { Outputs } from "./Visualizers/components/Outputs";
 import { useLogger } from "./Visualizers/hooks/useLogger";
 const App = () => {
-  const { logs, printLog } = useLogger();
-  const config = { ...selectionSortConfig, log: printLog };
   return (
     <div>
-      <VisualizeAlgorithm config={config} />
-      <Outputs logs={logs} />
+      <VisualizeAlgorithm config={selectionSortConfig} />
     </div>
   );
 };
