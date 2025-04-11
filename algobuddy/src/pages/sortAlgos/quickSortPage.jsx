@@ -6,41 +6,41 @@ import Footer from "@/components/hero/footer";
 
 const QuickSortPage = () => {
   return (
-    <div>
-      <div id="top-container" className="h-[40.5vh] flex justify-between">
+    <div className="overflow-y-scroll h-[90vh]">
+      <div id="top-container" className="h-[22vh] flex justify-between">
         <div id="title-container-outer" className="w-[60vw] flex items-center">
           <div
             id="title-container-inner"
-            className="h-[30.6vh] w-[57vw] ml-auto flex flex-col"
+            className="h-[20.6vh] w-[57vw] ml-auto flex flex-col"
           >
-            <div id="title" className="h-[16vh] ">
+            <div id="title" className="h-[12vh] ">
               <img
                 id="title-1"
                 src="./quick-title.png"
                 alt=""
-                className="h-[6.5vh] dark:hidden"
+                className="h-[4.5vh] dark:hidden"
               />
               <img
                 id="title-1"
                 src="./quick-title-dark-mode.png"
                 alt=""
-                className="h-[6.5vh] hidden dark:block"
+                className="h-[4.5vh] hidden dark:block"
               />
               <img
                 id="title-2"
                 src="./sort-title.png"
                 alt=""
-                className="h-[6.5vh] dark:hidden"
+                className="h-[4.5vh] dark:hidden"
               />
               <img
                 id="title-1"
                 src="./sort-title-dark-mode.png"
                 alt=""
-                className="h-[6.5vh] hidden dark:block"
+                className="h-[4.5vh] hidden dark:block"
               />
             </div>
             <div id="preamble">
-              <h1 id="preamble-text" className="text-[1vw] font-dmsans">
+              <h1 id="preamble-text" className="text-[0.8vw] font-dmsans">
                 Quicksort is an efficient, general-purpose sorting algorithm.
                 Quicksort was developed by British computer scientist Tony Hoare
                 in 1959 and published in 1961. It is still a commonly used
@@ -58,35 +58,31 @@ const QuickSortPage = () => {
         </div>
         <div
           id="top-shape"
-          className="w-[40vw] border-l-[15vw] border-l-transparent border-b-[40.6vh] border-b-[#2A5829]"
+          className="w-[40vw] border-l-[10vw] border-l-transparent border-b-[22.2vh] border-b-[#2A5829]"
         >
           <div
             id="icon-container"
-            className="w-[25vw] h-[40.5vh] bg-none flex justify-center items-center"
+            className="w-[25vw] h-[20.5vh] bg-none flex justify-center items-center"
           >
-            <img
-              src="./quick-sort-icon.png"
-              alt=""
-              className="w-[18vw]"
-            />
+            <img src="./quick-sort-icon.png" alt="" className="w-[10vw]" />
           </div>
         </div>
       </div>
-      <VisualizeAlgorithm config={quickSortConfig}/>
+      <VisualizeAlgorithm config={quickSortConfig} />
       <SampleCode
-      Java={javaCode}
-      Python={pythonCode}
-      JS={jsCode}
-      CPlusPlus={cppCode}/>
+        Java={javaCode}
+        Python={pythonCode}
+        JS={jsCode}
+        CPlusPlus={cppCode}
+      />
       <Footer></Footer>
     </div>
   );
 };
 
-
 export default QuickSortPage;
 
-  // Code snippets
+// Code snippets
 const javaCode = `// Quick Sort in Java
 
 class QuickSort {

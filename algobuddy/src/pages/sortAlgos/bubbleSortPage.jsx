@@ -6,41 +6,41 @@ import Footer from "@/components/hero/footer";
 
 const BubbleSortPage = () => {
   return (
-    <div>
-      <div id="top-container" className="h-[40.5vh] flex justify-between">
+    <div className="overflow-y-scroll h-[90vh]">
+      <div id="top-container" className="h-[22vh] flex justify-between">
         <div id="title-container-outer" className="w-[60vw] flex items-center">
           <div
             id="title-container-inner"
-            className="h-[30.6vh] w-[57vw] ml-auto flex flex-col"
+            className="h-[20.6vh] w-[57vw] ml-auto flex flex-col"
           >
-            <div id="title" className="h-[16vh] ">
+            <div id="title" className="h-[12vh] py-4">
               <img
                 id="title-1"
                 src="./bubble-title.png"
                 alt=""
-                className="h-[6.5vh] dark:hidden"
+                className="h-[4.5vh] dark:hidden"
               />
               <img
                 id="title-1"
                 src="./bubble-title-dark-mode.png"
                 alt=""
-                className="h-[6.5vh] hidden dark:block"
+                className="h-[4.5vh] hidden dark:block"
               />
               <img
                 id="title-2"
                 src="./sort-title.png"
                 alt=""
-                className="h-[6.5vh] dark:hidden"
+                className="h-[4.5vh] dark:hidden"
               />
               <img
                 id="title-1"
                 src="./sort-title-dark-mode.png"
                 alt=""
-                className="h-[6.5vh] hidden dark:block"
+                className="h-[4.5vh] hidden dark:block"
               />
             </div>
             <div id="preamble">
-              <h1 id="preamble-text" className="text-[1vw] font-dmsans">
+              <h1 id="preamble-text" className="text-[0.8vw] font-dmsans">
                 Bubble sort, sometimes referred to as sinking sort, is a simple
                 sorting algorithm that repeatedly steps through the input list
                 element by element, comparing the current element with the one
@@ -57,26 +57,23 @@ const BubbleSortPage = () => {
         </div>
         <div
           id="top-shape"
-          className="w-[40vw] border-l-[15vw] border-l-transparent border-b-[40.6vh] border-b-[#2A5829]"
+          className="w-[40vw] border-l-[10vw] border-l-transparent border-b-[22.2vh] border-b-[#2A5829]"
         >
           <div
             id="icon-container"
-            className="w-[25vw] h-[40.5vh] bg-none flex justify-center items-center"
+            className="w-[25vw] h-[20.5vh] bg-none flex justify-center items-center"
           >
-            <img
-              src="./bubble-sort-icon.png"
-              alt=""
-              className="w-[18vw]"
-            />
+            <img src="./bubble-sort-icon.png" alt="" className="w-[10vw]" />
           </div>
         </div>
       </div>
-      <VisualizeAlgorithm config={bubbleSortConfig}/>
+      <VisualizeAlgorithm config={bubbleSortConfig} />
       <SampleCode
         Java={javaCode}
         Python={pythonCode}
         JS={jsCode}
-        CPlusPlus={cppCode}/>
+        CPlusPlus={cppCode}
+      />
       <Footer></Footer>
     </div>
   );
@@ -84,8 +81,8 @@ const BubbleSortPage = () => {
 
 export default BubbleSortPage;
 
-  // Code snippets
-  const javaCode = `// Bubble Sort in Java
+// Code snippets
+const javaCode = `// Bubble Sort in Java
 
   class BubbleSort {
     public static void bubbleSort(int array[]) {
@@ -114,8 +111,8 @@ export default BubbleSortPage;
     }
   }
   `;
-  
-  const pythonCode = `# Bubble Sort in Python
+
+const pythonCode = `# Bubble Sort in Python
   
   def bubbleSort(array):
       n = len(array)
@@ -135,8 +132,8 @@ export default BubbleSortPage;
           if not swapped:
               break
   `;
-  
-  const jsCode = `// Bubble Sort in JavaScript
+
+const jsCode = `// Bubble Sort in JavaScript
   
   function bubbleSort(array) {
     const n = array.length;
@@ -163,8 +160,8 @@ export default BubbleSortPage;
     }
   }
   `;
-  
-  const cppCode = `// Bubble Sort in C++
+
+const cppCode = `// Bubble Sort in C++
   
   #include <iostream>
   using namespace std;
