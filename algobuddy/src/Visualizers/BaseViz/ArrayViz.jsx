@@ -88,7 +88,7 @@ const ArrayVisualizer = forwardRef(({ data, speed=1000, title}, ref) => {
 
     // Add zoom behavior to the whole SVG
     const zoom = d3.zoom()
-      .scaleExtent([0.5, 5]) // optional, limit zoom in/out
+      .scaleExtent([0.5,]) // optional, limit zoom in/out
       .on("zoom", (event) => {
         const svg = d3.select(svgRef.current);
         const svgWidth = svg.node().clientWidth;
