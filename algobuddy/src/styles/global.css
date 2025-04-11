@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --background: 0 0% 100%; /* white */
+    --foreground: 222.2 84% 4.9%; /* dark blue/black text */
+    --primary: 152 56% 22%; /* dark green */
+    --secondary: 120 36% 25%; /* mid green */
+    --muted: 210 40% 80%; /* muted gray */
+    --accent: 140 29% 35%; /* green */
+    --fontcolour: 0 0% 0%;
+  }
+  
+.dark {
+    --background: 222.2 84% 4.9%; /* dark navy */
+    --foreground: 210 40% 98%; /* near white text */
+    --primary: 152 56% 22%; /* dark green */
+    --secondary: 120 36% 25%; /* mid green */
+    --muted: 215 28% 17%; /* very dark muted */
+    --accent: 140 29% 35%; /* green */
+    --fontcolour: 0 0% 100%;
+}
+
+
+
