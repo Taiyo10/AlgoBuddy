@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import ArrayVisualizer from "./BaseViz/ArrayViz";
-import GraphVisualizer from "./BaseViz/GraphViz";
-import BarChartVisualizer from "./BaseViz/BarViz";
+import BarVisualizer from "./BaseViz/BarViz"
 import { Inputs } from "./components/Inputs";
 import { StepController } from "./components/StepController";
-import { Outputs } from "./components/Outputs";
+import LogViewer from "./components/LogViewer";
 import { useLogger } from "./hooks/useLogger";
 
 const visualizers = {
@@ -16,48 +15,41 @@ const visualizers = {
 
 
 
-const VisualizeAlgorithm =({ config }) => {
-    const vizRef = useRef();
-    const speedRef = useRef(1000);
+const VisualizeAlgorithm = ({ config }) => {
+  const vizRef = useRef();
+  const speedRef = useRef(1000);
+
+  const { logs, printLog } = useLogger(); // ⬅️ log state + print function
 
     const {name, visualizer, applyStep, applyAlgorithm, inputs, defaultValues} = config
 
-    // Defines potential inputs for the algorithm/visualizer
-    const [data, setData] = useState(defaultValues.array);
-    const [target, setTarget] = useState(defaultValues.target);
-    const [key, setKey] = useState(defaultValues.key);
+  const [data, setData] = useState(defaultValues.array || []);
+  const [target, setTarget] = useState(defaultValues.target || null);
+  const [key, setKey] = useState(defaultValues.key || null);
+  const [reset, setReset] = useState(false);
+  const [jsonData, setJsonData] = useState([]);
 
-    const [reset, setReset] = useState(false); // Reset state to reset animation
-
-    const [jsonData, setJsonData] = useState(applyAlgorithm([...data],target,key))
-
-    // Use the custom logger hook.
-    const { logs, printLog } = useLogger();
-
-    // Reset animation when any input changes
-    useEffect(() => {
-        async function getJson(data,target, key) {
-            setJsonData(await applyAlgorithm([...data],target,key))
-        }
-        getJson(data, target, key);
-        setReset(!reset);
-    }, [data, target, key]);
-    
-    // Applies change to visualizer depending on step in algorithm
-    const handleApplyStep = (step) => {
-        if (!vizRef.current) return;
-        const args = {data, target, key};
-        applyStep(vizRef.current, step, args); // applyStep function from config
-    }
-
-    // Maps input values and setters for input component
-    const mapping = {
-        array: { value: data, setValue: setData },
-        target: { value: target, setValue: setTarget },
-        key: { value: key, setValue: setKey }
+  useEffect(() => {
+    const runAlgorithm = async () => {
+      const logs = await applyAlgorithm(data, target, key);
+      setJsonData(logs);
     };
+    runAlgorithm();
+    setReset(!reset);
+  }, [data, target, key]);
 
-    const AlgorithmVisualizer = visualizers[visualizer]; // Selects needed visualizer based on config
+  const handleApplyStep = (step) => {
+    if (!vizRef.current) return;
+    applyStep(vizRef.current, step, { data, target, key, log: printLog }); // ⬅️ pass logger
+  };
+
+  const mapping = {
+    array: { value: data, setValue: setData },
+    target: { value: target, setValue: setTarget },
+    key: { value: key, setValue: setKey },
+  };
+
+  const AlgorithmVisualizer = visualizers[visualizer];
 
     return (
         <div className="flex justify-center visualier bg-accent dark:bg-[#00320A] p-4">
@@ -72,7 +64,7 @@ const VisualizeAlgorithm =({ config }) => {
                     <StepController jsonData={jsonData} speedRef={speedRef} applyStep={handleApplyStep} reset={reset} />
                     <Inputs config = {inputs} mapping = {mapping} />
                 </div>
-                <Outputs logs={logs} />
+                <LogViewer logs={logs} /> {/* ⬅️ add this here */}
             </div>
         </div>
     );
