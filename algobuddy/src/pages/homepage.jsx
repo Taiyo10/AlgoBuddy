@@ -16,7 +16,7 @@ const Homepage = () => {
       </div>
 
       {/* White Visualizer Section (fills visible screen height) */}
-      <div className="bg-background w-full min-h-[calc(100vh-200px)] px-6 py-4 -mt-8 flex flex-col md:flex-row items-center justify-center gap-12">
+      <div className="bg-background w-full min-h-[calc(100vh-200px)] px-6 py-14 -mt-8 flex flex-col md:flex-row items-center justify-center gap-12">
         {/* Left Text Block */}
         <div className="max-w-xl text-left">
           <h2 className="text-3xl font-rubikmono text-[#204D2A] mb-4">
