@@ -4,7 +4,7 @@ export const selectionSortConfig = {
     name: "Selection Sort",
     visualizer: "chart",
     defaultValues: {
-        array: [42, 17, 89, 3, 56, 74],
+        array: [19, 1, 97, 42, 13, 8],
     },
     inputs: {
         array: true,

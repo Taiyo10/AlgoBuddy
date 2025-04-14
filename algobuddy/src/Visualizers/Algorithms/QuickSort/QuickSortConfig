@@ -4,7 +4,7 @@ export const quickSortConfig = {
     name: "Quick Sort",
     visualizer: "chart",
     defaultValues: {
-        array: [42, 17, 89, 3, 56, 74],
+        array: [72, 4, 16, 30, 61],
     },
     inputs: {
         array: true,

@@ -4,7 +4,7 @@ export const mergeSortConfig = {
     name: "Merge Sort",
     visualizer: "chart",
     defaultValues: {
-        array: [1, 9, 6, 21, 11],
+        array: [34, 9, 6, 21, 11],
     },
     inputs: {
         array: true,

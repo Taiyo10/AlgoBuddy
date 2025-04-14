@@ -5,7 +5,7 @@ export const bubbleSortConfig = {
     name: "Bubble Sort",
     visualizer: "chart",
     defaultValues: {
-        array: [42, 17,89,3,56,74],
+        array: [42,17,89,3,56,74],
     },
     inputs: {
         array: true,
