@@ -15,13 +15,11 @@ const visualizers = {
     
 }
 
-
-
 const VisualizeAlgorithm = ({ config }) => {
   const vizRef = useRef();
   const speedRef = useRef(1000);
 
-  const { logs, printLog } = useLogger(); // ⬅️ log state + print function
+  const { logs, setLogs, printLog } = useLogger(); // ⬅️ log state + print function
 
   const { name, visualizer, applyStep, applyAlgorithm, inputs, defaultValues } = config;
 
@@ -41,6 +39,7 @@ const VisualizeAlgorithm = ({ config }) => {
     }
     getJson(data, target, key);
     setReset((prev) => !prev);
+    setLogs([]);
   }, [data, target, key]);
 
   const handleApplyStep = (step) => {
@@ -59,19 +58,21 @@ const VisualizeAlgorithm = ({ config }) => {
 
     return (
         <div className="flex justify-center visualier bg-accent dark:bg-[#00320A] p-4">
-            <div>
-                {/* <div className="flex items-center w-[55vw] rounded-t-xl gap-2 p-2 bg-[#eaeaea] dark:bg-[#2d2d2d] text-gray-400">
-                    <span className="h-3 w-3 rounded-full bg-red-500" />
-                    <span className="h-3 w-3 rounded-full bg-yellow-500" />
-                    <span className="h-3 w-3 rounded-full bg-green-500" />
-                </div> */}
-                <AlgorithmVisualizer ref={vizRef} data={data} speed={speedRef.current} title={name} />
-                <div className="bg-[#eaeaea] dark:bg-[#2d2d2d] w-[55vw] rounded-b-xl p-2 ">
-                    <StepController jsonData={jsonData} speedRef={speedRef} applyStep={handleApplyStep} reset={reset} />
-                    <Inputs config = {inputs} mapping = {mapping} />
+            <div className="flex">
+                <div className="mr-4">
+                    <AlgorithmVisualizer ref={vizRef} data={data} speed={speedRef.current} title={name} />
+                    <div className="bg-[#eaeaea] dark:bg-[#2d2d2d] w-[55vw] rounded-b-xl p-2 ">
+                        <StepController jsonData={jsonData} speedRef={speedRef} applyStep={handleApplyStep} reset={reset} />
+                        <Inputs config = {inputs} mapping = {mapping} />
+                    </div>
                 </div>
-                <div >
-                  <LogViewer logs={logs} />
+                <div>
+                    <div className="flex items-center w-[35vw] rounded-t-xl gap-2 p-2 bg-[#eaeaea] dark:bg-[#2d2d2d] text-gray-400">
+                        <span className="h-3 w-3 rounded-full bg-red-500" />
+                        <span className="h-3 w-3 rounded-full bg-yellow-500" />
+                        <span className="h-3 w-3 rounded-full bg-green-500" />
+                    </div>
+                    <LogViewer logs={logs} />
                 </div>
             </div>
         </div>

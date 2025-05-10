@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Slider } from "./Slider";
 
-export const StepController = ({ jsonData, speedRef, applyStep, reset }) => {
+export const StepController = ({ jsonData, speedRef, applyStep, reset, setLogs }) => {
     const [currentStep, setCurrentStep] = useState(0);
     const [playing, setPlaying] = useState(false);
     
@@ -80,7 +80,7 @@ export const StepController = ({ jsonData, speedRef, applyStep, reset }) => {
             // style={{ width: "250px", marginLeft: "10px" }}
             />
             <span className="p-1 mx-2"> Step {currentStep + 1} / {jsonData.length} </span>
-            <button className="p-1 px-2 bg-gray-300 dark:bg-[#555] dark:text-[#BCBCBC] rounded" onClick={() => {jump(0); setPlaying(false)}}>Reset</button>
+            <button className="p-1 px-2 bg-gray-300 dark:bg-[#555] dark:text-[#BCBCBC] rounded" onClick={() => {jump(0); setPlaying(false); setLogs([])}}>Reset</button>
         </>
     ) 
     

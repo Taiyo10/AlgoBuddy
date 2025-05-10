@@ -73,12 +73,14 @@ const BinarySearchPage = () => {
         </div>
       </div>
       <VisualizeAlgorithm config={binarySearchConfig}/>
-      <SampleCode
-      Java={javaCode}
-      Python={pythonCode}
-      JS={jsCode}
-      CPlusPlus={cppCode}
-      />
+      <div className="flex justify-center my-4">
+        <SampleCode
+        Java={javaCode}
+        Python={pythonCode}
+        JS={jsCode}
+        CPlusPlus={cppCode}
+        />
+      </div>
       <Footer></Footer>
     </div>
   );

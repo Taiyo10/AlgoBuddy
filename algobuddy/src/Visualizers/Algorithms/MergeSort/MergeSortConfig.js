@@ -2,9 +2,9 @@ import { applyMergeSortStep } from "./MergeSort"; // assuming you saved it as Me
 import { mergeSort } from "../../../components/JavaScript/algos/sort/merge-sort"
 export const mergeSortConfig = {
     name: "Merge Sort",
-    visualizer: "chart",
+    visualizer: "array",
     defaultValues: {
-        array: [42, 17, 89, 3, 56, 74],
+        array: [1, 9, 6, 21, 11],
     },
     inputs: {
         array: true,
